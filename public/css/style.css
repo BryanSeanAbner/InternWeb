@@ -1,0 +1,40 @@
+body{
+    background-color: lightblue;
+}
+
+/* Memastikan button profile dapat diklik */
+button[type="button"] {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Memastikan dropdown menu dapat diinteraksi */
+.dropdown-menu {
+    pointer-events: auto;
+    z-index: 1000;
+}
+
+/* Memastikan Alpine.js berfungsi dengan baik */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Memastikan transisi berfungsi */
+.transition {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Memastikan hover effects berfungsi */
+.hover\:bg-gray-100:hover {
+    background-color: rgb(243 244 246);
+}
+
+.hover\:bg-gray-700:hover {
+    background-color: rgb(55 65 81);
+}
+
+.hover\:text-white:hover {
+    color: rgb(255 255 255);
+}
