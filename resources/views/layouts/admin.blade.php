@@ -39,5 +39,10 @@
             </main>
         </div>
     </div>
+    <script>
+function toggleDropdown(id) {
+    document.getElementById(id).classList.toggle('hidden');
+}
+</script>
 </body>
 </html> 

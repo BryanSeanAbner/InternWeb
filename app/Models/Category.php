@@ -15,6 +15,7 @@ class Category extends Model
         'name',
         'slug',
         'color',
+        'description',
         'photo',
         'parent_id'
     ];
@@ -32,5 +33,10 @@ class Category extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class);
     }
 } 

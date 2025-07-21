@@ -182,6 +182,13 @@ body {
     background: linear-gradient(90deg, #003B99 80%, #2FCC91 0%);
     box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
 }
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-left 180s linear infinite;
+}
 </style>
 <script>
 // Fungsi untuk interpolasi warna gradasi biru ke hijau
@@ -214,6 +221,16 @@ window.addEventListener('scroll', function() {
     $latestPosts = \App\Models\Post::with(['author', 'category'])->latest()->take(3)->get();
     $benefits = \App\Models\InternshipBenefit::all();
     $category = \App\Models\Category::whereNull('parent_id')->get();
+    
+    $posts = ($allPosts ?? $latestPosts)->map(function($post) {
+        return [
+            'id' => $post->id,
+            'title' => $post->title,
+            'photo' => $post->photo,
+            'photo_url' => $post->photo ? asset('storage/' . $post->photo) : null,
+            'url' => route('posts.show', $post),
+        ];
+    });
 @endphp
 <div class="hero-section" id="home">
     <h1 class="hero-title ">Mulai Pengalaman Magangmu di <br>Nusantara TV</h1>
@@ -228,15 +245,22 @@ window.addEventListener('scroll', function() {
         <div class="berita-title">Berita Terkini</div>
         <div style="width: 80px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-8">
-            @foreach($latestPosts as $post)
+            @foreach(($allPosts ?? $latestPosts) as $post)
                 <div class="bg-white rounded-lg shadow border p-6 flex flex-col justify-between transition hover:shadow-lg">
+                    <div style="width:100%;height:120px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;color:#888;font-size:15px;margin-bottom:18px;border-radius:12px;overflow:hidden;">
+                        @if($post->photo)
+                            <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" style="width:100%;height:100%;object-fit:cover;">
+                        @else
+                            IMAGE
+                        @endif
+                    </div>
                     <div class="flex justify-between items-center mb-2">
                         <span class="px-3 py-1 rounded-full text-xs font-semibold"
                               style="background:{{ $post->category->color ?? '#eee' }}20; color:{{ $post->category->color ?? '#333' }}">
                             {{ $post->category->name ?? '-' }}
                         </span>
                         <span class="text-xs text-gray-500">
-                            {{ $post->created_at->diffForHumans() }}
+                            {{ $post->created_at->format('F d, Y') }}
                         </span>
                     </div>
                     <div class="mb-2">
@@ -248,12 +272,12 @@ window.addEventListener('scroll', function() {
                     <div class="flex items-center justify-between mt-4">
                         <a href="{{ route('posts.show', $post) }}" 
                            class="text-blue-600 font-semibold flex items-center gap-1 hover:underline">
-                            Read more <span>&rarr;</span>
+                            Read more &rarr;
                         </a>
                     </div>
                 </div>
             @endforeach
-    </div>
+        </div>
         <div class="text-center mt-8">
             <a href="{{ route('posts.index') }}" 
                class="inline-block bg-blue-500 text-white px-6 py-2 rounded font-bold hover:bg-blue-600 transition">
@@ -340,13 +364,13 @@ window.addEventListener('scroll', function() {
         </style>
         <div style="display: flex; flex-direction: row; gap: 32px; justify-content: center; align-items: stretch; flex-wrap: wrap; padding: 0 24px;">
             @foreach($category as $cat)
-                <div class="category-card">
+                <a href="{{ route('categories.show', $cat->slug) }}" class="category-card transition-transform hover:scale-105">
                     @if($cat->photo)
                         <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="category-card-bg">
                     @endif
                     <div class="category-card-overlay"></div>
                     <div class="category-card-title">{{ $cat->name }}</div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
@@ -381,20 +405,52 @@ window.addEventListener('scroll', function() {
     <div style="max-width: 1200px; margin: 0 auto;">
         <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#fff; margin-bottom: 18px;">Apa Kata Mereka tentang Program Magang Ini</h2>
         <div style="width: 120px; height: 4px; background: #fff; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8">
-            @foreach($testimonials as $t)
-                <div style="background:rgba(255,255,255,0.12); border-radius:22px; box-shadow:0 4px 24px 0 rgba(37,99,235,0.10); padding:36px 24px; text-align:center; display:flex; flex-direction:column; align-items:center; min-height:320px; color:#fff;">
-                    <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" style="width:80px; height:80px; object-fit:cover; border-radius:50%; margin-bottom:18px; border:3px solid #fff; box-shadow:0 2px 8px 0 rgba(37,99,235,0.10);">
-                    <div style="font-size:1.1rem; font-style:italic; margin-bottom:18px; opacity:0.95;">"{{ $t->description }}"</div>
-                    <div style="font-weight:700; font-size:1.1rem; margin-bottom:2px;">{{ $t->name }}</div>
-                    @if($t->category)
-                        <div style="font-size:0.98rem; font-style:italic; opacity:0.85;">{{ $t->category->name }}</div>
-                    @endif
-                </div>
-            @endforeach
+        <div class="relative w-full overflow-hidden py-8 bg-transparent">
+            <div class="flex gap-8 marquee-track w-max">
+                @foreach($testimonials as $t)
+                    <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800">
+                        <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
+                        <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                        <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}</div>
+                        @if($t->category)
+                            <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
+@push('scripts')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    new Swiper('.mySwiper-testimoni', {
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+        loop: true,
+        freeMode: false,
+        direction: 'horizontal',
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next-testimoni',
+            prevEl: '.swiper-button-prev-testimoni',
+        },
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+            reverseDirection: false
+        },
+        speed: 800,
+        // breakpoints tidak perlu karena slidesPerView:auto
+    });
+});
+</script>
+@endpush
 @php
     $applySteps = \App\Models\ApplyStep::orderBy('step_number')->get();
 @endphp

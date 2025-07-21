@@ -24,6 +24,7 @@ class KategoriController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:categories,name',
+            'description' => 'nullable|string',
             'photo' => 'nullable|file|image|max:2048',
         ]);
         $validated['slug'] = Str::slug($validated['name']);
@@ -46,10 +47,12 @@ class KategoriController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
+            'description' => 'nullable|string',
             'photo' => 'nullable|file|image|max:2048',
         ]);
         $kategori->name = $validated['name'];
         $kategori->slug = Str::slug($validated['name']);
+        $kategori->description = $validated['description'] ?? null;
         if (!$kategori->color) $kategori->color = '#2563eb';
         if ($request->hasFile('photo')) {
             $kategori->photo = $request->file('photo')->store('kategori', 'public');
@@ -63,5 +66,13 @@ class KategoriController extends Controller
         $kategori->posts()->update(['category_id' => null]);
         $kategori->delete();
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus.');
+    }
+
+    public function show($slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $subcategories = $category->subcategories;
+        $testimonials = \App\Models\Testimonial::where('category_id', $category->id)->get();
+        return view('category', compact('category', 'subcategories', 'testimonials'));
     }
 }
