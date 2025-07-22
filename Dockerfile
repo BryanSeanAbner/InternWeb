@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libzip-dev \
+    nodejs \
+    npm \
     && docker-php-ext-configure zip \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
@@ -27,9 +29,8 @@ COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 # Install dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-scripts
 
-# CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080
 # (Opsional) Build assets jika pakai npm
-# RUN npm install && npm run build
+RUN npm install && npm run build
 
 EXPOSE 8080
 
