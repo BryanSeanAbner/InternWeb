@@ -1,509 +1,77 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="min-height:100vh; background: linear-gradient(135deg, #003B99 0%, #2FCC91 100%);">
-<nav class="bg-transparent text-white shadow navbar-sticky">
-    <div class="container mx-auto flex justify-between items-center py-5 px-6">
-        <div class="text-2xl font-bold tracking-wide">Nusantara TV</div>
-        <ul class="flex space-x-8 font-semibold text-lg">
-            <li><a href="#home" class="hover:text-blue-300">Home</a></li>
-            <li><a href="#berita" class="hover:text-blue-300">Berita</a></li>
-            <li><a href="#tentang" class="hover:text-blue-300">Tentang</a></li>
-            <li><a href="#bidang" class="hover:text-blue-300">Bidang</a></li>
-            <li><a href="#persyaratan" class="hover:text-blue-300">Persyaratan</a></li>
-            <li><a href="#testimonial" class="hover:text-blue-300">Testimonial</a></li>
-            <li><a href="#howtoapply" class="hover:text-blue-300">Cara Mendaftar</a></li>
-            <li><a href="#contactus" class="hover:text-blue-300">Kontak</a></li>
-        </ul>
-    </div>
-</nav>
-<style>
-html, body {
-    min-height: 100vh;
-    height: 100%;
-    background: linear-gradient(135deg, #003B99 0%, #2FCC91 100%) !important;
-    background-attachment: fixed !important;
-    scroll-behavior: smooth;
-}
-main, .container, .content, #app {
-    background: transparent !important;
-}
-body {
-    background: linear-gradient(135deg, #003B99 0%, #2FCC91 100%);
-    min-height: 100vh;
-}
-.hero-section {
-    /* background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); */
-    background: transparent;
-    padding: 120px 0 100px 0;
-    text-align: center;
-    color: #fff;
-}
-.hero-title {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 40px;
-    line-height: 1.1;
+    <main class="main relative">
 
-}
+        <!-- Hero section -->
+        <section id="home"
+            class="relative overflow-hidden bg-primary text-primary-color pt-[120px] md:pt-[130px] lg:pt-[160px]">
+            <div class="container">
+                <div class="-mx-5 flex flex-wrap items-center">
+                    <div class="w-full px-5">
+                        <div class="scroll-revealed mx-auto max-w-[780px] text-center">
+                            <h1
+                                class="mb-6 text-3xl font-bold leading-snug text-primary-color sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-tight">
+                                Tailwind CSS Company Landing Page by Ranyeh
+                            </h1>
 
+                            <p class="mx-auto mb-9 max-w-[600px] text-base text-primary-color sm:text-lg sm:leading-normal">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Possimus qui impedit veniam, nesciunt nostrum vel repellat
+                                reprehenderit dignissimos harum, iste ex sit illo?
+                            </p>
 
-@media (min-width: 768px) {
-    .hero-title {
-        font-size: 5.5rem;
-    }
-}
-.hero-subtitle {
-    font-size: 1.7rem;
-    font-weight: 400;
-    margin-bottom: 48px;
-    color: #e0e7ef;
-}
-.hero-btn {
-    display: inline-block;
-    padding: 18px 48px;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #fff;
-    background: linear-gradient(90deg, #2563eb 60%, #3b82f6 100%);
-    border: none;
-    border-radius: 999px;
-    box-shadow: 0 8px 32px 0 rgba(37,99,235,0.25);
-    transition: background 0.2s, box-shadow 0.2s;
-    margin-bottom: 30px;
-}
-.hero-btn:hover {
-    background: linear-gradient(90deg, #1d4ed8 60%, #2563eb 100%);
-    box-shadow: 0 12px 40px 0 rgba(37,99,235,0.35);
-}
-.berita-section {
-    /* background: #f8fafc; */
-    /* background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); */
-    background: transparent;
-    padding: 60px 0 40px 0;
-}
-.berita-title {
-  color:  #f8fafc;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 32px;
-}
-.apply-section-bg {
-    /* background: #eaf2fd; */
-    background: transparent;
-    padding: 64px 0 48px 0;
-    margin-top: 0;
-}
-.apply-steps-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.apply-steps-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 32px;
-    margin-bottom: 48px;
-}
-.apply-step {
-    flex: 1 1 180px;
-    min-width: 180px;
-    max-width: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.apply-step-circle {
-    width: 72px;
-    height: 72px;
-    background: rgb(21, 213, 130);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 18px;
-    box-shadow: 0 2px 12px 0 rgba(37,99,235,0.10);
-}
-.apply-step-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 8px;
-    text-align: center;
-}
-.apply-step-desc {
-    font-size: 1.02rem;
-    color: #FFFFFF;
-    opacity: 0.95;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.apply-step-line {
-    align-self: center;
-    width: 32px;
-    height: 4px;
-    background: #FFFFFF;
-    border-radius: 2px;
-    opacity: 0.5;
-    margin-top: 32px;
-}
-.apply-step-bottom {
-    display: flex;
-    justify-content: center;
-    margin-top: 0;
-}
+                            <ul class="mb-10 flex flex-wrap items-center justify-center gap-4 md:gap-5">
+                                <li>
+                                    <a href="javascript:void(0)"
+                                        class="inline-flex items-center justify-center rounded-md bg-primary-color text-primary px-5 py-3 text-center text-base font-medium shadow-md hover:bg-primary-light-5 md:px-7 md:py-[14px]"
+                                        role="button">Get Started</a>
+                                </li>
 
-@media (max-width: 900px) {
-    .apply-steps-row {
-        flex-direction: column;
-        gap: 0;
-        align-items: center;
-    }
-    .apply-step-line {
-        width: 4px;
-        height: 32px;
-        margin: 0 auto;
-    }
-}
-.navbar-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: transparent;
-    transition: background 0.3s, box-shadow 0.3s;
-    backdrop-filter: blur(2px);
-}
-.navbar-colored {
-    background: linear-gradient(90deg, #003B99 80%, #2FCC91 0%);
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
-}
-@keyframes marquee-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.marquee-track {
-  animation: marquee-left 180s linear infinite;
-}
-</style>
-<script>
-// Fungsi untuk interpolasi warna gradasi biru ke hijau
-function lerpColor(a, b, t) {
-    return [
-        Math.round(a[0] + (b[0] - a[0]) * t),
-        Math.round(a[1] + (b[1] - a[1]) * t),
-        Math.round(a[2] + (b[2] - a[2]) * t)
-    ];
-}
-function rgbToString(rgb, alpha = 1) {
-    return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-}
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar-sticky');
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const scrollY = window.scrollY;
-    // Persentase posisi scroll terhadap total dokumen
-    const t = Math.min(scrollY / docHeight, 1);
-    // Warna gradasi: biru (#003B99) ke hijau (#2FCC91)
-    const colorTop = [0, 59, 153]; // #003B99
-    const colorBottom = [47, 204, 145]; // #2FCC91
-    const darken = 1; // semakin kecil, semakin gelap
-    const lerped = lerpColor(colorTop, colorBottom, t).map(v => Math.round(v * darken));
-    navbar.style.background = rgbToString(lerped, 0.5); // solid, bisa diubah ke 0.95 jika ingin sedikit transparan
-    navbar.style.boxShadow = t > 0.01 ? '0 2px 12px 0 rgba(0,0,0,0.04)' : 'none';
-});
-</script>
-@php
-    $latestPosts = \App\Models\Post::with(['author', 'category'])->latest()->take(3)->get();
-    $benefits = \App\Models\InternshipBenefit::all();
-    $category = \App\Models\Category::whereNull('parent_id')->get();
-    
-    $posts = ($allPosts ?? $latestPosts)->map(function($post) {
-        return [
-            'id' => $post->id,
-            'title' => $post->title,
-            'photo' => $post->photo,
-            'photo_url' => $post->photo ? asset('storage/' . $post->photo) : null,
-            'url' => route('posts.show', $post),
-        ];
-    });
-@endphp
-<div class="hero-section" id="home">
-    <h1 class="hero-title ">Mulai Pengalaman Magangmu di <br>Nusantara TV</h1>
-    <div class="hero-subtitle">
-        Bergabunglah dengan program magang komprehensif kami dan dapatkan pengalaman berharga dalam dunia penyiaran televisi dan produksi media yang dinamis.
-    </div>
-    <a href="#howtoapply" class="hero-btn">Cara Mendaftar</a>
-</div>
-<!-- Berita SECTION -->
-<div class="berita-section" id="berita">
-    <div class="mb-8">
-        <div class="berita-title">Berita Terkini</div>
-        <div style="width: 80px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-8">
-            @foreach(($allPosts ?? $latestPosts) as $post)
-                <div class="bg-white rounded-lg shadow border p-6 flex flex-col justify-between transition hover:shadow-lg">
-                    <div style="width:100%;height:120px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;color:#888;font-size:15px;margin-bottom:18px;border-radius:12px;overflow:hidden;">
-                        @if($post->photo)
-                            <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" style="width:100%;height:100%;object-fit:cover;">
-                        @else
-                            IMAGE
-                        @endif
+                                <li>
+                                    <a href="javascript:boid(0)"
+                                        class="video-popup flex items-center gap-4 rounded-md bg-primary-color/[0.15] px-5 py-3 text-base font-medium text-primary-color hover:bg-primary-color hover:text-primary md:px-7 md:py-[14px]"
+                                        role="button"><i class="lni lni-play text-lg/none"></i> Watch Intro</a>
+                                </li>
+                            </ul>
+
+                            <div>
+                                <p class="mb-4 text-center text-primary-color">Powered by</p>
+
+                                <div class="scroll-revealed flex items-center justify-center gap-4 text-center">
+                                    <a href="https://tailwindcss.com/" target="_blank"
+                                        class="text-primary-color/60 hover:text-primary-color">
+                                        <svg class="fill-current" height="26" viewBox=".16 .18 799.8 98.72"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m248.04 41.78h-14.42v27.79c0 7.41 4.89 7.29 14.42 6.83v11.23c-19.3 2.32-26.98-3.01-26.98-18.06v-27.79h-10.7v-12.05h10.7v-15.55l12.56-3.7v19.25h14.42zm54.98-12.05h12.56v57.9h-12.56v-8.34c-4.42 6.14-11.29 9.85-20.36 9.85-15.81 0-28.95-13.32-28.95-30.46 0-17.25 13.14-30.45 28.95-30.45 9.07 0 15.94 3.7 20.36 9.72zm-18.38 47.48c10.47 0 18.38-7.76 18.38-18.53s-7.91-18.53-18.38-18.53-18.37 7.76-18.37 18.53 7.9 18.53 18.37 18.53zm51.87-56.16c-4.42 0-8.03-3.71-8.03-7.99.01-1.05.22-2.09.62-3.06a7.997 7.997 0 0 1 4.34-4.32c.97-.4 2.02-.61 3.07-.61s2.09.21 3.07.61c.97.4 1.85.99 2.6 1.73.74.75 1.33 1.63 1.74 2.59.4.97.61 2.01.61 3.06 0 4.28-3.6 7.99-8.02 7.99zm-6.28 66.58v-57.9h12.56v57.9zm27.1 0v-84.53h12.56v84.53zm94.08-57.9h13.26l-18.26 57.9h-12.33l-12.09-39.02-12.21 39.02h-12.33l-18.26-57.9h13.26l11.28 39.95 12.21-39.95h11.98l12.09 39.95zm28.84-8.68c-4.42 0-8.02-3.71-8.02-7.99 0-1.05.21-2.09.61-3.06.41-.96 1-1.84 1.74-2.59.75-.74 1.63-1.33 2.6-1.73.98-.4 2.02-.61 3.07-.61a8.044 8.044 0 0 1 5.67 2.34c.75.75 1.34 1.63 1.74 2.59.41.97.62 2.01.62 3.06 0 4.28-3.61 7.99-8.03 7.99zm-6.28 66.58v-57.9h12.56v57.9zm80.02-35.55v35.55h-12.56v-34.27c0-8.81-5.12-13.44-13.03-13.44-8.26 0-14.77 4.87-14.77 16.68v31.03h-12.56v-57.9h12.56v7.41c3.84-6.02 10.12-8.91 18.03-8.91 13.02 0 22.33 8.8 22.33 23.85zm59.54-45.51h12.56v81.06h-12.56v-8.34c-4.42 6.14-11.28 9.85-20.35 9.85-15.82 0-28.96-13.32-28.96-30.46 0-17.25 13.14-30.45 28.96-30.45 9.07 0 15.93 3.7 20.35 9.72zm-18.37 70.64c10.46 0 18.37-7.76 18.37-18.53s-7.91-18.53-18.37-18.53c-10.47 0-18.38 7.76-18.38 18.53s7.91 18.53 18.38 18.53zm42.33-18.53c0-17.25 13.14-30.45 30.7-30.45 11.4 0 21.28 5.9 25.93 14.94l-10.81 6.25c-2.56-5.44-8.26-8.92-15.24-8.92-10.23 0-18.02 7.76-18.02 18.18s7.79 18.18 18.02 18.18c6.98 0 12.68-3.59 15.47-8.91l10.82 6.13c-4.89 9.15-14.77 15.06-26.17 15.06-17.56 0-30.7-13.32-30.7-30.46zm108.85 12.62c0 11.58-10.12 17.84-22.68 17.84-11.63 0-20-5.22-23.72-13.55l10.81-6.26c1.87 5.22 6.52 8.34 12.91 8.34 5.59 0 9.89-1.85 9.89-6.48 0-10.31-31.28-4.52-31.28-25.25 0-10.88 9.42-17.71 21.28-17.71 9.53 0 17.44 4.4 21.51 12.04l-10.58 5.91c-2.09-4.52-6.16-6.6-10.93-6.6-4.54 0-8.49 1.96-8.49 6.13 0 10.54 31.28 4.17 31.28 25.59zm53.62 0c0 11.58-10.12 17.84-22.68 17.84-11.63 0-20.01-5.22-23.73-13.55l10.82-6.26c1.86 5.22 6.51 8.34 12.91 8.34 5.58 0 9.88-1.85 9.88-6.48 0-10.31-31.28-4.52-31.28-25.25 0-10.88 9.42-17.71 21.28-17.71 9.54 0 17.45 4.4 21.52 12.04l-10.59 5.91c-2.09-4.52-6.16-6.6-10.93-6.6-4.53 0-8.49 1.96-8.49 6.13 0 10.54 31.29 4.17 31.29 25.59z" />
+                                            <path
+                                                d="m82.79.18c-22.03 0-35.81 10.97-41.32 32.91 8.27-10.97 17.91-15.09 28.93-12.35 6.28 1.57 10.77 6.11 15.75 11.14 8.1 8.18 17.48 17.66 37.96 17.66 22.03 0 35.8-10.97 41.31-32.91-8.26 10.97-17.9 15.08-28.92 12.34-6.28-1.56-10.78-6.11-15.75-11.13-8.1-8.19-17.48-17.66-37.96-17.66zm-41.32 49.36c-22.03 0-35.8 10.97-41.31 32.91 8.26-10.97 17.9-15.08 28.92-12.34 6.29 1.56 10.78 6.11 15.75 11.13 8.1 8.19 17.48 17.66 37.96 17.66 22.04 0 35.81-10.97 41.32-32.91-8.27 10.97-17.91 15.09-28.92 12.35-6.29-1.57-10.78-6.11-15.76-11.14-8.1-8.18-17.48-17.66-37.96-17.66z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold"
-                              style="background:{{ $post->category->color ?? '#eee' }}20; color:{{ $post->category->color ?? '#333' }}">
-                            {{ $post->category->name ?? '-' }}
-                        </span>
-                        <span class="text-xs text-gray-500">
-                            {{ $post->created_at->format('F d, Y') }}
-                        </span>
-                    </div>
-                    <div class="mb-2">
-                        <h2 class="text-lg font-bold mb-1">{{ $post->title }}</h2>
-                        <p class="text-gray-500 leading-relaxed">
-                            {{ Str::limit(strip_tags($post->body), 100) }}
-                        </p>
-                    </div>
-                    <div class="flex items-center justify-between mt-4">
-                        <a href="{{ route('posts.show', $post) }}" 
-                           class="text-blue-600 font-semibold flex items-center gap-1 hover:underline">
-                            Read more &rarr;
-                        </a>
+                    <div class="w-full px-5">
+                        <div class="scroll-revealed relative z-10 mx-auto max-w-[845px]">
+                            <figure class="mt-16">
+                                <img src="{{asset("img/hero.png")}}" alt="Hero image"
+                                    class="mx-auto max-w-full rounded-t-xl rounded-tr-xl" />
+                            </figure>
+
+                            <div class="absolute -left-9 bottom-0 z-[-1]">
+                                <img src="{{asset("img/dots.svg")}}" alt class="w-[120px] opacity-75" />
+                            </div>
+
+                            <div class="absolute -right-6 -top-6 z-[-1]">
+                                <img src="{{asset("img/dots.svg")}}" alt class="w-[120px] opacity-75" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-8">
-            <a href="{{ route('posts.index') }}" 
-               class="inline-block bg-blue-500 text-white px-6 py-2 rounded font-bold hover:bg-blue-600 transition">
-                See more
-            </a>
-        </div>
-    </div>
-</div>
-@php
-    $benefits = \App\Models\InternshipBenefit::all();
-@endphp
-<div class="tentang-section" id="tentang" style="background: transparent; padding: 64px 0 48px 0; margin-top: 0;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#FFFFFF; margin-bottom: 18px;">Tentang Magang</h2>
-        <div style="width: 80px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <div style="display: flex; flex-direction: row; gap: 32px; justify-content: center; align-items: stretch; flex-wrap: nowrap; padding: 0 24px;">
-            @foreach($benefits as $benefit)
-                <div style="background:#fff; border-radius:22px; box-shadow:0 4px 24px 0 rgba(37,99,235,0.08); padding:36px 24px; text-align:center; display:flex; flex-direction:column; align-items:center; min-width:320px; max-width:350px; flex: 0 0 320px;">
-                    <div style="font-size:3rem; margin-bottom:18px;">{{ $benefit->icon }}</div>
-                    <div style="font-size:1.25rem; font-weight:700; color:#2563eb; margin-bottom:12px;">{{ $benefit->title }}</div>
-                    <div style="font-size:1.05rem; color:#444;">{{ $benefit->description }}</div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-@php
-    $category = \App\Models\Category::whereNull('parent_id')->get();
-@endphp
-<div class="bidang-section" id="bidang" style="background: transparent; padding: 64px 0 48px 0; margin-top: 0;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#FFFFFF; margin-bottom: 18px;">Kategori Bidang Magang </h2>
-        <div style="width: 120px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <style>
-        .category-card {
-            position: relative;
-            background: #2563eb;
-            border-radius: 22px;
-            box-shadow: 0 4px 24px 0 rgba(37,99,235,0.10);
-            min-width: 260px;
-            max-width: 300px;
-            flex: 0 0 260px;
-            color: #fff;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 260px;
-            transition: transform 0.18s, box-shadow 0.18s;
-        }
-        .category-card:hover {
-            transform: translateY(-8px) scale(1.04);
-            box-shadow: 0 8px 32px 0 rgba(37,99,235,0.18);
-            z-index: 2;
-        }
-        .category-card-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            filter: brightness(0.7) blur(0px);
-            transition: filter 0.18s;
-        }
-        .category-card:hover .category-card-bg {
-            filter: brightness(0.95) blur(1px);
-        }
-        .category-card-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .category-card-title {
-            position: relative;
-            z-index: 3;
-            font-size: 1.35rem;
-            font-weight: 700;
-            text-align: center;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.13);
-        }
-        </style>
-        <div style="display: flex; flex-direction: row; gap: 32px; justify-content: center; align-items: stretch; flex-wrap: wrap; padding: 0 24px;">
-            @foreach($category as $cat)
-                <a href="{{ route('categories.show', $cat->slug) }}" class="category-card transition-transform hover:scale-105">
-                    @if($cat->photo)
-                        <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="category-card-bg">
-                    @endif
-                    <div class="category-card-overlay"></div>
-                    <div class="category-card-title">{{ $cat->name }}</div>
-                </a>
-            @endforeach
-        </div>
-    </div>
-</div>
-@php
-    $requirements = \App\Models\Requirement::all();
-@endphp
-<div class="persyaratan-section" id="persyaratan" style="background: transparent; padding: 64px 0 48px 0; margin-top: 0;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#FFFFFF; margin-bottom: 18px;">Persyaratan</h2>
-        <div style="width: 120px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8">
-            @foreach($requirements as $req)
-                <div style="background:#fff; border-radius:22px; box-shadow:0 4px 24px 0 rgba(37,99,235,0.08); padding:32px 24px; display:flex; flex-direction:column; align-items:flex-start; min-height:180px;">
-                    <div style="font-size:2rem; margin-bottom:10px;">{{ $req->icon }}</div>
-                    <div style="font-size:1.15rem; font-weight:700; color:#2563eb; margin-bottom:8px; display:flex; align-items:center;">
-                        {{ $req->title }}
-                        @if($req->is_optional)
-                            <span style="font-size:0.95rem; color:#888; font-weight:400; margin-left:8px;">(Optional)</span>
-                        @endif
-                    </div>
-                    <div style="font-size:1.05rem; color:#222; opacity:0.95;">{{ $req->description }}</div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-@php
-    $testimonials = \App\Models\Testimonial::all();
-@endphp
-<div class="testimonial-section" id="testimonial" style="background: transparent; padding: 64px 0 48px 0; margin-top: 0; border-radius: 32px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#fff; margin-bottom: 18px;">Apa Kata Mereka tentang Program Magang Ini</h2>
-        <div style="width: 120px; height: 4px; background: #fff; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <div class="relative w-full overflow-hidden py-8 bg-transparent">
-            <div class="flex gap-8 marquee-track w-max">
-                @foreach($testimonials as $t)
-                    <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800">
-                        <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
-                        <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                        <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}</div>
-                        @if($t->category)
-                            <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
-                        @endif
-                    </div>
-                @endforeach
             </div>
-        </div>
-    </div>
-</div>
-@push('scripts')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    new Swiper('.mySwiper-testimoni', {
-        slidesPerView: 'auto',
-        spaceBetween: 24,
-        loop: true,
-        freeMode: false,
-        direction: 'horizontal',
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next-testimoni',
-            prevEl: '.swiper-button-prev-testimoni',
-        },
-        autoplay: {
-            delay: 2000,
-            disableOnInteraction: false,
-            reverseDirection: false
-        },
-        speed: 800,
-        // breakpoints tidak perlu karena slidesPerView:auto
-    });
-});
-</script>
-@endpush
-@php
-    $applySteps = \App\Models\ApplyStep::orderBy('step_number')->get();
-@endphp
-<div class="apply-section-bg" id="howtoapply">
-    <div class="apply-steps-container">
-        <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#FFFFFF; margin-bottom: 18px;">Cara Mendaftar</h2>
-        <div style="width: 120px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-        <div class="apply-steps-row">
-            @foreach($applySteps as $step)
-                <div class="apply-step">
-                    <div class="apply-step-circle">{{ $step->step_number }}</div>
-                    <div class="apply-step-title">{{ $step->title }}</div>
-                    <div class="apply-step-desc">{{ $step->description }}</div>
-                </div>
-                @if(!$loop->last)
-                    <div class="apply-step-line"></div>
-                @endif
-            @endforeach
-        </div>
-        @if($applySteps->last() && $applySteps->last()->button_text)
-            <div style="text-align:center; margin-top:40px;">
-                <a href="{{ $applySteps->last()->button_link ?? '#' }}" style="display:inline-block; background:rgb(21, 213, 130); color:#fff; font-weight:700; font-size:1.2rem; padding:18px 48px; border-radius:999px; box-shadow:0 8px 32px 0 rgba(37,99,235,0.18); text-decoration:none;">{{ $applySteps->last()->button_text }}</a>
-            </div>
-        @endif
-    </div>
-</div>
-<footer class="footer-section" id="contactus" style="padding: 48px 0 0 0; margin-top: 48px; background: url('{{ asset('storage/banner-background.jpg') }}') center/cover no-repeat; color: #fff;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 32px; padding: 0 32px;">
-        <div style="flex:1; min-width:220px; max-width:340px;">
-            <div style="font-size:2rem; font-weight:700; margin-bottom:15px;">Lokasi Nusantara TV</div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.585492366193!2d106.87387437428204!3d-6.186187460609973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5689acb01bd%3A0xdb532d1cdbfa11e7!2sNT%20Tower!5e0!3m2!1sen!2sid!4v1752052938203!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div style="flex:1; min-width:220px; max-width:340px;">
-            <div style="font-size:1.2rem; font-weight:700; margin: bottom 10px;">Kontak Info :</div>
-            <div style="margin-bottom:8px;">Email: <br>hello@nttower.com</br></div>
-            <div style="margin-bottom:12px;">Call us at: <br>0881-0100-65128</br></div>
-            <div style="margin-bottom:12px;">Our Location:: <br>Jl. Pulomas Selatan Kav. Blok, Kota Jakarta Timur 13210</br></div>
-            <div style="display:flex; gap:16px; margin-top:16px;">
-                <a href="https://facebook.com" target="_blank" style="color:#fff; font-size:2rem; display:inline-block;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" fill="#fff"/></svg>
-                </a>
-                <a href="https://instagram.com" target="_blank" style="color:#fff; font-size:2rem; display:inline-block;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.567 5.783 2.295 7.149 2.233 8.415 2.175 8.795 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344c-.98.98-1.213 2.092-1.272 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.613.059 1.281.292 2.393 1.272 3.373.98.98 2.092 1.213 3.373 1.272C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.292 3.373-1.272.98-.98 1.213-2.092 1.272-3.373.059-1.281.072-1.69.072-7.613 0-5.923-.013-6.332-.072-7.613-.059-1.281-.292-2.393-1.272-3.373-.98-.98-2.092-1.213-3.373-1.272C15.668.013 15.259 0 12 0z" fill="#fff"/><path d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A3.999 3.999 0 1 1 12 8a3.999 3.999 0 0 1 0 7.999zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" fill="#fff"/></svg>
-                </a>
-                <a href="https://linkedin.com" target="_blank" style="color:#fff; font-size:2rem; display:inline-block;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zm-9 19H5V9h5v10zm-2.5-11.268c-1.381 0-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5 2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5zm15.5 11.268h-5v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968V19h-5V9h4.8v1.367h.069c.669-1.267 2.304-2.604 4.742-2.604 5.073 0 6.012 3.341 6.012 7.686V19z" fill="#fff"/></svg>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div style="border-top:1px solid #ffffff22; margin-top:36px; padding:18px 0 12px 0; text-align:center; font-size:1rem; opacity:0.85;">
-        &copy; 2025 Nusantara TV. All rights reserved.
-    </div>
-</footer>
-</div>
+        </section>
+
+    </main>
 @endsection
