@@ -1737,7 +1737,7 @@ p + p{
 
 .\!bg-primary{
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(61 99 221 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(5 43 165 / var(--tw-bg-opacity)) !important;
 }
 
 .bg-blue-500{
@@ -1765,7 +1765,7 @@ p + p{
 
 .bg-primary{
   --tw-bg-opacity: 1;
-  background-color: rgb(61 99 221 / var(--tw-bg-opacity));
+  background-color: rgb(5 43 165 / var(--tw-bg-opacity));
 }
 
 .bg-primary-color{
@@ -1788,7 +1788,7 @@ p + p{
 }
 
 .bg-primary\/10{
-  background-color: rgb(61 99 221 / 0.1);
+  background-color: rgb(5, 43, 165 / 0.1);
 }
 
 .bg-red-500{
