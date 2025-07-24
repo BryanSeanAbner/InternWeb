@@ -237,7 +237,6 @@ window.addEventListener('scroll', function() {
     <div class="hero-subtitle">
         Bergabunglah dengan program magang komprehensif kami dan dapatkan pengalaman berharga dalam dunia penyiaran televisi dan produksi media yang dinamis.
     </div>
-    <a href="#howtoapply" class="hero-btn">Cara Mendaftar</a>
 </div>
 <!-- Berita SECTION -->
 <div class="berita-section" id="berita">
