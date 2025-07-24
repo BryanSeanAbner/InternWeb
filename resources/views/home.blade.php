@@ -242,7 +242,6 @@ window.addEventListener('scroll', function() {
 <!-- Berita SECTION -->
 <div class="berita-section" id="berita">
     <div class="mb-8">
-        <div class="berita-title">Berita Terkini</div>
         <div style="width: 80px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-8">
             @foreach(($allPosts ?? $latestPosts) as $post)
