@@ -19,7 +19,7 @@
 </nav>
 <style>
 html, body {
-    min-height: 100vh;
+    min-height: 100vh;  
     height: 100%;
     background: linear-gradient(135deg, #003B99 0%, #2FCC91 100%) !important;
     background-attachment: fixed !important;
