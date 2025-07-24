@@ -30,16 +30,21 @@ class BeritaController extends Controller
             'gambar' => 'nullable|file|image|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
+        
         $post = new Post();
         $post->title = $validated['judul'];
         $post->body = $validated['isi'];
         $post->author_id = auth()->id();
         $post->category_id = $validated['category_id'];
-        $post->slug = Str::slug($validated['judul']);
+        
+        // Generate unique slug
+        $post->slug = Post::generateUniqueSlug($validated['judul']);
+        
         if ($request->hasFile('gambar')) {
             $path = $request->file('gambar')->store('berita', 'public');
             $post->photo = $path;
         }
+        
         $post->save();
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan.');
     }
@@ -58,14 +63,19 @@ class BeritaController extends Controller
             'gambar' => 'nullable|file|image|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
+        
         $beritum->title = $validated['judul'];
         $beritum->body = $validated['isi'];
         $beritum->category_id = $validated['category_id'];
-        $beritum->slug = Str::slug($validated['judul']);
+        
+        // Generate unique slug (exclude current post)
+        $beritum->slug = Post::generateUniqueSlug($validated['judul'], $beritum->id);
+        
         if ($request->hasFile('gambar')) {
             $path = $request->file('gambar')->store('berita', 'public');
             $beritum->photo = $path;
         }
+        
         $beritum->save();
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diupdate.');
     }

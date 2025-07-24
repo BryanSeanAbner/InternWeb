@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Traits\HasUniqueSlug;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUniqueSlug;
 
     protected $fillable = ['title', 'author_id', 'slug', 'body', 'category_id'];
 

@@ -27,7 +27,7 @@ class KategoriController extends Controller
             'description' => 'nullable|string',
             'photo' => 'nullable|file|image|max:2048',
         ]);
-        $validated['slug'] = Str::slug($validated['name']);
+        $validated['slug'] = Category::generateUniqueSlug($validated['name']);
         // Pilihan warna random (tanpa putih dan hitam)
         $colors = ['#2563eb', '#f59e42', '#e11d48', '#22c55e', '#a21caf', '#fbbf24', '#0ea5e9', '#6366f1', '#14b8a6', '#f43f5e'];
         $validated['color'] = $colors[array_rand($colors)];
@@ -51,7 +51,7 @@ class KategoriController extends Controller
             'photo' => 'nullable|file|image|max:2048',
         ]);
         $kategori->name = $validated['name'];
-        $kategori->slug = Str::slug($validated['name']);
+        $kategori->slug = Category::generateUniqueSlug($validated['name'], $kategori->id);
         $kategori->description = $validated['description'] ?? null;
         if (!$kategori->color) $kategori->color = '#2563eb';
         if ($request->hasFile('photo')) {
