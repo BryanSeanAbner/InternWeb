@@ -234,9 +234,7 @@ window.addEventListener('scroll', function() {
 @endphp
 <div class="hero-section" id="home">
     <h1 class="hero-title ">Mulai Pengalaman Magangmu di <br>Nusantara TV</h1>
-    <div class="hero-subtitle">
-        Bergabunglah dengan program magang komprehensif kami dan dapatkan pengalaman berharga dalam dunia penyiaran televisi dan produksi media yang dinamis.
-    </div>
+    
 </div>
 <!-- Berita SECTION -->
 <div class="berita-section" id="berita">
