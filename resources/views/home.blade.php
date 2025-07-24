@@ -234,11 +234,15 @@ window.addEventListener('scroll', function() {
 @endphp
 <div class="hero-section" id="home">
     <h1 class="hero-title ">Mulai Pengalaman Magangmu di <br>Nusantara TV</h1>
-    
+    <div class="hero-subtitle">
+        Bergabunglah dengan program magang komprehensif kami dan dapatkan pengalaman berharga dalam dunia penyiaran televisi dan produksi media yang dinamis.
+    </div>
+    <a href="#howtoapply" class="hero-btn">Cara Mendaftar</a>
 </div>
 <!-- Berita SECTION -->
 <div class="berita-section" id="berita">
     <div class="mb-8">
+        <div class="berita-title">Berita Terkini</div> 
         <div style="width: 80px; height: 4px; background: #FFFFFF; margin: 0 auto 40px auto; border-radius: 2px;"></div>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-8">
             @foreach(($allPosts ?? $latestPosts) as $post)
