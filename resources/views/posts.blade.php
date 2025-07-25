@@ -89,7 +89,7 @@
                         {{ Str::limit($post->body, 150) }}
                     </p>
                     <div class="flex justify-between items-center">
-                        <a href="#" onclick="showPostModal('{{ $post->slug }}'); return false;" class="inline-flex items-center font-medium text-primary-600 hover:underline">
+                        <a href="#" onclick="showPostModal('{{ $post->slug }}'); return false;" class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 hover:underline">
                             Read more
                             <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                  xmlns="http://www.w3.org/2000/svg">
