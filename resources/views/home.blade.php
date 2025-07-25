@@ -75,35 +75,33 @@
     </div>
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         @foreach(($allPosts ?? $latestPosts) as $post)
-            <div class="group bg-white rounded-xl shadow-xl overflow-hidden flex flex-col">
-                <div class="relative">
-                    <a href="{{ route('posts.show', $post) }}" class="w-full aspect-[3/2] rounded-xl overflow-hidden block">
-                        @if($post->photo)
-                            <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2" />
-                        @else
-                            <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
-                                <span class="text-sm">No Image</span>
-                            </div>
-                        @endif
-                    </a>
+            <div class="group bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col min-h-[420px] p-8">
+                <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-xl">
+                    @if($post->photo)
+                        <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-xl" />
+                    @else
+                        <span class="text-xl text-gray-500 font-semibold">IMAGE</span>
+                    @endif
                 </div>
-                <div class="flex justify-between items-center mt-4 px-4">
-                    <span class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="inline-block bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-poppins">
                         {{ $post->category->name }}
                     </span>
-                    <span class="text-sm text-gray-500 font-poppins">
+                    <span class="text-base text-gray-500 font-poppins">
                         {{ $post->created_at->format('d M Y') }}
                     </span>
                 </div>
-                <h4 class="mb-6 mt-3 pl-4 font-semibold text-[1.5rem]">
-                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700 font-poppins">
+                <h4 class="font-extrabold text-2xl mb-1 font-poppins">
+                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700">
                         {{ $post->title }}
                     </a>
                 </h4>
-                <p class="mb-4 px-2 pl-4 font-poppins">
+                <p class="text-gray-500 text-base mb-6 font-poppins">
                     {{ Str::limit(strip_tags($post->body), 100) }}
                 </p>
-                <a href="{{ route('posts.show', $post) }}" class="pl-4 mt-2 inline-block text-blue-700 font-semibold hover:underline font-poppins">Read more &rarr;</a>
+                <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline font-poppins">
+                    Read more <span aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         @endforeach
     </div>
