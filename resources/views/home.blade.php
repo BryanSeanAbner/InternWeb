@@ -12,7 +12,7 @@
                 <span class="sr-only">Open main menu</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
                     <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                </svg>      
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8">
@@ -42,14 +42,14 @@
             <div class="flow-root bg-white w-full">
                 <div class="flex-1 mt-4 w-full pl-6">
                     <div class="space-y-2 flex flex-col w-full">
-                        <a href="#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Home</a>
-                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Berita</a>
-                        <a href="#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Tentang</a>
-                        <a href="#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Bidang</a>
-                        <a href="#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Persyaratan</a>
-                        <a href="#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Testimonial</a>
-                        <a href="#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Cara Mendaftar</a>
-                        <a href="#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-50 font-poppins">Kontak</a>
+                        <a href="#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
+                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100font-poppins">Berita</a>
+                        <a href="#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100  font-poppins">Tentang</a>
+                        <a href="#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
+                        <a href="#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
+                        <a href="#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Testimonial</a>
+                        <a href="#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Cara Mendaftar</a>
+                        <a href="#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Kontak</a>
                     </div>
                 </div>
             </div>
@@ -73,63 +73,33 @@
         <div class="w-20 h-1 bg-blue-700 rounded mb-8"></div>
     </div>
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
-            <div class="relative">
-                <a href="javascript:void(0)" class="w-full aspect-[3/2] rounded-xl overflow-hidden block">
-                    <img src="/img/hero.JPG" alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2" />
-                </a>
+        @foreach(($allPosts ?? $latestPosts) as $post)
+            <div class="group bg-white rounded-xl shadow-xl overflow-hidden flex flex-col">
+                <div class="relative">
+                    <a href="{{ route('posts.show', $post) }}" class="w-full aspect-[3/2] rounded-xl overflow-hidden block">
+                        @if($post->photo)
+                            <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2" />
+                        @else
+                            <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                <span class="text-sm">No Image</span>
+                            </div>
+                        @endif
+                    </a>
+                </div>
+                <span class="block mt-6 pl-4 w-full text-sm text-gray-500 font-poppins">
+                    {{ $post->created_at->format('d M Y') }}
+                </span>
+                <h4 class="mb-6 mt-3 pl-4 font-semibold text-[1.5rem]">
+                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700 font-poppins">
+                        {{ $post->title }}
+                    </a>
+                </h4>
+                <p class="mb-4 px-2 pl-4 font-poppins">
+                    {{ Str::limit(strip_tags($post->body), 100) }}
+                </p>
+                <a href="{{ route('posts.show', $post) }}" class="pl-4 mt-2 inline-block text-blue-700 font-semibold hover:underline font-poppins">Read more &rarr;</a>
             </div>
-            <span class="block mt-6 pl-4 w-full text-sm text-gray-500 font-poppins">
-                Joe Russell - 17 Agt 2024
-            </span>
-            <h4 class="mb-6 mt-3 pl-4 font-semibold text-[1.5rem]">
-                <a href="javascript:void(0)" class="text-gray-900 hover:text-blue-700 font-poppins">
-                    Make your team a Design driven company
-                </a>
-            </h4>
-            <p class="mb-4 px-2 pl-4 font-poppins">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-            </p>
-            <a href="javascript:void(0)" class="pl-4 mt-2 inline-block text-blue-700 font-semibold hover:underline font-poppins">Read more &rarr;</a>
-        </div>
-        <div class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
-            <div class="relative">
-                <a href="javascript:void(0)" class="w-full aspect-[3/2] rounded-xl overflow-hidden block">
-                    <img src="/img/hero.JPG" alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2" />
-                </a>
-            </div>
-            <span class="block mt-6 pl-4 w-full text-sm text-gray-500 font-poppins">
-                Joe Russell - 17 Agt 2024
-            </span>
-            <h4 class="mb-6 mt-3 pl-4 font-semibold text-[1.5rem]">
-                <a href="javascript:void(0)" class="text-gray-900 hover:text-blue-700 font-poppins">
-                    The newest web framework that changed the world
-                </a>
-            </h4>
-            <p class="mb-4 px-2 pl-4 font-poppins">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-            </p>
-            <a href="javascript:void(0)" class="pl-4 mt-2 inline-block text-blue-700 font-semibold hover:underline">Read more &rarr;</a>
-        </div>
-        <div class="group bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
-            <div class="relative">
-                <a href="javascript:void(0)" class="w-full aspect-[3/2] rounded-xl overflow-hidden block">
-                    <img src="/img/hero.JPG" alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2" />
-                </a>
-            </div>
-            <span class="block mt-6 pl-4 w-full text-sm text-gray-500 font-poppins">
-                Joe Russell - 17 Agt 2024
-            </span>
-            <h4 class="mb-6 mt-3 pl-4 font-semibold text-[1.5rem]">
-                <a href="javascript:void(0)" class="text-gray-900 hover:text-blue-700 font-poppins">
-                    5 ways to improve user retention for your startup
-                </a>
-            </h4>
-            <p class="mb-4 px-2 pl-4 font-poppins">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-            </p>
-            <a href="javascript:void(0)" class="pl-4 mt-2 inline-block text-blue-700 font-semibold hover:underline font-poppins">Read more &rarr;</a>
-        </div>
+        @endforeach
     </div>
     <div class="text-center mt-8">
         <a href="{{ route('posts.index') }}" 
@@ -144,11 +114,13 @@
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">Tentang Magang</h2>
         <div class="w-20 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center items-stretch flex-wrap px-0">
-            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-9 text-center flex flex-col items-center min-w-[220px] max-w-xs w-full mx-auto mb-4 md:mb-0">
-                <div class="text-3xl mb-4"></div>
-                <div class="text-lg font-bold text-blue-700 mb-2"></div>
-                <div class="text-base text-gray-700"></div>
-            </div>
+            @foreach($benefits as $benefit)
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-9 text-center flex flex-col items-center min-w-[220px] max-w-xs w-full mx-auto mb-4 md:mb-0">
+                    <div class="text-3xl mb-4">{{ $benefit->icon }}</div>
+                    <div class="text-lg font-bold text-blue-700 mb-2">{{ $benefit->title }}</div>
+                    <div class="text-base text-gray-700">{{ $benefit->description }}</div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -157,12 +129,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">Kategori Bidang Magang</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
-        <div class="grid grid-cols-1 justify-items-center">
-            <a href="#" class="relative group transition-transform hover:scale-105 w-full max-w-xs rounded-xl overflow-hidden shadow-lg">
-                <img src="/img/hero.JPG" alt="Kategori 1" class="object-cover w-full h-40 md:h-48" />
-                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 text-lg font-bold text-white font-poppins">Kategori 1</div>
-            </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+            @foreach($categories as $cat)
+                <a href="{{ route('categories.show', $cat->slug) }}" class="relative group transition-transform hover:scale-105 w-full max-w-xs rounded-xl overflow-hidden shadow-lg">
+                    @if($cat->photo)
+                        <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-40 md:h-48" />
+                    @else
+                        <div class="w-full h-40 md:h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                            <span class="text-sm">No Image</span>
+                        </div>
+                    @endif
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-lg font-bold text-white font-poppins">{{ $cat->name }}</div>
+                </a>
+            @endforeach
         </div>
     </div>
 </div>
@@ -173,13 +153,15 @@
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">Persyaratan</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-0 md:px-6">
-            <di class="bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col items-start min-h-[180px] mb-4 md:mb-0">
-                <div class="text-2xl mb-2"></div>
-                <div class="text-base md:text-lg font-bold text-blue-700 mb-1 flex items-center">
-                    <span class="text-sm text-gray-500 font-normal ml-2"></span>
+            @foreach($requirements as $req)
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col items-start min-h-[180px] mb-4 md:mb-0">
+                    <div class="text-2xl mb-2">{{ $req->icon }}</div>
+                    <div class="text-base md:text-lg font-bold text-blue-700 mb-1 flex items-center">
+                        {{ $req->title }}
+                    </div>
+                    <div class="text-base text-gray-800 opacity-95">{{ $req->description }}</div>
                 </div>
-                <div class="text-base text-gray-800 opacity-95"></div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -193,14 +175,17 @@
         <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
         <div class="overflow-x-auto">
             <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-max md:w-auto py-8">
+                @foreach($testimonials as $t)
                 <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full flex-shrink-0 flex flex-col items-center text-gray-800">
-                    <img src=""
-                         alt=""
+                    <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}"
                          class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
-                    <div class="italic text-sm mb-3 text-center text-gray-700"></div>
-                    <div class="font-bold text-base mb-1 text-blue-700"></div>
-                    <div class="text-xs text-gray-500"></div>
+                    <div class="italic text-sm mb-3 text-center text-gray-700">{{ $t->description }}</div>
+                    <div class="font-bold text-base mb-1 text-blue-700">{{ $t->name }}</div>
+                    @if($t->category)
+                    <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
+                    @endif
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -210,28 +195,35 @@
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">Cara Mendaftar</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
-        <div class="flex flex-col md:flex-row justify-center items-center md:items-center gap-4 md:gap-8 mb-8">
-            <div class="w-full max-w-xs mx-auto md:flex-1 md:min-w-[140px] md:max-w-[220px] flex flex-col items-center">
-                <div class="w-28 h-28 md:w-32 md:h-32 bg-blue-700 text-white rounded-full flex items-center justify-center text-4xl md:text-5xl font-bold mb-6 shadow-lg">
-                    <!-- Nomor step -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8 lg:gap-10 xl:gap-12 mb-8">
+            @foreach($applySteps as $step)
+            <div class="step-container flex flex-col items-center text-center relative">
+                <!-- Circle Container -->
+                <div class="circle-container relative mb-4">
+                    <div class="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-22 lg:h-22 xl:w-24 xl:h-24 bg-blue-700 text-white rounded-full flex items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold shadow-lg z-10">
+                        {{ $step->step_number }}
+                    </div>
                 </div>
-                <div class="font-bold text-blue-700 text-center mb-2 text-lg md:text-xl leading-tight">
-                    <!-- Judul step -->
-                </div>
-                <div class="text-base text-gray-600 text-center leading-snug">
-                    <!-- Deskripsi step -->
+                
+                <!-- Content Container -->
+                <div class="content-container px-2 sm:px-4 md:px-6">
+                    <div class="font-bold text-blue-700 text-center mb-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight">
+                        {{ $step->title }}
+                    </div>
+                    <div class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 text-center leading-relaxed">
+                        {{ $step->description }}
+                    </div>
                 </div>
             </div>
-            <!-- Garis penghubung horizontal di desktop, vertikal di mobile -->
-            <div class="hidden md:block w-10 h-1 bg-gray-300 rounded self-center"></div>
-            <div class="block md:hidden w-1 h-10 bg-gray-300 rounded mx-auto my-4"></div>
+            @endforeach
         </div>
+        @if($applySteps->last() && $applySteps->last()->button_text)
         <div class="text-center mt-10">
-            <a href="" 
-                class="bg-blue-700 text-white px-10 md:px-16 py-3 md:py-6 rounded-full text-xl md:text-2xl font-semibold shadow-lg hover:bg-blue-800 transition inline-block mt-8 font-poppins">
-                <!-- Teks tombol -->
+            <a href="{{ $applySteps->last()->button_link ?? '#' }}" class="bg-blue-700 text-white px-10 md:px-16 py-3 md:py-6 rounded-full text-xl md:text-2xl font-semibold shadow-lg hover:bg-blue-800 transition inline-block mt-8 font-poppins">
+            {{ $applySteps->last()->button_text }}
             </a>
         </div>
+        @endif
     </div>
 </div>
 
@@ -253,7 +245,7 @@
                     loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
-            </div>
+            </div>  
         </div>
         <div class="flex-[1] min-w-[220px] max-w-[600px] mb-8 md:mb-0 flex flex-col justify-start">
             <div class="text-2xl font-bold mb-4 font-poppins">Kontak Kami</div>
@@ -309,6 +301,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+
 
 <!-- Carousel -->
 <script>
