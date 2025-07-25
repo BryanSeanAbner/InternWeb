@@ -40,7 +40,7 @@
                     <h1 class="text-2xl font-semibold text-gray-800">@yield('admin-title', 'Admin Panel')</h1>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span class="text-gray-700 font-medium text-sm md:text-base font-poppins">Hi, Admin Nusantara TV</span>
+                    <span class="text-gray-700 font-medium pl-6 text-sm md:text-base font-poppins">Hi, Admin Nusantara TV</span>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="ml-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm md:text-base">Logout</button>
