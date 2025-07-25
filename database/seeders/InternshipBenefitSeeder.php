@@ -32,7 +32,10 @@ class InternshipBenefitSeeder extends Seeder
             ],
         ];
         foreach ($data as $item) {
-            InternshipBenefit::create($item);
+            InternshipBenefit::firstOrCreate(
+                ['title' => $item['title']],
+                $item
+            );
         }
     }
 }

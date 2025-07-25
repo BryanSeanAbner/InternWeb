@@ -12,7 +12,7 @@
                 <span class="sr-only">Open main menu</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
                     <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>      
+                </svg>  
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8">
@@ -56,8 +56,7 @@
         </div>
     </div>
     </header> 
-</div>
-
+    
 <div class="relative h-[80vh] md:h-[100vh] flex items-center justify-start bg-cover bg-left-bottom mb-12 pt-24 md:pt-30" style="background-image: url('{{ asset('img/hero.JPG') }}');">
     <div class="ml-4 md:ml-20 max-w-full md:max-w-xl bg-black/30 rounded-xl p-4 md:p-8">
         <h1 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg leading-tight font-poppins">Mulai Pengalaman <br class="hidden sm:block">Magangmu di <br class="hidden sm:block">Nusantara TV</h1>
@@ -65,6 +64,8 @@
         <a href="#howtoapply" class="bg-blue-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold shadow-lg hover:bg-blue-800 transition block w-max font-poppins">Cara Mendaftar</a>
     </div>
 </div>
+</div>
+
 
 <!-- Berita SECTION -->
 <div id="berita" class="section-area py-8 container mx-auto px-4">
@@ -86,9 +87,14 @@
                         @endif
                     </a>
                 </div>
-                <span class="block mt-6 pl-4 w-full text-sm text-gray-500 font-poppins">
-                    {{ $post->created_at->format('d M Y') }}
-                </span>
+                <div class="flex justify-between items-center mt-4 px-4">
+                    <span class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                        {{ $post->category->name }}
+                    </span>
+                    <span class="text-sm text-gray-500 font-poppins">
+                        {{ $post->created_at->format('d M Y') }}
+                    </span>
+                </div>
                 <h4 class="mb-6 mt-3 pl-4 font-semibold text-[1.5rem]">
                     <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700 font-poppins">
                         {{ $post->title }}

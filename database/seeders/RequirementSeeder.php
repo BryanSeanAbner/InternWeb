@@ -37,7 +37,10 @@ class RequirementSeeder extends Seeder
             ],
         ];
         foreach ($data as $item) {
-            Requirement::create($item);
+            Requirement::firstOrCreate(
+                ['title' => $item['title']],
+                $item
+            );
         }
     }
 }
