@@ -71,9 +71,9 @@
                 @endif
             </div>
             <div class="bg-white rounded-xl shadow p-6 md:p-10">
-                <div class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                <a href="{{ route('categories.show', $post->category) }}" class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
                     {{ $post->category->name ?? 'Uncategorized' }}
-                </div>
+                </a>
                 <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 leading-tight font-poppins">{{ $post->title }}</h1>
                 <div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-6">
                     <span class="font-poppins">By Editorial Team</span>
@@ -90,7 +90,7 @@
             <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang ini</div>
             <div class="flex flex-col gap-4">
                 @forelse($sidePosts as $side)
-                    <div class="bg-white rounded-lg shadow-xl p-4 flex flex-col">
+                    <a href="{{ route('posts.show', $side) }}" class="bg-white rounded-lg shadow-xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
                         <div class="w-full h-28 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden mb-3">
                             @if($side->photo)
                                 <img src="{{ asset('storage/' . $side->photo) }}" alt="{{ $side->title }}" class="w-full h-full object-cover" />
@@ -98,10 +98,10 @@
                                 <span class="text-gray-500 text-sm">IMAGE</span>
                             @endif
                         </div>
-                        <div class="font-semibold text-gray-900 text-base mb-1 font-poppins">{{ $side->title }}</div>
+                        <div class="font-semibold text-gray-900 text-base mb-1 font-poppins hover:text-blue-700 transition-colors duration-200">{{ $side->title }}</div>
                         <div class="text-xs text-gray-500 mb-2 font-poppins">{{ $side->created_at->format('F d, Y') }}</div>
                         <div class="text-sm text-gray-700 font-poppins">{{ Str::limit(strip_tags($side->body), 100) }}</div>
-                    </div>
+                    </a>
                 @empty
                     <div class="text-gray-400 text-sm font-poppins">Tidak ada berita serupa.</div>
                 @endforelse
