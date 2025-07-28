@@ -11,11 +11,6 @@ class RequirementSeeder extends Seeder
     {
         $data = [
             [
-                'icon' => '🎓',
-                'title' => 'Status Mahasiswa Aktif',
-                'description' => 'Terdaftar sebagai mahasiswa aktif di program studi terkait pada universitas atau perguruan tinggi terakreditasi, disertai surat pengantar dari kampus.',
-            ],
-            [
                 'icon' => '📄',
                 'title' => 'CV',
                 'description' => 'Berisi informasi pribadi, pendidikan, pengalaman organisasi atau proyek, keterampilan, dll.',
@@ -26,14 +21,29 @@ class RequirementSeeder extends Seeder
                 'description' => 'Sebagai syarat administrasi.',
             ],
             [
+                'icon' => '📇',
+                'title' => 'Kartu Tanda Mahasiswa (KTM))',
+                'description' => 'Bukti resmi bahwa kamu adalah mahasiswa aktif dari kampus atau sekolah asal.',
+            ],
+            [
                 'icon' => '📝',
                 'title' => 'Transkrip Nilai',
                 'description' => 'Untuk melihat nilai akademik atau mata kuliah yang relevan.',
             ],
             [
-                'icon' => '🗂️',
-                'title' => 'Portfolio (Optional)',
-                'description' => 'Contoh hasil karya, proyek, atau coding project yang pernah dibuat',
+                'icon' => '📑',
+                'title' => 'Surat Keterangan Magang dari Kampus/ Sekolah',
+                'description' => 'Dokumen yang menyatakan bahwa kamu mendapat izin dan rekomendasi untuk mengikuti kegiatan magang.',
+            ],
+            [
+                'icon' => '📋',
+                'title' => 'Formulir Magang dari NTV',
+                'description' => 'Formulir resmi yang disediakan oleh NTV untuk diisi sebagai bagian dari proses administrasi magang.',
+            ],
+            [
+                'icon' => '🧑‍💼',
+                'title' => 'Foto Diri',
+                'description' => 'Foto formal terbaru yang digunakan untuk keperluan identifikasi dan administrasi selama masa magang.',
             ],
         ];
         foreach ($data as $item) {
