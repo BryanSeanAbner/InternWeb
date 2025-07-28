@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('pswd'),
             ]
         );
+        $this->call(SampleDataSeeder::class);
         $this->call(InternshipBenefitSeeder::class);
         $this->call(RequirementSeeder::class);
         $this->call(ApplyStepSeeder::class);
