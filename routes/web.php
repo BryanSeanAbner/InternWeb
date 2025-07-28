@@ -27,9 +27,7 @@ Route::get('/posts/{post}/modal', [PostController::class, 'modal'])->name('posts
 
 // Admin page, hanya bisa diakses jika sudah login
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('berita', BeritaController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('testimonials', TestimonialController::class);
