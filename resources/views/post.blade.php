@@ -18,8 +18,8 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="{{ route('home') }}" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
-            <a href="{{ route('home') }}#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
+            <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
             <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Tentang</a>
             <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Bidang</a>
             <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Persyaratan</a>
@@ -44,8 +44,8 @@
             <div class="flow-root bg-white w-full">
                 <div class="flex-1 mt-4 w-full pl-6">
                     <div class="space-y-2 flex flex-col w-full">
-                        <a href="{{ route('home') }}" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
-                        <a href="{{ route('home') }}#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
+                        <a href="{{ route('home') }}#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
+                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
                         <a href="{{ route('home') }}#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Tentang</a>
                         <a href="{{ route('home') }}#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
                         <a href="{{ route('home') }}#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
