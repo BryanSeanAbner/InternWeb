@@ -43,11 +43,24 @@
 <script>
 tinymce.init({
     selector: '#isi-berita',
-    height: 250,
-    menubar: false,
-    plugins: 'lists link image code',
-    toolbar: 'undo redo | bold italic underline | bullist numlist | link image | code',
-    branding: false
+    height: 400,
+    menubar: true,
+    plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount'
+    ],
+    toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | removeformat | help',
+    content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; }',
+    branding: false,
+    language: 'id',
+    paste_data_images: true,
+    images_upload_url: '{{ route("admin.berita.store") }}',
+    automatic_uploads: true,
+    file_picker_types: 'image',
+    relative_urls: false,
+    remove_script_host: false,
+    convert_urls: true
 });
 </script>
 @endsection 
