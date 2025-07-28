@@ -35,28 +35,73 @@
         </div>
     </form>
 </div>
-<script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- Include Quill.js -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<style>
+.ql-editor {
+    min-height: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.ql-toolbar {
+    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    border-radius: 6px 6px 0 0;
+    background: #f8fafc;
+}
+
+.ql-container {
+    border-bottom: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    border-radius: 0 0 6px 6px;
+    background: white;
+}
+
+.ql-editor:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+</style>
+
 <script>
-tinymce.init({
-    selector: '#isi-berita',
-    height: 400,
-    menubar: true,
-    plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount'
-    ],
-    toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | removeformat | help',
-    content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; }',
-    branding: false,
-    language: 'id',
-    paste_data_images: true,
-    images_upload_url: '{{ route("admin.berita.store") }}',
-    automatic_uploads: true,
-    file_picker_types: 'image',
-    relative_urls: false,
-    remove_script_host: false,
-    convert_urls: true
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Quill
+    var quill = new Quill('#isi-berita', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'font': [] }],
+                [{ 'size': ['small', false, 'large', 'huge'] }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                [{ 'direction': 'rtl' }],
+                [{ 'align': [] }],
+                ['link', 'image', 'video'],
+                ['clean']
+            ]
+        },
+        placeholder: 'Tulis isi berita di sini...'
+    });
+
+    // Update hidden textarea before form submission
+    document.querySelector('form').addEventListener('submit', function() {
+        var content = quill.root.innerHTML;
+        document.querySelector('#isi-berita').value = content;
+    });
+
+    // Set initial content if editing
+    @if(old('isi'))
+        quill.root.innerHTML = `{!! old('isi') !!}`;
+    @endif
 });
 </script>
 @endsection 
