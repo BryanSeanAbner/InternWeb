@@ -28,6 +28,7 @@ class TestimonialController extends Controller
             'description' => 'required|string',
             'photo' => 'nullable|image|max:2048',
             'category_id' => 'required|exists:categories,id',
+            'instansi' => 'nullable|string|max:255',
         ]);
 
         $testimonial = new Testimonial($validated);
@@ -52,6 +53,7 @@ class TestimonialController extends Controller
             'description' => 'required|string',
             'photo' => 'nullable|image|max:2048',
             'category_id' => 'required|exists:categories,id',
+            'instansi' => 'nullable|string|max:255',
         ]);
 
         $testimonial->update($validated);

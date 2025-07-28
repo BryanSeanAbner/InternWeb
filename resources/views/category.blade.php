@@ -70,7 +70,7 @@
                     {{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}
                 </p>
             </div>
-            <div class="relative">
+            <div class="relative pt-10">
                 <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
                     @if($category->photo)
                         <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="w-full h-80 md:h-96 object-cover">
@@ -119,7 +119,7 @@
                 <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800">
                     <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
                     <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                    <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}</div>
+                    <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
                     @if($t->category)
                         <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
                     @endif  

@@ -23,6 +23,11 @@
             @error('category_id')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
         </div>
         <div class="mb-4">
+            <label class="block mb-1 font-semibold">Instansi</label>
+            <input type="text" name="instansi" class="border rounded w-full px-3 py-2" value="{{ old('instansi', $testimonial->instansi) }}" placeholder="Masukkan nama instansi/perusahaan">
+            @error('instansi')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
+        </div>
+        <div class="mb-4">
             <label class="block mb-1 font-semibold">Isi Testimoni</label>
             <textarea name="description" class="border rounded w-full px-3 py-2" rows="4" required>{{ old('description', $testimonial->description) }}</textarea>
             @error('description')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
