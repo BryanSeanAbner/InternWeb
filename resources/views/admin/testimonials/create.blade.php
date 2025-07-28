@@ -1,4 +1,5 @@
-@extends('admin.dashboard')
+@extends('layouts.admin')
+@section('admin-title', 'Tambah Testimoni')
 
 @section('content')
 <div class="container mx-auto py-6">

@@ -110,11 +110,11 @@
                 <span class="font-medium text-blue-800">Tambah Berita</span>
             </a>
             <a href="{{ route('admin.kategori.create') }}" class="flex items-center space-x-3 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                <i class="fa-solid fa-folder-plus text-green-600"></i>
+                <i class="fa-solid fa-plus text-green-600"></i>
                 <span class="font-medium text-green-800">Tambah Kategori</span>
             </a>
             <a href="{{ route('admin.testimonials.create') }}" class="flex items-center space-x-3 p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
-                <i class="fa-solid fa-comment-plus text-purple-600"></i>
+                <i class="fa-solid fa-plus text-purple-600"></i>
                 <span class="font-medium text-purple-800">Tambah Testimoni</span>
             </a>
         </div>
