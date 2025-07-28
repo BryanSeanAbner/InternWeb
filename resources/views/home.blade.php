@@ -234,7 +234,7 @@
 <footer 
     id="contactus"
     class="pt-12 mt-12 text-blue-800 font-poppins text-white"
-    style="background: url('{{ asset('storage/banner-background.jpg') }}') center/cover no-repeat;"
+    style="background: url('{{ asset('img/banner-background.jpg') }}') center/cover no-repeat;"
 >
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between items-stretch gap-8 px-4">
         <div class="flex-[2] min-w-[320px] max-w-[900px] mb-8 md:mb-0 flex flex-col">
