@@ -14,7 +14,7 @@
             <tr>
                 <th class="py-2 px-4 text-left">Nama</th>
                 <th class="py-2 px-4 text-left">Kategori</th>
-                <th class="py-2 px-4 text-left">Instansi</th>
+                <th class="py-2 px-4 text-center">Instansi</th>
                 <th class="py-2 px-4 text-left">Isi Testimoni</th>
                 <th class="py-2 px-4 text-left">Tanggal</th>
                 <th class="py-2 px-4 text-left">Aksi</th>
@@ -25,7 +25,7 @@
             <tr>
                 <td class="py-2 px-4">{{ $testimonial->name }}</td>
                 <td class="py-2 px-4">{{ $testimonial->category ? $testimonial->category->name : '-' }}</td>
-                <td class="py-2 px-4">{{ $testimonial->instansi ? $testimonial->instansi : '-' }}</td>
+                <td class="py-2 px-4 text-center">{{ $testimonial->instansi ? $testimonial->instansi : '-' }}</td>
                 <td class="py-2 px-4">{{ Str::limit($testimonial->description, 60) }}</td>
                 <td class="py-2 px-4">{{ $testimonial->created_at->format('d-m-Y') }}</td>
                 <td class="py-2 px-4">
