@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
             <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
@@ -109,10 +109,10 @@
 @if(isset($testimonials) && count($testimonials))
 <div class="testimonial-section bg-transparent py-16 md:py-20 lg:py-24 mt-0 rounded-[32px]" id="testimonial">
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-black mb-4 font-poppins">
             Apa Kata Mereka tentang Program Magang Ini
         </h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        <div class="w-32 h-1 bg-black mx-auto mb-10 rounded"></div>
         <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             @foreach($testimonials as $t)   
@@ -135,8 +135,8 @@
 <section class="py-16 md:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4 font-poppins">Berita Terkait {{ $category->name }}</h2>
-            <div class="w-32 h-1 bg-blue-700 mx-auto rounded"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4 font-poppins">Berita Terkait {{ $category->name }}</h2>
+            <div class="w-32 h-1 bg-black mx-auto rounded"></div>
         </div>
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($posts as $post)
