@@ -40,8 +40,8 @@
     </form>
 </div>
 <!-- Include Quill.js -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 
 <style>
 .ql-editor {
@@ -74,16 +74,16 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, initializing Quill...');
+// Wait for both DOM and Quill to be ready
+function initQuill() {
+    console.log('Initializing Quill...');
     
-    // Check if Quill is loaded
     if (typeof Quill === 'undefined') {
-        console.error('Quill is not loaded!');
+        console.error('Quill not loaded, retrying...');
+        setTimeout(initQuill, 100);
         return;
     }
     
-    // Check if element exists
     var editorElement = document.querySelector('#isi-berita');
     if (!editorElement) {
         console.error('Editor element not found!');
@@ -91,21 +91,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     try {
-        // Initialize Quill
+        // Create Quill instance
         var quill = new Quill('#isi-berita', {
             theme: 'snow',
             modules: {
                 toolbar: [
-                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
                     ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
                     [{ 'color': [] }, { 'background': [] }],
                     [{ 'font': [] }],
                     [{ 'size': ['small', false, 'large', 'huge'] }],
                     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
                     [{ 'indent': '-1'}, { 'indent': '+1' }],
-                    [{ 'direction': 'rtl' }],
                     [{ 'align': [] }],
-                    ['link', 'image', 'video'],
+                    ['link', 'image'],
                     ['clean']
                 ]
             },
@@ -114,29 +113,50 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Quill initialized successfully!');
         
-        // Update hidden textarea before form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            console.log('Form submitted, updating textarea...');
-            var content = quill.root.innerHTML;
-            document.querySelector('#isi-berita').value = content;
-            console.log('Content updated:', content);
-        });
-
-        // Set initial content if editing
+        // Test toolbar functionality
+        setTimeout(function() {
+            var toolbar = document.querySelector('.ql-toolbar');
+            if (toolbar) {
+                console.log('Toolbar found:', toolbar);
+                var buttons = toolbar.querySelectorAll('button');
+                console.log('Toolbar buttons:', buttons.length);
+                
+                // Add click event listeners to test
+                buttons.forEach(function(button, index) {
+                    button.addEventListener('click', function(e) {
+                        console.log('Button clicked:', index, button.className);
+                    });
+                });
+            }
+        }, 500);
+        
+        // Update form on submit
+        var form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                console.log('Form submitted, updating content...');
+                var content = quill.root.innerHTML;
+                document.querySelector('#isi-berita').value = content;
+                console.log('Content saved:', content);
+            });
+        }
+        
+        // Load initial content
         @if(old('isi', $post->body))
             quill.root.innerHTML = `{!! old('isi', $post->body) !!}`;
             console.log('Old content loaded');
         @endif
         
-        // Test toolbar functionality
-        setTimeout(function() {
-            console.log('Quill instance:', quill);
-            console.log('Toolbar elements:', document.querySelectorAll('.ql-toolbar button'));
-        }, 1000);
-        
     } catch (error) {
         console.error('Error initializing Quill:', error);
     }
-});
+}
+
+// Start initialization when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initQuill);
+} else {
+    initQuill();
+}
 </script>
 @endsection 
