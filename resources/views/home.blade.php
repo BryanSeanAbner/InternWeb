@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    @keyframes scroll-x {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    .animate-scroll-x {
+        animation: scroll-x 30s linear infinite;
+    }
+    
+    .animate-scroll-x:hover {
+        animation-play-state: paused;
+    }
+</style>
 <div class="bg-white">
     <header class="navbar-sticky fixed inset-x-0 top-0 z-50 animate-fade-in-down shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
@@ -172,26 +190,27 @@
 
 <div class="testimonial-section bg-transparent py-16 md:py-20 lg:py-24 mt-0 rounded-[32px]" id="testimonial">
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins animate-fade-in-up">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">
             Apa Kata Mereka tentang Program Magang Ini
         </h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
-        <div class="overflow-x-auto">
-            <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-max md:w-auto py-8">
-                @foreach($testimonials as $index => $t)
-                <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full flex-shrink-0 flex flex-col items-center text-gray-800 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
-                    <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}"
-                         class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow hover:scale-110 transition-transform duration-300" />
-                    <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                    <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
-                    @if($t->category)
-                    <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
-                    @endif
-                </div>
-                @endforeach
+<!-- Auto-scroll horizontal testimonial -->
+<div class="overflow-hidden relative py-8 px-4">
+    <div class="flex animate-scroll-x whitespace-nowrap gap-4">
+        @foreach($testimonials as $t)
+        <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2">
+            <div class="flex flex-col items-center">
+                <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}"
+                     class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
+                <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                @if($t->category)
+                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                @endif
             </div>
         </div>
+        @endforeach
     </div>
 </div>
 
