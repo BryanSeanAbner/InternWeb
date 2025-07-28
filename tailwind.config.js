@@ -19,11 +19,11 @@ module.exports = {
       keyframes: {
         'scroll-x': {
           '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(-1000%)' },
         },
       },
       animation: {
-        'scroll-x': 'scroll-x 40s linear infinite',
+        'scroll-x': 'scroll-x 3600s linear infinite',
       },
     },
   },

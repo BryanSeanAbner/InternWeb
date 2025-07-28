@@ -195,11 +195,25 @@
         </h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
-<!-- Auto-scroll horizontal testimonial -->
-<div class="overflow-hidden relative py-8 px-4">
+                <div class="overflow-hidden relative py-8 px-4">
     <div class="flex animate-scroll-x whitespace-nowrap gap-4">
         @foreach($testimonials as $t)
-        <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2">
+        <div class="testimonial-item bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2">
+            <div class="flex flex-col items-center">
+                <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}"
+                     class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
+                <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                @if($t->category)
+                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                @endif
+            </div>
+        </div>
+        @endforeach
+
+        {{-- Duplikat seluruh testimonial untuk loop seamless --}}
+        @foreach($testimonials as $t)
+        <div class="testimonial-item bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2">
             <div class="flex flex-col items-center">
                 <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}"
                      class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
