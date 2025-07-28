@@ -1,42 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .shadow-3xl {
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    }
-    
-    .hero-image {
-        animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        50% {
-            transform: translateY(-10px);
-            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
-        }
-    }
-    
-    .hero-image:hover {
-        animation: none;
-        transform: scale(1.05) translateY(-5px);
-        box-shadow: 0 40px 70px -12px rgba(0, 0, 0, 0.4);
-    }
-    
-    .hero-placeholder {
-        animation: float 6s ease-in-out infinite;
-    }
-    
-    .hero-placeholder:hover {
-        animation: none;
-        transform: scale(1.05) translateY(-5px);
-        box-shadow: 0 40px 70px -12px rgba(0, 0, 0, 0.4);
-    }
-</style>
 <div class="bg-white">
     <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
@@ -67,7 +31,7 @@
         <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
         <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
             <div class="flex items-center justify-between w-full pl-6 pr-2">
-                <a href="#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+                <a href="#home" class="text-2xl font-bold trackinbig-wide text-blue-700 font-poppins">Nusantara TV</a>
                 <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
                     <span class="sr-only">Close menu</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
@@ -108,9 +72,9 @@
             </div>
             <div class="relative pt-10">
                     @if($category->photo)
-                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="hero-image w-full h-80 md:h-96 object-cover rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 ease-in-out animate-pulse">
+                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="hero-image w-full h-80 md:h-96 object-cover hover:shadow-xl transition-shadow duration-300">
                     @else
-                        <div class="hero-placeholder w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 ease-in-out">
+                        <div class="hero-placeholder w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold">
                             {{ $category->icon ?? '📺' }} {{ $category->sub_name ?? $category->name }}
                         </div>
                     @endif
@@ -125,7 +89,7 @@
 <section class="py-16 md:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4 font-poppins">Program Magang Unggulan</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4 font-poppins">Cabang IT </h2>
             <div class="w-32 h-1 bg-black mx-auto rounded"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
