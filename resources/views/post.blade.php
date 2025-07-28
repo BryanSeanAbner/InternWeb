@@ -87,7 +87,7 @@
         </div>
         <!-- Sidebar -->
         <aside class="lg:col-span-1">
-            <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang ini</div>
+            <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang {{ $post->category->name ?? 'ini' }}</div>
             <div class="flex flex-col gap-4">
                 @forelse($sidePosts as $side)
                     <a href="{{ route('posts.show', $side) }}" class="bg-white rounded-lg shadow-xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
