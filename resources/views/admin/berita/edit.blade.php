@@ -75,37 +75,68 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Quill
-    var quill = new Quill('#isi-berita', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'color': [] }, { 'background': [] }],
-                [{ 'font': [] }],
-                [{ 'size': ['small', false, 'large', 'huge'] }],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                [{ 'indent': '-1'}, { 'indent': '+1' }],
-                [{ 'direction': 'rtl' }],
-                [{ 'align': [] }],
-                ['link', 'image', 'video'],
-                ['clean']
-            ]
-        },
-        placeholder: 'Tulis isi berita di sini...'
-    });
+    console.log('DOM loaded, initializing Quill...');
+    
+    // Check if Quill is loaded
+    if (typeof Quill === 'undefined') {
+        console.error('Quill is not loaded!');
+        return;
+    }
+    
+    // Check if element exists
+    var editorElement = document.querySelector('#isi-berita');
+    if (!editorElement) {
+        console.error('Editor element not found!');
+        return;
+    }
+    
+    try {
+        // Initialize Quill
+        var quill = new Quill('#isi-berita', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'font': [] }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],
+                    [{ 'direction': 'rtl' }],
+                    [{ 'align': [] }],
+                    ['link', 'image', 'video'],
+                    ['clean']
+                ]
+            },
+            placeholder: 'Tulis isi berita di sini...'
+        });
+        
+        console.log('Quill initialized successfully!');
+        
+        // Update hidden textarea before form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('Form submitted, updating textarea...');
+            var content = quill.root.innerHTML;
+            document.querySelector('#isi-berita').value = content;
+            console.log('Content updated:', content);
+        });
 
-    // Update hidden textarea before form submission
-    document.querySelector('form').addEventListener('submit', function() {
-        var content = quill.root.innerHTML;
-        document.querySelector('#isi-berita').value = content;
-    });
-
-    // Set initial content if editing
-    @if(old('isi', $post->body))
-        quill.root.innerHTML = `{!! old('isi', $post->body) !!}`;
-    @endif
+        // Set initial content if editing
+        @if(old('isi', $post->body))
+            quill.root.innerHTML = `{!! old('isi', $post->body) !!}`;
+            console.log('Old content loaded');
+        @endif
+        
+        // Test toolbar functionality
+        setTimeout(function() {
+            console.log('Quill instance:', quill);
+            console.log('Toolbar elements:', document.querySelectorAll('.ql-toolbar button'));
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Error initializing Quill:', error);
+    }
 });
 </script>
 @endsection 
