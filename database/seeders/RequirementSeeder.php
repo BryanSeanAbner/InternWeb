@@ -22,7 +22,7 @@ class RequirementSeeder extends Seeder
             ],
             [
                 'icon' => '📇',
-                'title' => 'Kartu Tanda Mahasiswa (KTM))',
+                'title' => 'Kartu Tanda Mahasiswa (KTM)',
                 'description' => 'Bukti resmi bahwa kamu adalah mahasiswa aktif dari kampus atau sekolah asal.',
             ],
             [
@@ -40,7 +40,7 @@ class RequirementSeeder extends Seeder
                 'title' => 'Formulir Magang dari NTV',
                 'description' => 'Formulir resmi yang disediakan oleh NTV untuk diisi sebagai bagian dari proses administrasi magang.',
             ],
-            [
+            [   
                 'icon' => '🧑‍💼',
                 'title' => 'Foto Diri',
                 'description' => 'Foto formal terbaru yang digunakan untuk keperluan identifikasi dan administrasi selama masa magang.',

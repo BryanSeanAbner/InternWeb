@@ -1,6 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .shadow-3xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+    
+    .hero-image {
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        50% {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+        }
+    }
+    
+    .hero-image:hover {
+        animation: none;
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 40px 70px -12px rgba(0, 0, 0, 0.4);
+    }
+    
+    .hero-placeholder {
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .hero-placeholder:hover {
+        animation: none;
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 40px 70px -12px rgba(0, 0, 0, 0.4);
+    }
+</style>
 <div class="bg-white">
     <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
@@ -71,11 +107,10 @@
                 </p>
             </div>
             <div class="relative pt-10">
-                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
                     @if($category->photo)
-                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="w-full h-80 md:h-96 object-cover">
+                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="hero-image w-full h-80 md:h-96 object-cover rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 ease-in-out animate-pulse">
                     @else
-                        <div class="w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold">
+                        <div class="hero-placeholder w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 ease-in-out">
                             {{ $category->icon ?? '📺' }} {{ $category->sub_name ?? $category->name }}
                         </div>
                     @endif
@@ -90,8 +125,8 @@
 <section class="py-16 md:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4 font-poppins">Program Magang Unggulan</h2>
-            <div class="w-32 h-1 bg-blue-700 mx-auto rounded"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4 font-poppins">Program Magang Unggulan</h2>
+            <div class="w-32 h-1 bg-black mx-auto rounded"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($subcategories as $sub)
@@ -119,9 +154,9 @@
                 <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800">
                     <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
                     <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                    <div class="font-bold text-base mb-1 text-blue-900 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                    <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}</div>
                     @if($t->category)
-                        <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                        <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
                     @endif  
                 </div>
             @endforeach
@@ -200,6 +235,47 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+    });
+</script>
+
+<!-- Image Animation Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroImage = document.querySelector('.hero-image');
+        
+        if (heroImage) {
+            // Add loading class initially
+            heroImage.classList.add('loading');
+            
+            // Handle image load event
+            heroImage.addEventListener('load', function() {
+                this.classList.remove('loading');
+                this.classList.add('loaded');
+            });
+            
+            // Handle image error event
+            heroImage.addEventListener('error', function() {
+                this.classList.remove('loading');
+                // You can add fallback image here if needed
+            });
+            
+            // Check if image is already loaded (cached)
+            if (heroImage.complete) {
+                heroImage.classList.remove('loading');
+                heroImage.classList.add('loaded');
+            }
+        }
+        
+        // Add click animation for image
+        const imageContainer = document.querySelector('.hero-image-container');
+        if (imageContainer) {
+            imageContainer.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        }
     });
 </script>
 @endsection 
