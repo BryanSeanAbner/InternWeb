@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 animate-fade-in-down">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 animate-fade-in-down shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
             <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins hover:scale-105 transition-transform duration-300">Nusantara TV</a>
@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Navbar scroll effect
   function handleNavbarScroll() {
     const navbar = document.querySelector('.navbar-sticky');
-    if (window.scrollY > 50) {
+    if (window.scrollY > 100) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');

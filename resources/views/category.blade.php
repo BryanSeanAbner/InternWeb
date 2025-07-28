@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
             <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
@@ -70,12 +70,12 @@
                     {{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}
                 </p>
             </div>
-            <div class="relative">
-                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="relative pt-10">
+                <div class="hero-image-container bg-white rounded-2xl shadow-2xl overflow-hidden">
                     @if($category->photo)
-                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="w-full h-80 md:h-96 object-cover">
+                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="hero-image w-full h-80 md:h-96 object-cover">
                     @else
-                        <div class="w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold">
+                        <div class="hero-placeholder w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold">
                             {{ $category->icon ?? '📺' }} {{ $category->sub_name ?? $category->name }}
                         </div>
                     @endif
@@ -200,6 +200,47 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+    });
+</script>
+
+<!-- Image Animation Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroImage = document.querySelector('.hero-image');
+        
+        if (heroImage) {
+            // Add loading class initially
+            heroImage.classList.add('loading');
+            
+            // Handle image load event
+            heroImage.addEventListener('load', function() {
+                this.classList.remove('loading');
+                this.classList.add('loaded');
+            });
+            
+            // Handle image error event
+            heroImage.addEventListener('error', function() {
+                this.classList.remove('loading');
+                // You can add fallback image here if needed
+            });
+            
+            // Check if image is already loaded (cached)
+            if (heroImage.complete) {
+                heroImage.classList.remove('loading');
+                heroImage.classList.add('loaded');
+            }
+        }
+        
+        // Add click animation for image
+        const imageContainer = document.querySelector('.hero-image-container');
+        if (imageContainer) {
+            imageContainer.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        }
     });
 </script>
 @endsection 

@@ -4,7 +4,7 @@
 
 <!-- Header/Navbar -->
 <div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
             <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
