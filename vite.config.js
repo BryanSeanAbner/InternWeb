@@ -18,4 +18,8 @@ export default defineConfig({
             },
         },
     },
+    // Memastikan manifest.json disimpan di lokasi yang benar
+    define: {
+        __VITE_MANIFEST_PATH__: JSON.stringify('public/build/manifest.json'),
+    },
 });
