@@ -1,3 +1,4 @@
+# Force rebuild - Railway Laravel + Vite Build
 [phases.setup]
 nixPkgs = ['php82', 'nodejs_20']
 
