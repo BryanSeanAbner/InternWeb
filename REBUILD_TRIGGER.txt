@@ -1,0 +1,3 @@
+# Trigger rebuild - Force Railway to rebuild with latest nixpacks.toml
+# This file is used to force Railway to rebuild the application
+# Delete this file after successful deployment 
