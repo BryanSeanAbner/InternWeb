@@ -8,18 +8,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    build: {
-        outDir: 'public/build',
-        assetsDir: 'assets',
-        manifest: true,
-        rollupOptions: {
-            output: {
-                manualChunks: undefined,
-            },
-        },
-    },
-    // Memastikan manifest.json disimpan di lokasi yang benar
-    define: {
-        __VITE_MANIFEST_PATH__: JSON.stringify('public/build/manifest.json'),
-    },
 });
