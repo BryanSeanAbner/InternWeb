@@ -82,7 +82,7 @@
 </header>
 
 <!-- Hero Section -->
-<div id="home" class="relative h-[80vh] md:h-[100vh] flex items-center justify-start bg-cover bg-left-bottom mb-12 pt-24 md:pt-30" style="background-image: url('{{ asset('img/hero.JPG') }}');">
+<div id="home" class="relative h-[80vh] md:h-[100vh] flex items-center justify-start bg-cover bg-left-bottom mb-12 pt-24 md:pt-30" style="background-image: url('{{ asset('img/hero.jpg') }}');">
     <div class="ml-4 md:ml-20 max-w-full md:max-w-xl bg-black/30 rounded-xl p-4 md:p-8 animate-fade-in-up">
         <h1 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg leading-tight font-poppins animate-slide-in-left">
             Mulai Pengalaman <br class="hidden sm:block">Magangmu di <br class="hidden sm:block">Nusantara TV
