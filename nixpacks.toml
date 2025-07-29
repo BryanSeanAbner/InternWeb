@@ -5,7 +5,7 @@ nixPkgs = ['php82', 'nodejs_20']
 cmds = [
     'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer',
     'php /usr/local/bin/composer install --no-dev --optimize-autoloader',
-    'npm ci --only=production',
+    'npm install',
     'npm run build'
 ]
 
