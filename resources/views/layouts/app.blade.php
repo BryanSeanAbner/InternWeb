@@ -15,8 +15,8 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="font-sans antialiased">
             <!-- Page Content -->
