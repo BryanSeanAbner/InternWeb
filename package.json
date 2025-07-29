@@ -7,7 +7,8 @@
         "build": "vite build",
         "postbuild": "node -e \"const fs=require('fs');const path=require('path');const src=path.join('public','build','.vite','manifest.json');const dest=path.join('public','build','manifest.json');if(fs.existsSync(src)){fs.copyFileSync(src,dest);console.log('Manifest copied successfully');}else{console.log('Source manifest not found');}\"",
         "start": "npm run build && npm run postbuild && php artisan serve --host=0.0.0.0 --port=$PORT",
-        "railway:deploy": "npm run build && npm run postbuild"
+        "railway:build": "npm run build && npm run postbuild",
+        "railway:start": "php artisan serve --host=0.0.0.0 --port=$PORT"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

@@ -15,8 +15,27 @@
         <!-- Vite Assets (Tailwind CSS) -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <!-- Fallback CSS untuk production -->
+        @if(app()->environment('production'))
+            <link rel="stylesheet" href="{{ asset('build/assets/app-2ZxGTO57.css') }}">
+        @endif
+        
         <!-- Custom CSS (setelah Tailwind untuk override jika perlu) -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        
+        <!-- Inline CSS untuk memastikan styling dasar -->
+        <style>
+            /* Fallback styling jika CSS tidak ter-load */
+            body { font-family: 'Poppins', sans-serif; }
+            .font-poppins { font-family: 'Poppins', sans-serif; }
+            .text-blue-700 { color: #1d4ed8; }
+            .bg-white { background-color: #ffffff; }
+            .text-white { color: #ffffff; }
+            .bg-blue-700 { background-color: #1d4ed8; }
+            .hover\:bg-blue-800:hover { background-color: #1e40af; }
+            .transition-all { transition: all 0.3s ease; }
+            .hover\:scale-105:hover { transform: scale(1.05); }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <!-- Page Content -->
