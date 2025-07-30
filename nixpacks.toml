@@ -1,0 +1,25 @@
+[phases.setup]
+nixPkgs = ['php82', 'nodejs_20']
+
+[phases.install]
+cmds = [
+    'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer',
+    'mkdir -p storage/framework/cache',
+    'mkdir -p storage/framework/sessions', 
+    'mkdir -p storage/framework/views',
+    'mkdir -p storage/logs',
+    'mkdir -p bootstrap/cache',
+    'chmod -R 777 storage',
+    'chmod -R 777 bootstrap/cache',
+    'php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --no-scripts',
+    'npm install'
+]
+
+[phases.build]
+cmds = [
+    'composer dump-autoload --optimize',
+    'npm run build'
+]
+
+[start]
+cmd = 'php -S 0.0.0.0:${PORT:-8000} -t public' 

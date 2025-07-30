@@ -1,172 +1,111 @@
-# Website Manajemen Internship Nusantara TV
+# InternWeb - Laravel Application
 
-Website manajemen program internship untuk Nusantara TV menggunakan Laravel dan PHP.
+Aplikasi web untuk sistem internship yang dibangun dengan Laravel, MySQL, dan Tailwind CSS.
 
-## ✨ Fitur Utama
+## 🚀 Railway Deployment
 
-### 1. **Home Page (Dashboard Public)**
-- Slogan: "Mulai karirmu di Dunia Broadcasting bersama Nusantara TV"
-- Info program internship (tujuan, durasi, kategori, syarat & ketentuan)
-- Tombol "Daftar Sekarang" ke Google Form
-- Link ke berita, bidang magang, testimoni, dan kontak
+### Quick Start
 
-### 2. **Berita Kegiatan Magang (CRUD)**
-- Admin: Tambah, edit, hapus berita dengan foto/video
-- Public: Lihat daftar dan detail berita
-- Upload media: Foto (JPG, PNG, GIF) dan Video (MP4, MOV, AVI)
+1. **Fork/Clone repository ini**
+2. **Buka [Railway.app](https://railway.app)**
+3. **Buat project baru**
+4. **Tambahkan service MySQL**
+5. **Tambahkan service GitHub Repo** (pilih repository ini)
+6. **Set environment variables** di Railway Dashboard
 
-### 3. **Bidang Magang (CRUD)**
-- Admin: Kelola bidang magang (Video Editor, Content Creator, Jurnalis, dll)
-- Public: Lihat daftar bidang magang
+### Environment Variables
 
-### 4. **Testimoni Alumni (CRUD)**
-- Admin: Tambah, edit, hapus testimoni dengan foto alumni
-- Public: Lihat testimoni alumni
-- Upload foto: JPG, PNG, GIF
+Set di Railway Dashboard:
 
-### 5. **Kontak & Sosial Media**
-- Alamat kantor, email, telepon
-- Instagram, YouTube
-- Floating WhatsApp button
+```env
+APP_NAME=InternWeb
+APP_ENV=production
+APP_KEY=base64:your-key-here
+APP_DEBUG=false
+APP_URL=https://your-app-name.up.railway.app
 
-## 🧱 Teknologi
+DB_CONNECTION=mysql
+DB_HOST=${MYSQLHOST}
+DB_PORT=${MYSQLPORT}
+DB_DATABASE=${MYSQLDATABASE}
+DB_USERNAME=${MYSQLUSER}
+DB_PASSWORD=${MYSQLPASSWORD}
 
-- **Backend:** Laravel 11, PHP 8.1+
-- **Database:** MySQL/SQLite
-- **Frontend:** TailwindCSS, Blade
-- **Auth:** Laravel Breeze
-- **Media:** Spatie Laravel MediaLibrary
-- **Server:** Apache/Nginx
-
-## 🚀 Instalasi
-
-### Prerequisites
-- PHP 8.1+
-- Composer
-- MySQL/SQLite
-- Node.js & NPM
-
-### Langkah Instalasi
-
-1. **Clone repository**
-```bash
-git clone <repository-url>
-cd InternWeb
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
 ```
 
-2. **Install dependencies**
+### Post-Deployment Commands
+
+Setelah deployment pertama, jalankan:
+
 ```bash
+# Generate application key
+railway run php artisan key:generate
+
+# Run migrations
+railway run php artisan migrate
+
+# Seed database (optional)
+railway run php artisan db:seed
+```
+
+## 🛠️ Local Development
+
+```bash
+# Install dependencies
 composer install
 npm install
-```
 
-3. **Setup environment**
-```bash
+# Setup environment
 cp .env.example .env
 php artisan key:generate
-```
 
-4. **Setup database**
-```bash
+# Run migrations
 php artisan migrate
-php artisan db:seed
-```
 
-5. **Build assets**
-```bash
+# Build assets
 npm run build
+
+# Start server
+php artisan serve
 ```
 
-6. **Create storage link**
-```bash
-php artisan storage:link
-```
-
-## 👥 Role Akses
-
-### **Admin (Login Required)**
-- Akses: `/admin`
-- Fitur: CRUD berita, bidang magang, testimoni
-- Login: `admin@nusatv.com` / `password`
-
-### **Public (No Login Required)**
-- Akses: `/dashboard`, `/posts`, `/categories`, `/testimonials`
-- Fitur: Lihat data saja
-
-## 📁 Struktur File
+## 📁 Project Structure
 
 ```
 InternWeb/
-├── app/
-│   ├── Http/Controllers/
-│   │   ├── PostController.php
-│   │   ├── CategoryController.php
-│   │   └── TestimonialController.php
-│   └── Models/
-│       ├── Post.php
-│       ├── Category.php
-│       └── Testimonial.php
-├── resources/views/
-│   ├── dashboard.blade.php (public)
-│   ├── posts/ (public)
-│   ├── categories/ (public)
-│   ├── testimonials/ (public)
-│   └── admin/ (admin CRUD)
-└── routes/web.php
+├── app/                    # Laravel application logic
+├── resources/
+│   ├── views/             # Blade templates
+│   ├── css/               # Tailwind CSS
+│   └── js/                # Alpine.js
+├── database/
+│   ├── migrations/        # Database migrations
+│   └── seeders/          # Database seeders
+├── routes/                # Application routes
+├── public/                # Public assets
+└── config/                # Configuration files
 ```
 
-## 🔧 Konfigurasi
+## 🎨 Features
 
-### **Upload Media**
-- **Berita:** Max 10MB per file, format: JPG, PNG, GIF, MP4, MOV, AVI
-- **Testimoni:** Max 5MB per file, format: JPG, PNG, GIF
-- **Storage:** `storage/app/public/`
+- **Authentication** - Login/Register system
+- **Admin Dashboard** - CRUD operations
+- **News Management** - Blog/News system
+- **Testimonials** - Customer testimonials
+- **Responsive Design** - Mobile-friendly UI
+- **Tailwind CSS** - Modern styling
+- **Alpine.js** - Interactive components
 
-### **WhatsApp Button**
-- URL: `https://wa.me/6281234567890`
-- Ganti nomor di `resources/views/layouts/app.blade.php`
+## 🔧 Technologies
 
-### **Google Form Daftar**
-- URL: `https://bit.ly/daftarmagang-nusatv`
-- Ganti di `resources/views/dashboard.blade.php`
-
-## 🎯 Penggunaan
-
-### **Untuk Admin:**
-1. Login dengan akun admin
-2. Akses `/admin` untuk dashboard admin
-3. Kelola berita, bidang magang, testimoni
-4. Upload foto/video saat tambah/edit data
-
-### **Untuk Public:**
-1. Akses `/dashboard` untuk info program
-2. Lihat berita di `/posts`
-3. Lihat bidang magang di `/categories`
-4. Lihat testimoni di `/testimonials`
-5. Hubungi via WhatsApp button
-
-## 📞 Kontak
-
-- **Email:** magang@nusatv.com
-- **Telepon:** 0812-3456-7890
-- **Instagram:** @nusatv
-- **YouTube:** Nusantara TV
-
-## 🔄 Update & Maintenance
-
-### **Menambah Admin Baru:**
-1. Register via `/register`
-2. Atau tambah manual di database
-
-### **Mengganti Kontak:**
-1. Edit di `resources/views/dashboard.blade.php`
-2. Edit WhatsApp di `resources/views/layouts/app.blade.php`
-
-### **Backup Database:**
-```bash
-php artisan db:backup
-```
+- **Backend**: Laravel 12, PHP 8.2
+- **Frontend**: Tailwind CSS, Alpine.js
+- **Database**: MySQL
+- **Deployment**: Railway.app
 
 ## 📝 License
 
-© 2024 Nusantara TV. All rights reserved.
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
