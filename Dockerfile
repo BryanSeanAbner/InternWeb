@@ -40,8 +40,8 @@ RUN npm install
 # Build Vite assets
 RUN npm run build
 
-# Copy manifest file to correct location
-RUN cp public/build/.vite/manifest.json public/build/manifest.json
+# Copy manifest file to correct location (Vite already creates it in the right place)
+RUN ls -la public/build/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
