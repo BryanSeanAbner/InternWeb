@@ -3,458 +3,97 @@
 @section('content')
 <style>
     @keyframes scroll-x {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
     }
-    .animate-scroll-x { animation: scroll-x 30s linear infinite; }
-    .animate-scroll-x:hover { animation-play-state: paused; }
+    
+    .animate-scroll-x {
+        animation: scroll-x 30s linear infinite;
+    }
+    
+    .animate-scroll-x:hover {
+        animation-play-state: paused;
+    }
 </style>
 
-<!-- Header/Navbar dengan Advanced Tailwind -->
-<header class="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-blue-100 shadow-lg">
-    <nav class="flex items-center justify-between p-4 md:p-6 lg:px-8">
-        <div class="flex lg:flex-1">
-            <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins hover:scale-105 transition-transform duration-300">
+<!-- Header/Navbar -->
+<header class="fixed inset-x-0 top-0 z-50 bg-white border-b border-gray-200 shadow">
+    <nav class="flex items-center justify-between p-4">
+        <div class="flex">
+            <a href="#home" class="text-2xl font-bold text-blue-700">
                 Nusantara TV
             </a>
         </div>
+        
         <div class="flex lg:hidden">
-            <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 focus:outline-none hover:bg-gray-100 transition-colors duration-200">
+            <button id="mobile-menu-open" type="button" class="text-gray-700">
                 <span class="sr-only">Open main menu</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
                     <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>  
             </button>
         </div>
+        
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="#home" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Home</a>
-            <a href="#berita" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Berita</a>
-            <a href="#tentang" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Tentang</a>
-            <a href="#bidang" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Bidang</a>
-            <a href="#persyaratan" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Persyaratan</a>
-            <a href="#testimonial" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Testimonial</a>
-            <a href="#howtoapply" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Cara Mendaftar</a>
-            <a href="#contactus" class="nav-link text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Kontak</a>
+            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800">Berita</a>
+            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Tentang</a>
+            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Bidang</a>
+            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800">Persyaratan</a>
+            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800">Testimonial</a>
+            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800">Cara Mendaftar</a>
+            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800">Kontak</a>
         </div>
     </nav>
+    
     <!-- Mobile menu -->
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
-        <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
-        <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
-            <div class="flex items-center justify-between w-full pl-6 pr-2">
-                <a href="#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
-                <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
+        <div class="fixed inset-0 bg-black bg-opacity-40"></div>
+        <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-4 py-4">
+            <div class="flex items-center justify-between w-full">
+                <a href="#home" class="text-2xl font-bold text-blue-700">Nusantara TV</a>
+                <button id="mobile-menu-close" type="button" class="text-gray-700">
                     <span class="sr-only">Close menu</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
                         <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </div>
-            <div class="flow-root bg-white w-full">
-                <div class="flex-1 mt-4 w-full pl-6">
-                    <div class="space-y-2 flex flex-col w-full">
-                        <a href="#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Home</a>
-                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Berita</a>
-                        <a href="#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Tentang</a>
-                        <a href="#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Bidang</a>
-                        <a href="#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Persyaratan</a>
-                        <a href="#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Testimonial</a>
-                        <a href="#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Cara Mendaftar</a>
-                        <a href="#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Kontak</a>
-                    </div>
-                </div>
+            <div class="mt-4">
+                <a href="#home" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="#berita" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
+                <a href="#tentang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Tentang</a>
+                <a href="#bidang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Bidang</a>
+                <a href="#persyaratan" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Persyaratan</a>
+                <a href="#testimonial" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Testimonial</a>
+                <a href="#howtoapply" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Cara Mendaftar</a>
+                <a href="#contactus" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Kontak</a>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Hero Section dengan Advanced Animations -->
-<section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 overflow-hidden">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <h1 class="text-hero font-bold font-poppins mb-6 animate-fade-in-up">
-            Mulai Pengalaman Magangmu di 
-            <span class="text-gradient bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
-                Nusantara TV
-            </span>
+<!-- Hero Section -->
+<div id="home" class="relative h-screen flex items-center justify-start bg-cover bg-center mb-12 pt-20" style="background-image: url('{{ asset('img/hero.jpg') }}');">
+    <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            Mulai Pengalaman Magangmu di Nusantara TV
         </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-inter leading-relaxed animate-fade-in-up animation-delay-300">
+        <p class="text-lg text-white mb-6">
             Bergabunglah dalam magang kami untuk pengalaman berharga di dunia penyiaran dan produksi media.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-500">
-            <a href="#howtoapply" class="btn-primary text-lg px-8 py-4 rounded-xl shadow-glow hover:shadow-glow-lg transform hover:scale-110 transition-all duration-500">
-                Cara Mendaftar
-            </a>
-            <a href="#berita" class="btn-outline text-lg px-8 py-4 rounded-xl border-2 border-white text-white hover:bg-white hover:text-primary-600 transform hover:scale-110 transition-all duration-500">
-                Berita Terkini
-            </a>
-        </div>
+        <a href="#howtoapply" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800">
+            Cara Mendaftar
+        </a>
     </div>
-    
-    <!-- Floating Elements -->
-    <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-float"></div>
-    <div class="absolute bottom-20 right-10 w-16 h-16 bg-white/10 rounded-full animate-float animation-delay-1000"></div>
-    <div class="absolute top-1/2 left-20 w-12 h-12 bg-white/10 rounded-full animate-float animation-delay-2000"></div>
-</section>
+</div>
 
-<!-- Berita Section dengan Data CRUD -->
-<section id="berita" class="section-padding bg-gray-50">
-    <div class="container-custom">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-4">
-                Berita Terkini
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-inter">
-                Dapatkan informasi terbaru seputar magang dan kegiatan di Nusantara TV
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @forelse($latestPosts as $post)
-            <article class="card card-hover group animate-fade-in-up">
-                <div class="aspect-[16/9] bg-gradient-to-br from-primary-100 to-primary-200 rounded-t-xl flex items-center justify-center">
-                    <div class="text-primary-600 text-4xl font-bold">{{ substr($post->title, 0, 1) }}</div>
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-sm font-semibold rounded-full">
-                            {{ $post->category->name ?? 'Umum' }}
-                        </span>
-                        <span class="text-sm text-gray-500">{{ $post->created_at->format('d M Y') }}</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors duration-300">
-                        {{ $post->title }}
-                    </h3>
-                    <p class="text-gray-600 mb-4 line-clamp-3">
-                        {{ Str::limit($post->body, 120) }}
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">By {{ $post->author->name ?? 'Admin' }}</span>
-                        <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold transition-colors duration-200">
-                            Baca Selengkapnya →
-                        </a>
-                    </div>
-                </div>
-            </article>
-            @empty
-            <div class="col-span-full text-center py-12">
-                <div class="text-gray-400 text-6xl mb-4">📰</div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada berita</h3>
-                <p class="text-gray-500">Berita akan muncul di sini</p>
-            </div>
-            @endforelse
-        </div>
-        
-        <div class="text-center mt-12">
-            <a href="#" class="btn-primary text-lg px-8 py-3 rounded-xl">
-                Baca Berita Lainnya
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Tentang Section -->
-<section id="tentang" class="section-padding bg-white">
-    <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="animate-fade-in-left">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-6">
-                    Tentang Magang
-                </h2>
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed font-inter">
-                    Program magang di Nusantara TV memberikan kesempatan bagi mahasiswa dan fresh graduate untuk mendapatkan pengalaman langsung di industri media dan penyiaran.
-                </p>
-                <div class="space-y-4">
-                    @foreach($benefits->take(3) as $benefit)
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-900 mb-1">{{ $benefit->title }}</h3>
-                            <p class="text-gray-600">{{ $benefit->description }}</p>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="animate-fade-in-right">
-                <div class="relative">
-                    <div class="aspect-square bg-gradient-to-br from-primary-200 to-primary-300 rounded-2xl p-8">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">🎯</div>
-                            <h3 class="text-2xl font-bold text-primary-700 mb-4">Pengalaman Praktis</h3>
-                            <p class="text-primary-600">Dapatkan pengalaman langsung di industri media yang sesungguhnya</p>
-                        </div>
-                    </div>
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-400 rounded-full animate-pulse-slow"></div>
-                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-success-400 rounded-full animate-float"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Bidang Section dengan Data CRUD -->
-<section id="bidang" class="section-padding bg-gray-50">
-    <div class="container-custom">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-4">
-                Kategori Bidang Magang
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-inter">
-                Pilih bidang yang sesuai dengan minat dan keahlianmu
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @forelse($categories as $category)
-            <div class="card card-hover group animate-fade-in-up">
-                <div class="aspect-[4/3] bg-gradient-to-br from-primary-100 to-primary-200 rounded-t-xl flex items-center justify-center relative overflow-hidden">
-                    @if($category->photo)
-                    <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
-                    @else
-                    <div class="text-primary-600 text-6xl font-bold">{{ substr($category->name, 0, 1) }}</div>
-                    @endif
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300"></div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors duration-300">
-                        {{ $category->name }}
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                        {{ $category->description ?? 'Deskripsi kategori akan ditampilkan di sini.' }}
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">{{ $category->posts_count ?? 0 }} posisi tersedia</span>
-                        <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold transition-colors duration-200">
-                            Lihat Detail →
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-12">
-                <div class="text-gray-400 text-6xl mb-4">📂</div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada kategori</h3>
-                <p class="text-gray-500">Kategori akan muncul di sini</p>
-            </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
-<!-- Persyaratan Section -->
-<section id="persyaratan" class="section-padding bg-white">
-    <div class="container-custom">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-4">
-                Persyaratan Magang
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-inter">
-                Pastikan kamu memenuhi persyaratan berikut sebelum mendaftar
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @forelse($requirements as $requirement)
-            <div class="card card-hover animate-fade-in-up">
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $requirement->title }}</h3>
-                    <p class="text-gray-600 leading-relaxed">{{ $requirement->description }}</p>
-                </div>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-12">
-                <div class="text-gray-400 text-6xl mb-4">📋</div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada persyaratan</h3>
-                <p class="text-gray-500">Persyaratan akan muncul di sini</p>
-            </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
-<!-- Testimonial Section dengan Data CRUD -->
-<section id="testimonial" class="section-padding bg-gray-50">
-    <div class="container-custom">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-4">
-                Testimonial Alumni
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-inter">
-                Dengarkan pengalaman langsung dari alumni magang kami
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @forelse($testimonials as $testimonial)
-            <div class="card card-hover animate-fade-in-up">
-                <div class="p-6">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                            {{ substr($testimonial->name, 0, 1) }}
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-900">{{ $testimonial->name }}</h3>
-                            <p class="text-sm text-gray-600">{{ $testimonial->instansi ?? 'Alumni Magang' }}</p>
-                            @if($testimonial->category)
-                            <span class="inline-block px-2 py-1 bg-primary-100 text-primary-700 text-xs rounded-full mt-1">
-                                {{ $testimonial->category->name }}
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic leading-relaxed">
-                        "{{ $testimonial->description }}"
-                    </p>
-                </div>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-12">
-                <div class="text-gray-400 text-6xl mb-4">💬</div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada testimonial</h3>
-                <p class="text-gray-500">Testimonial akan muncul di sini</p>
-            </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
-<!-- Cara Mendaftar Section -->
-<section id="howtoapply" class="section-padding bg-white">
-    <div class="container-custom">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-4">
-                Cara Mendaftar
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-inter">
-                Ikuti langkah-langkah berikut untuk mendaftar magang
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            @forelse($applySteps as $index => $step)
-            <div class="text-center animate-fade-in-up">
-                <div class="relative mb-6">
-                    <div class="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto">
-                        {{ $index + 1 }}
-                    </div>
-                    @if($index < count($applySteps) - 1)
-                    <div class="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-primary-200 transform translate-x-4"></div>
-                    @endif
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $step->title }}</h3>
-                <p class="text-gray-600 leading-relaxed">{{ $step->description }}</p>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-12">
-                <div class="text-gray-400 text-6xl mb-4">📝</div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum ada langkah pendaftaran</h3>
-                <p class="text-gray-500">Langkah pendaftaran akan muncul di sini</p>
-            </div>
-            @endforelse
-        </div>
-        
-        <div class="text-center mt-16">
-            <a href="#contactus" class="btn-primary text-lg px-8 py-4 rounded-xl shadow-glow hover:shadow-glow-lg transform hover:scale-110 transition-all duration-500">
-                Daftar Sekarang
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contactus" class="section-padding bg-gray-50">
-    <div class="container-custom">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-poppins mb-4">
-                Hubungi Kami
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-inter">
-                Punya pertanyaan? Jangan ragu untuk menghubungi kami
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div class="animate-fade-in-left">
-                <div class="card p-8">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Informasi Kontak</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Alamat</h4>
-                                <p class="text-gray-600">Jl. Nusantara No. 123, Jakarta</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Telepon</h4>
-                                <p class="text-gray-600">+62 21 1234 5678</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Email</h4>
-                                <p class="text-gray-600">magang@nusantaratv.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="animate-fade-in-right">
-                <div class="card p-8">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Kirim Pesan</h3>
-                    <form class="space-y-6">
-                        <div>
-                            <label class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-input" placeholder="Masukkan nama lengkap">
-                        </div>
-                        <div>
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="Masukkan email">
-                        </div>
-                        <div>
-                            <label class="form-label">Subjek</label>
-                            <input type="text" class="form-input" placeholder="Masukkan subjek">
-                        </div>
-                        <div>
-                            <label class="form-label">Pesan</label>
-                            <textarea rows="4" class="form-input" placeholder="Tulis pesan Anda"></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full">
-                            Kirim Pesan
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Berita Section -->
+<div id="berita" class="py-8 container mx-auto px-4">
 
 <script>
 // Mobile menu functionality
@@ -479,39 +118,442 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+</script>
+    <div class="flex flex-col items-center mb-8">
+        <div class="text-3xl md:text-4xl font-bold text-blue-700 text-center mb-2">Berita Terkini</div>
+        <div class="w-20 h-1 bg-blue-700 rounded mb-8"></div>
+    </div>
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        @foreach(($allPosts ?? $latestPosts) as $index => $post)
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl">
+                <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
+                    @if($post->photo)
+                        <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
+                    @else
+                        <span class="text-xl text-gray-500 font-semibold">IMAGE</span>
+                    @endif
+                </div>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <span class="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold uppercase">
+                        {{ $post->category->name }}
+                    </span>
+                    <span class="text-base text-gray-500">
+                        {{ $post->created_at->format('d M Y') }}
+                    </span>
+                </div>
+                
+                <h4 class="font-bold text-xl mb-1">
+                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700">
+                        {{ $post->title }}
+                    </a>
+                </h4>
+                
+                <p class="text-gray-500 text-base mb-6">
+                    {{ Str::limit(strip_tags($post->body), 100) }}
+                </p>
+                
+                <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline">
+                    Baca selengkapnya <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        @endforeach
+    </div>
+    
+    <div class="text-center mt-8">
+        <a href="{{ route('posts.index') }}" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800">
+            Baca Berita Lainnya
+        </a>
+    </div>
+</div>
+
+<!-- Tentang Section -->
+<div class="py-16" id="tentang">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Tentang Magang</h2>
+        <div class="w-20 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($benefits as $index => $benefit)
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl mb-4">{{ $benefit->icon }}</div>
+                    <div class="text-lg font-bold text-blue-700 mb-2">{{ $benefit->title }}</div>
+                    <div class="text-base text-gray-700">{{ $benefit->description }}</div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<!-- Bidang Section -->
+<div class="py-16" id="bidang">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Kategori Bidang Magang</h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($categories as $index => $cat)
+                <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl">
+                    @if($cat->photo)
+                        <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
+                    @else
+                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                            <span class="text-sm">No Image</span>
+                        </div>
+                    @endif
+                    <div class="p-4">
+                        <div class="text-lg font-bold text-blue-700">{{ $cat->name }}</div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<!-- Persyaratan Section -->
+<div class="py-16" id="persyaratan">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Persyaratan</h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($requirements as $index => $req)
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-2xl mb-2">{{ $req->icon }}</div>
+                    <div class="text-lg font-bold text-blue-700 mb-2">
+                        {{ $req->title }}
+                    </div>
+                    <div class="text-base text-gray-800">{{ $req->description }}</div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<!-- Testimonial Section -->
+<div class="py-16" id="testimonial">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">
+            Apa Kata Mereka tentang Program Magang Ini
+        </h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        
+        <div class="overflow-hidden relative py-8">
+            <div class="flex animate-scroll-x whitespace-nowrap gap-4">
+                @foreach($testimonials as $t)
+                    <div class="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full inline-block flex-shrink-0 mx-2">
+                        <div class="flex flex-col items-center">
+                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3" />
+                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                            <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                            @if($t->category)
+                                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+
+                {{-- Duplikat seluruh testimonial untuk loop seamless --}}
+                @foreach($testimonials as $t)
+                    <div class="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full inline-block flex-shrink-0 mx-2">
+                        <div class="flex flex-col items-center">
+                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3" />
+                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                            <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                            @if($t->category)
+                                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cara Mendaftar Section -->
+<div id="howtoapply" class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Cara Mendaftar</h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-8">
+            @foreach($applySteps as $index => $step)
+                <div class="flex flex-col items-center text-center">
+                    <!-- Circle Container -->
+                    <div class="mb-4">
+                        <div class="w-20 h-20 bg-blue-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                            {{ $step->step_number }}
+                        </div>
+                    </div>
+                    
+                    <!-- Content Container -->
+                    <div class="px-4">
+                        <div class="font-bold text-blue-700 text-center mb-2 text-lg">
+                            {{ $step->title }}
+                        </div>
+                        <div class="text-base text-gray-600 text-center">
+                            {{ $step->description }}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+        @if($applySteps->last() && $applySteps->last()->button_text)
+            <div class="text-center mt-10">
+                <a href="{{ $applySteps->last()->button_link ?? '#' }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
+                    {{ $applySteps->last()->button_text }}
+                </a>
+            </div>
+        @endif
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="contactus" class="pt-12 mt-12 text-white" style="background: url('{{ asset('img/banner-background.jpg') }}') center/cover no-repeat;">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4">
+        <div class="flex-2 mb-8 md:mb-0">
+            <div class="text-2xl font-bold mb-4">Lokasi Nusantara TV</div>
+            <div class="w-full h-80 rounded-lg overflow-hidden mb-4">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.585492366193!2d106.87387437428204!3d-6.186187460609973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5689acb01bd%3A0xdb532d1cdbfa11e7!2sNT%20Tower!5e0!3m2!1sen!2sid!4v1752052938203!5m2!1sen!2sid" width="100%" height="100%" class="border-0 w-full h-full" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>  
+        </div>
+        
+        <div class="flex-1 mb-8 md:mb-0">
+            <div class="text-2xl font-bold mb-4">Kontak Kami</div>
+            <div class="mb-2">
+                Email: <br>hello@nttower.com
+            </div>
+            <div class="mb-2">
+                Call us at: <br>0881-0100-65128
+            </div>
+            <div class="mb-2">
+                Our Location: <br>Jl. Pulomas Selatan Kav. Blok, Kota Jakarta Timur 13210
+            </div>
+            
+            <div class="flex gap-4 mt-4">
+                <a href="https://www.facebook.com/share/1DtLHYiaN3/" target="_blank" class="text-white text-2xl">
+                    <!-- Facebook SVG -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                        <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" fill="currentColor"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/officialnusantaratv?igsh=dTdxajZpZDNkZHMx" target="_blank" class="text-white text-2xl">
+                    <!-- Instagram SVG -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.567 5.783 2.295 7.149 2.233 8.415 2.175 8.795 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344c-.98.98-1.213 2.092-1.272 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.613.059 1.281.292 2.393 1.272 3.373.98.98 2.092 1.213 3.373 1.272C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.292 3.373-1.272.98-.98 1.213-2.092 1.272-3.373.059-1.281.072-1.69.072-7.613 0-5.923-.013-6.332-.072-7.613-.059-1.281-.292-2.393-1.272-3.373-.98-.98-2.092-1.213-3.373-1.272C15.668.013 15.259 0 12 0z" fill="currentColor"/>
+                        <path d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A3.999 3.999 0 1 1 12 8a3.999 3.999 0 0 1 0 7.999zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" fill="currentColor"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/company/nusantara-tv/" target="_blank" class="text-white text-2xl">
+                    <!-- LinkedIn SVG -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zm-9 19H5V9h5v10zm-2.5-11.268c-1.381 0-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5 2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5zm15.5 11.268h-5v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968V19h-5V9h4.8v1.367h.069c.669-1.267 2.304-2.604 4.742-2.604 5.073 0 6.012 3.341 6.012 7.686V19z" fill="currentColor"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="border-t border-white border-opacity-20 mt-8 py-4 text-center text-base text-white">
+        &copy; 2025 Nusantara TV. All rights reserved.
+    </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/6285777349636" class="fixed bottom-20 right-12 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-xl z-50" target="_blank" aria-label="Chat via WhatsApp">
+    <img src="{{ asset('img/whatsapp-logo.png') }}" alt="WhatsApp" class="w-12 h-12">
+</a>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const openBtn = document.getElementById('mobile-menu-open');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // Open mobile menu
+    openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileMenu.classList.remove('hidden');
+    });
+    
+    // Close mobile menu
+    closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileMenu.classList.add('hidden');
+    });
+    
+    // Close on backdrop click
+    mobileMenu.querySelector('.bg-black').addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+    });
+    
+    // Smooth scrolling untuk semua anchor links
+    function smoothScrollTo(targetId) {
+        const target = document.querySelector(targetId);
+        if (target) {
+            const navbarHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = target.offsetTop - navbarHeight - 20;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+    
+    // Event listener untuk semua anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const targetId = this.getAttribute('href');
+            
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
             }
+            
+            // Add active state to clicked link
+            document.querySelectorAll('nav a[href^="#"]').forEach(navLink => {
+                navLink.classList.remove('text-blue-800', 'font-bold', 'active');
+                navLink.classList.add('text-blue-700');
+            });
+            
+            this.classList.remove('text-blue-700');
+            this.classList.add('text-blue-800', 'font-bold', 'active');
+            
+            // Smooth scroll to target
+            smoothScrollTo(targetId);
         });
     });
     
-    // Intersection Observer for animations
+    // Active navigation highlighting based on scroll position
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section, [id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        
+        let current = '';
+        const scrollPosition = window.scrollY + 100; // Offset for navbar
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = sectionId;
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('text-blue-800', 'font-bold', 'active');
+            link.classList.add('text-blue-700');
+            
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.remove('text-blue-700');
+                link.classList.add('text-blue-800', 'font-bold', 'active');
+            }
+        });
+    }
+    
+    // Update active nav link on scroll
+    window.addEventListener('scroll', updateActiveNavLink);
+    
+    // Navbar scroll effect
+    function handleNavbarScroll() {
+        const navbar = document.querySelector('.navbar-sticky');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+    
+    // Add scroll event for navbar effect
+    window.addEventListener('scroll', handleNavbarScroll);
+    
+    // Initial call to set active link and navbar state
+    updateActiveNavLink();
+    handleNavbarScroll();
+});
+</script>
+
+<!-- Scroll-triggered animations -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver((entries) => {
+
+    const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
+                entry.target.classList.add('animate');
             }
         });
     }, observerOptions);
-    
-    // Observe all elements with animate-on-scroll class
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        observer.observe(el);
+
+    // Observe all sections for scroll animations
+    document.querySelectorAll('.section-area, .tentang-section, .bidang-section, .persyaratan-section, .testimonial-section, #howtoapply').forEach(section => {
+        section.classList.add('animate-on-scroll');
+        observer.observe(section);
     });
 });
 </script>
-@endsection
+
+<!-- Carousel -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+    let active = 0;
+
+    function showCard(idx) {
+        cards.forEach((card, i) => {
+            if (i === idx) {
+                card.classList.remove('opacity-0', 'scale-95', 'translate-x-10', 'z-0');
+                card.classList.add('opacity-100', 'scale-100', 'translate-x-0', 'z-10');
+            } else {
+                card.classList.remove('opacity-100', 'scale-100', 'translate-x-0', 'z-10');
+                card.classList.add('opacity-0', 'scale-95', 'translate-x-10', 'z-0');
+            }
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('bg-blue-700', i === idx);
+            dot.classList.toggle('bg-gray-300', i !== idx);
+        });
+    }
+
+    function next() {
+        active = (active + 1) % cards.length;
+        showCard(active);
+    }
+    
+    function prev() {
+        active = (active - 1 + cards.length) % cards.length;
+        showCard(active);
+    }
+
+    // Inisialisasi
+    showCard(active);
+
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', next);
+        prevBtn.addEventListener('click', prev);
+    }
+    
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            active = i;
+            showCard(active);
+        });
+    });
+});
+</script>
