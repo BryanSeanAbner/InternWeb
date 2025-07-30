@@ -5,8 +5,9 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
+        "build:production": "cross-env NODE_ENV=production vite build",
         "start": "php artisan serve --host=0.0.0.0 --port=$PORT",
-        "railway:deploy": "npm run build && php artisan config:cache && php artisan serve --host=0.0.0.0 --port=$PORT"
+        "railway:deploy": "npm run build:production && php artisan config:cache && php artisan serve --host=0.0.0.0 --port=$PORT"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -15,6 +16,7 @@
         "autoprefixer": "^10.4.2",
         "axios": "^1.8.2",
         "concurrently": "^9.0.1",
+        "cross-env": "^10.0.0",
         "flowbite-typography": "^1.0.5",
         "laravel-vite-plugin": "^1.2.0",
         "postcss": "^8.4.31",

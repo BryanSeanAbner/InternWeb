@@ -45,10 +45,18 @@ RUN npm install
 
 # Build Vite assets for PRODUCTION
 ENV NODE_ENV=production
-RUN npm run build
+ENV VITE_APP_ENV=production
+RUN npm run build:production
 
 # Verify Vite build
-RUN ls -la public/build/ && cat public/build/manifest.json
+RUN echo "=== Vite Build Verification ===" && \
+    ls -la public/build/ && \
+    echo "=== Manifest Content ===" && \
+    cat public/build/manifest.json && \
+    echo "=== CSS File ===" && \
+    ls -la public/build/assets/*.css && \
+    echo "=== JS File ===" && \
+    ls -la public/build/assets/*.js
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
