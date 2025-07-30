@@ -43,6 +43,9 @@ RUN composer install --no-dev --optimize-autoloader
 # Install Node.js dependencies
 RUN npm install
 
+# Install terser for production build
+RUN npm install --save-dev terser
+
 # Build Vite assets for PRODUCTION
 ENV NODE_ENV=production
 ENV VITE_APP_ENV=production
