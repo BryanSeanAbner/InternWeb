@@ -11,13 +11,12 @@ cmds = [
     'mkdir -p bootstrap/cache',
     'chmod -R 777 storage',
     'chmod -R 777 bootstrap/cache',
-    'php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --no-scripts',
+    'php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction',
     'npm install'
 ]
 
 [phases.build]
 cmds = [
-    'composer dump-autoload --optimize',
     'npm run build'
 ]
 
