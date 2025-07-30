@@ -1,17 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    @keyframes scroll-x {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    .animate-scroll-x {
+        animation: scroll-x 30s linear infinite;
+    }
+    
+    .animate-scroll-x:hover {
+        animation-play-state: paused;
+    }
+    
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in {
+        animation: fade-in 0.8s ease-out forwards;
+    }
+    
+    .animation-delay-200 {
+        animation-delay: 0.2s;
+    }
+    
+    .animation-delay-400 {
+        animation-delay: 0.4s;
+    }
+</style>
 <!-- Header/Navbar -->
-<header class="fixed inset-x-0 top-0 z-50 bg-white border-b border-gray-200 shadow">
+<header class="fixed inset-x-0 top-0 z-50 bg-white border-b border-gray-200 shadow-lg transition-all duration-300">
     <nav class="flex items-center justify-between p-4">
         <div class="flex">
-            <a href="#home" class="text-2xl font-bold text-blue-700">
+            <a href="#home" class="text-2xl font-bold text-blue-700 hover:scale-105 transition-transform duration-300">
                 Nusantara TV
             </a>
         </div>
         
         <div class="flex lg:hidden">
-            <button id="mobile-menu-open" type="button" class="text-gray-700">
+            <button id="mobile-menu-open" type="button" class="text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-colors duration-200">
                 <span class="sr-only">Open main menu</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
                     <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -20,14 +61,14 @@
         </div>
         
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800">Berita</a>
-            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Tentang</a>
-            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Bidang</a>
-            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800">Persyaratan</a>
-            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800">Testimonial</a>
-            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800">Cara Mendaftar</a>
-            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800">Kontak</a>
+            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Berita</a>
+            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Tentang</a>
+            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Bidang</a>
+            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Persyaratan</a>
+            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Testimonial</a>
+            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Cara Mendaftar</a>
+            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-105">Kontak</a>
         </div>
     </nav>
     
@@ -60,14 +101,14 @@
 
 <!-- Hero Section -->
 <div id="home" class="relative h-screen flex items-center justify-start bg-cover bg-center mb-12 pt-20" style="background-image: url('{{ asset('img/hero.jpg') }}');">
-    <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+    <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6 shadow-2xl transform hover:scale-105 transition-all duration-500">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in">
             Mulai Pengalaman Magangmu di Nusantara TV
         </h1>
-        <p class="text-lg text-white mb-6">
+        <p class="text-lg text-white mb-6 animate-fade-in animation-delay-200">
             Bergabunglah dalam magang kami untuk pengalaman berharga di dunia penyiaran dan produksi media.
         </p>
-        <a href="#howtoapply" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800">
+        <a href="#howtoapply" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in animation-delay-400">
             Cara Mendaftar
         </a>
     </div>
@@ -82,17 +123,17 @@
     
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         @foreach(($allPosts ?? $latestPosts) as $index => $post)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl">
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
                     @if($post->photo)
-                        <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
+                        <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg hover:scale-110 transition-transform duration-300" />
                     @else
                         <span class="text-xl text-gray-500 font-semibold">IMAGE</span>
                     @endif
                 </div>
                 
                 <div class="flex justify-between items-center mb-4">
-                    <span class="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold uppercase">
+                    <span class="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold uppercase shadow-lg">
                         {{ $post->category->name }}
                     </span>
                     <span class="text-base text-gray-500">
@@ -101,7 +142,7 @@
                 </div>
                 
                 <h4 class="font-bold text-xl mb-1">
-                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700">
+                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700 transition-colors duration-300">
                         {{ $post->title }}
                     </a>
                 </h4>
@@ -110,7 +151,7 @@
                     {{ Str::limit(strip_tags($post->body), 100) }}
                 </p>
                 
-                <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline">
+                <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline transform hover:scale-105 transition-all duration-300">
                     Baca selengkapnya <span aria-hidden="true">&rarr;</span>
                 </a>
             </div>
@@ -132,8 +173,8 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($benefits as $index => $benefit)
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="text-3xl mb-4">{{ $benefit->icon }}</div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="text-3xl mb-4 hover:scale-110 transition-transform duration-300">{{ $benefit->icon }}</div>
                     <div class="text-lg font-bold text-blue-700 mb-2">{{ $benefit->title }}</div>
                     <div class="text-base text-gray-700">{{ $benefit->description }}</div>
                 </div>
@@ -150,9 +191,9 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $index => $cat)
-                <a href="{{ route('categories.show', $cat->slug) }}" class="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl">
+                <a href="{{ route('categories.show', $cat->slug) }}" class="relative bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                     @if($cat->photo)
-                        <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
+                        <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-48 hover:scale-110 transition-transform duration-300" />
                     @else
                         <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
                             <span class="text-sm">No Image</span>
@@ -176,8 +217,8 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($requirements as $index => $req)
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="text-2xl mb-2">{{ $req->icon }}</div>
+                <div class="bg-white rounded-lg shadow-xl p-6 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="text-2xl mb-2 hover:scale-110 transition-transform duration-300">{{ $req->icon }}</div>
                     <div class="text-lg font-bold text-blue-700 mb-2">
                         {{ $req->title }}
                     </div>
@@ -196,19 +237,35 @@
         </h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($testimonials as $t)
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="flex flex-col items-center">
-                        <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3" />
-                        <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                        <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
-                        @if($t->category)
-                            <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
-                        @endif
+        <div class="overflow-hidden relative py-8">
+            <div class="flex animate-scroll-x whitespace-nowrap gap-4">
+                @foreach($testimonials as $t)
+                    <div class="bg-white rounded-lg shadow-xl p-6 max-w-xs w-full inline-block flex-shrink-0 mx-2 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <div class="flex flex-col items-center">
+                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 hover:scale-110 transition-transform duration-300" />
+                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                            <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                            @if($t->category)
+                                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                            @endif
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+
+                {{-- Duplikat seluruh testimonial untuk loop seamless --}}
+                @foreach($testimonials as $t)
+                    <div class="bg-white rounded-lg shadow-xl p-6 max-w-xs w-full inline-block flex-shrink-0 mx-2 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <div class="flex flex-col items-center">
+                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 hover:scale-110 transition-transform duration-300" />
+                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                            <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                            @if($t->category)
+                                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
@@ -221,10 +278,10 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-8">
             @foreach($applySteps as $index => $step)
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center hover:scale-105 transition-all duration-300">
                     <!-- Circle Container -->
                     <div class="mb-4">
-                        <div class="w-20 h-20 bg-blue-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                        <div class="w-20 h-20 bg-blue-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300">
                             {{ $step->step_number }}
                         </div>
                     </div>
@@ -244,7 +301,7 @@
         
         @if($applySteps->last() && $applySteps->last()->button_text)
             <div class="text-center mt-10">
-                <a href="{{ $applySteps->last()->button_link ?? '#' }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
+                <a href="{{ $applySteps->last()->button_link ?? '#' }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
                     {{ $applySteps->last()->button_text }}
                 </a>
             </div>
