@@ -18,11 +18,14 @@ class AddSecurityHeaders
     {
         $response = $next($request);
 
-        // Remove restrictive CSP for development/production
+        // Remove any existing CSP headers
         $response->headers->remove('Content-Security-Policy');
+        $response->headers->remove('X-Content-Type-Options');
+        $response->headers->remove('X-Frame-Options');
+        $response->headers->remove('X-XSS-Protection');
         
-        // Add more permissive CSP
-        $response->headers->set('Content-Security-Policy', "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval';");
+        // Add permissive CSP for development/production
+        $response->headers->set('Content-Security-Policy', "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self';");
 
         return $response;
     }
