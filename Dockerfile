@@ -24,23 +24,27 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files
-COPY composer.json composer.lock ./
+# Copy all files first
+COPY . .
+
+# Create necessary directories and files
+RUN mkdir -p storage/framework/cache \
+    && mkdir -p storage/framework/sessions \
+    && mkdir -p storage/framework/views \
+    && mkdir -p storage/logs \
+    && mkdir -p bootstrap/cache \
+    && touch storage/logs/laravel.log \
+    && chmod -R 777 storage \
+    && chmod -R 777 bootstrap/cache
+
+# Copy .env.example to .env
+RUN cp .env.example .env
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Copy package files
-COPY package.json package-lock.json ./
-
 # Install Node.js dependencies
 RUN npm ci
-
-# Copy application files
-COPY . .
-
-# Create .env file if it doesn't exist
-RUN if [ ! -f .env ]; then cp .env.example .env; fi
 
 # Build assets
 RUN npm run build
