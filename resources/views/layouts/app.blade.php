@@ -4,6 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <!-- Disable CSP untuk development -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:;">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -22,6 +25,26 @@
         
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        
+        <!-- Inline CSS untuk memastikan styling dasar -->
+        <style>
+            /* Fallback styling jika CSS diblokir */
+            body { 
+                font-family: 'Poppins', sans-serif; 
+                margin: 0; 
+                padding: 0; 
+            }
+            .font-poppins { font-family: 'Poppins', sans-serif; }
+            .text-blue-700 { color: #1d4ed8 !important; }
+            .bg-white { background-color: #ffffff !important; }
+            .text-white { color: #ffffff !important; }
+            .bg-blue-700 { background-color: #1d4ed8 !important; }
+            .hover\:bg-blue-800:hover { background-color: #1e40af !important; }
+            .transition-all { transition: all 0.3s ease; }
+            .hover\:scale-105:hover { transform: scale(1.05); }
+            a { text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <!-- Page Content -->
