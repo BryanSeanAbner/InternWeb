@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         @foreach(($allPosts ?? $latestPosts) as $index => $post)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl">
                 <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
                     @if($post->photo)
                         <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($benefits as $index => $benefit)
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
                     <div class="text-3xl mb-4">{{ $benefit->icon }}</div>
                     <div class="text-lg font-bold text-blue-700 mb-2 font-poppins">{{ $benefit->title }}</div>
                     <div class="text-base text-gray-700 font-poppins">{{ $benefit->description }}</div>
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $index => $cat)
-                <a href="{{ route('categories.show', $cat->slug) }}" class="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <a href="{{ route('categories.show', $cat->slug) }}" class="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl">
                     @if($cat->photo)
                         <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
                     @else
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($requirements as $index => $req)
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="bg-white rounded-lg shadow-lg p-6">
                     <div class="text-2xl mb-2">{{ $req->icon }}</div>
                     <div class="text-lg font-bold text-blue-700 mb-2 font-poppins">
                         {{ $req->title }}
