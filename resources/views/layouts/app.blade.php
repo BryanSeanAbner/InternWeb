@@ -20,7 +20,7 @@
         
         <!-- Fallback CSS untuk Railway -->
         @if(app()->environment('production') || !app()->environment('local'))
-            <link rel="stylesheet" href="{{ asset('build/assets/app-B7JmuMcs.css') }}">
+            <link rel="stylesheet" href="{{ asset('build/assets/app-C2ihEcqb.css') }}">
         @endif
         
         <!-- Custom CSS -->
@@ -44,6 +44,52 @@
             .hover\:scale-105:hover { transform: scale(1.05); }
             a { text-decoration: none; }
             a:hover { text-decoration: underline; }
+            
+            /* Navbar fallback styling */
+            .navbar-sticky {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 50;
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar-nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #1d4ed8;
+                text-decoration: none;
+                font-family: 'Poppins', sans-serif;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .navbar-links a {
+                color: #1d4ed8;
+                text-decoration: none;
+                font-weight: 600;
+                font-family: 'Poppins', sans-serif;
+                margin: 0 1rem;
+            }
+            
+            @media (min-width: 1024px) {
+                .navbar-links {
+                    display: flex;
+                }
+            }
         </style>
     </head>
     <body class="font-sans antialiased">
