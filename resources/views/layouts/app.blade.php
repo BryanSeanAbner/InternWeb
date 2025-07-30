@@ -4,9 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        
-        <!-- Disable CSP untuk development -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:;">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -18,79 +15,8 @@
         <!-- Vite Assets (Tailwind CSS) -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
-        <!-- Fallback CSS untuk Railway -->
-        @if(app()->environment('production') || !app()->environment('local'))
-            <link rel="stylesheet" href="{{ asset('build/assets/app-C2ihEcqb.css') }}">
-        @endif
-        
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        
-        <!-- Inline CSS untuk memastikan styling dasar -->
-        <style>
-            /* Fallback styling jika CSS diblokir */
-            body { 
-                font-family: 'Poppins', sans-serif; 
-                margin: 0; 
-                padding: 0; 
-            }
-            .font-poppins { font-family: 'Poppins', sans-serif; }
-            .text-blue-700 { color: #1d4ed8 !important; }
-            .bg-white { background-color: #ffffff !important; }
-            .text-white { color: #ffffff !important; }
-            .bg-blue-700 { background-color: #1d4ed8 !important; }
-            .hover\:bg-blue-800:hover { background-color: #1e40af !important; }
-            .transition-all { transition: all 0.3s ease; }
-            .hover\:scale-105:hover { transform: scale(1.05); }
-            a { text-decoration: none; }
-            a:hover { text-decoration: underline; }
-            
-            /* Navbar fallback styling */
-            .navbar-sticky {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 50;
-                background-color: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .navbar-nav {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 1rem;
-            }
-            
-            .navbar-brand {
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: #1d4ed8;
-                text-decoration: none;
-                font-family: 'Poppins', sans-serif;
-            }
-            
-            .navbar-links {
-                display: none;
-            }
-            
-            .navbar-links a {
-                color: #1d4ed8;
-                text-decoration: none;
-                font-weight: 600;
-                font-family: 'Poppins', sans-serif;
-                margin: 0 1rem;
-            }
-            
-            @media (min-width: 1024px) {
-                .navbar-links {
-                    display: flex;
-                }
-            }
-        </style>
     </head>
     <body class="font-sans antialiased">
         <!-- Page Content -->

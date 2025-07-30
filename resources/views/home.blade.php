@@ -18,179 +18,79 @@
     .animate-scroll-x:hover {
         animation-play-state: paused;
     }
-    
-    /* Navbar styling yang lebih robust */
-    .navbar-sticky {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem;
-    }
-    
-    .navbar-brand {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #1d4ed8;
-        text-decoration: none;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    .navbar-brand:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-    }
-    
-    .navbar-links {
-        display: none;
-    }
-    
-    .navbar-links a {
-        color: #1d4ed8;
-        text-decoration: none;
-        font-weight: 600;
-        font-family: 'Poppins', sans-serif;
-        margin: 0 1rem;
-        transition: all 0.3s ease;
-    }
-    
-    .navbar-links a:hover {
-        color: #1e40af;
-        transform: scale(1.05);
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #1d4ed8;
-    }
-    
-    .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 100;
-    }
-    
-    .mobile-menu.active {
-        display: block;
-    }
-    
-    .mobile-menu-content {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 300px;
-        background-color: white;
-        padding: 2rem;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .mobile-menu-content a {
-        display: block;
-        color: #374151;
-        text-decoration: none;
-        font-weight: 600;
-        font-family: 'Poppins', sans-serif;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #e5e7eb;
-        transition: color 0.3s ease;
-    }
-    
-    .mobile-menu-content a:hover {
-        color: #1d4ed8;
-    }
-    
-    @media (min-width: 1024px) {
-        .navbar-links {
-            display: flex;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-        }
-    }
 </style>
 
 <!-- Header/Navbar -->
-<header class="navbar-sticky">
-    <nav class="navbar-nav">
-        <div class="flex items-center">
-            <a href="#home" class="navbar-brand">
+<header class="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-blue-100 shadow-lg">
+    <nav class="flex items-center justify-between p-4 md:p-6 lg:px-8">
+        <div class="flex lg:flex-1">
+            <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins hover:scale-105 transition-transform duration-300">
                 Nusantara TV
             </a>
         </div>
         
-        <div class="navbar-links">
-            <a href="#home">Home</a>
-            <a href="#berita">Berita</a>
-            <a href="#tentang">Tentang</a>
-            <a href="#bidang">Bidang</a>
-            <a href="#persyaratan">Persyaratan</a>
-            <a href="#testimonial">Testimonial</a>
-            <a href="#howtoapply">Cara Mendaftar</a>
-            <a href="#contactus">Kontak</a>
+        <div class="flex lg:hidden">
+            <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 focus:outline-none hover:bg-gray-100 transition-colors duration-200">
+                <span class="sr-only">Open main menu</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
+                    <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>  
+            </button>
         </div>
         
-        <button id="mobile-menu-open" class="mobile-menu-btn lg:hidden">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
-                <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-        </button>
+        <div class="hidden lg:flex lg:gap-x-8">
+            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Berita</a>
+            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Tentang</a>
+            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Bidang</a>
+            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Persyaratan</a>
+            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Testimonial</a>
+            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Cara Mendaftar</a>
+            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins transition-all duration-300 hover:scale-105">Kontak</a>
+        </div>
     </nav>
     
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="mobile-menu">
-        <div class="mobile-menu-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <a href="#home" class="navbar-brand">Nusantara TV</a>
-                <button id="mobile-menu-close" class="mobile-menu-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
+    <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
+        <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
+        <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
+            <div class="flex items-center justify-between w-full pl-6 pr-2">
+                <a href="#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+                <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
+                    <span class="sr-only">Close menu</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
                         <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </div>
-            <a href="#home">Home</a>
-            <a href="#berita">Berita</a>
-            <a href="#tentang">Tentang</a>
-            <a href="#bidang">Bidang</a>
-            <a href="#persyaratan">Persyaratan</a>
-            <a href="#testimonial">Testimonial</a>
-            <a href="#howtoapply">Cara Mendaftar</a>
-            <a href="#contactus">Kontak</a>
+            <div class="flow-root bg-white w-full">
+                <div class="flex-1 mt-4 w-full pl-6">
+                    <div class="space-y-2 flex flex-col w-full">
+                        <a href="#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Home</a>
+                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Berita</a>
+                        <a href="#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Tentang</a>
+                        <a href="#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Bidang</a>
+                        <a href="#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Persyaratan</a>
+                        <a href="#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Testimonial</a>
+                        <a href="#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Cara Mendaftar</a>
+                        <a href="#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins transition-colors duration-200">Kontak</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </header>
 
 <!-- Hero Section -->
 <div id="home" class="relative h-[80vh] md:h-[100vh] flex items-center justify-start bg-cover bg-left-bottom mb-12 pt-24 md:pt-30" style="background-image: url('{{ asset('img/hero.jpg') }}');">
-    <div class="ml-4 md:ml-20 max-w-full md:max-w-xl bg-black/30 rounded-xl p-4 md:p-8 animate-fade-in-up">
-        <h1 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg leading-tight font-poppins animate-slide-in-left">
+    <div class="ml-4 md:ml-20 max-w-full md:max-w-xl bg-black/30 rounded-xl p-4 md:p-8">
+        <h1 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg leading-tight font-poppins">
             Mulai Pengalaman <br class="hidden sm:block">Magangmu di <br class="hidden sm:block">Nusantara TV
         </h1>
-        <p class="text-base sm:text-base md:text-lg text-white mb-6 drop-shadow-lg font-poppins animate-slide-in-left animation-delay-200">
+        <p class="text-base sm:text-base md:text-lg text-white mb-6 drop-shadow-lg font-poppins">
             Bergabunglah dalam magang kami untuk pengalaman berharga di dunia penyiaran dan produksi media.
         </p>
-        <a href="#howtoapply" class="bg-blue-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold shadow-lg hover:bg-blue-800 transition-all duration-300 hover:scale-105 hover:shadow-xl block w-max font-poppins animate-slide-in-left animation-delay-400">
+        <a href="#howtoapply" class="bg-blue-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold shadow-lg hover:bg-blue-800 transition-all duration-300 hover:scale-105 hover:shadow-xl block w-max font-poppins">
             Cara Mendaftar
         </a>
     </div>
@@ -208,17 +108,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (mobileMenuOpen && mobileMenuClose && mobileMenu) {
         mobileMenuOpen.addEventListener('click', function() {
-            mobileMenu.classList.add('active');
+            mobileMenu.classList.remove('hidden');
         });
         
         mobileMenuClose.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
+            mobileMenu.classList.add('hidden');
         });
         
         // Close menu when clicking outside
         mobileMenu.addEventListener('click', function(e) {
             if (e.target === mobileMenu) {
-                mobileMenu.classList.remove('active');
+                mobileMenu.classList.add('hidden');
             }
         });
     }
