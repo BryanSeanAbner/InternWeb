@@ -52,8 +52,17 @@ RUN chown -R www-data:www-data /var/www/html \
 RUN a2enmod rewrite
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
+# Set environment variables
+ENV APACHE_RUN_USER=www-data
+ENV APACHE_RUN_GROUP=www-data
+ENV APACHE_LOG_DIR=/var/log/apache2
+
+# Copy startup script
+COPY docker/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # Expose port 80
 EXPOSE 80
 
 # Start Apache
-CMD ["apache2-foreground"] 
+CMD ["/usr/local/bin/start.sh"] 
