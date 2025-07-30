@@ -24,7 +24,7 @@
 <header class="fixed inset-x-0 top-0 z-50 bg-white border-b border-gray-200 shadow">
     <nav class="flex items-center justify-between p-4">
         <div class="flex">
-            <a href="#home" class="text-2xl font-bold text-blue-700">
+            <a href="#home" class="text-2xl font-bold text-blue-700 font-poppins">
                 Nusantara TV
             </a>
         </div>
@@ -39,14 +39,14 @@
         </div>
         
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800">Berita</a>
-            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Tentang</a>
-            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Bidang</a>
-            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800">Persyaratan</a>
-            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800">Testimonial</a>
-            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800">Cara Mendaftar</a>
-            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800">Kontak</a>
+            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Berita</a>
+            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Tentang</a>
+            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Bidang</a>
+            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Persyaratan</a>
+            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Testimonial</a>
+            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Cara Mendaftar</a>
+            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800 font-poppins">Kontak</a>
         </div>
     </nav>
     
@@ -55,7 +55,7 @@
         <div class="fixed inset-0 bg-black bg-opacity-40"></div>
         <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-4 py-4">
             <div class="flex items-center justify-between w-full">
-                <a href="#home" class="text-2xl font-bold text-blue-700">Nusantara TV</a>
+                <a href="#home" class="text-2xl font-bold text-blue-700 font-poppins">Nusantara TV</a>
                 <button id="mobile-menu-close" type="button" class="text-gray-700">
                     <span class="sr-only">Close menu</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
@@ -64,14 +64,14 @@
                 </button>
             </div>
             <div class="mt-4">
-                <a href="#home" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Home</a>
-                <a href="#berita" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
-                <a href="#tentang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Tentang</a>
-                <a href="#bidang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Bidang</a>
-                <a href="#persyaratan" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Persyaratan</a>
-                <a href="#testimonial" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Testimonial</a>
-                <a href="#howtoapply" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Cara Mendaftar</a>
-                <a href="#contactus" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Kontak</a>
+                <a href="#home" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
+                <a href="#berita" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
+                <a href="#tentang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Tentang</a>
+                <a href="#bidang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
+                <a href="#persyaratan" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
+                <a href="#testimonial" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Testimonial</a>
+                <a href="#howtoapply" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Cara Mendaftar</a>
+                <a href="#contactus" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Kontak</a>
             </div>
         </div>
     </div>
@@ -121,13 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
     <div class="flex flex-col items-center mb-8">
-        <div class="text-3xl md:text-4xl font-bold text-blue-700 text-center mb-2">Berita Terkini</div>
+        <div class="text-3xl md:text-4xl font-bold text-blue-700 text-center mb-2 font-poppins">Berita Terkini</div>
         <div class="w-20 h-1 bg-blue-700 rounded mb-8"></div>
     </div>
     
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         @foreach(($allPosts ?? $latestPosts) as $index => $post)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
                     @if($post->photo)
                         <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
@@ -146,16 +146,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 
                 <h4 class="font-bold text-xl mb-1">
-                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700">
+                    <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700 font-poppins">
                         {{ $post->title }}
                     </a>
                 </h4>
                 
-                <p class="text-gray-500 text-base mb-6">
+                <p class="text-gray-500 text-base mb-6 font-poppins">
                     {{ Str::limit(strip_tags($post->body), 100) }}
                 </p>
                 
-                <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline">
+                <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline font-poppins">
                     Baca selengkapnya <span aria-hidden="true">&rarr;</span>
                 </a>
             </div>
@@ -172,15 +172,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Tentang Section -->
 <div class="py-16" id="tentang">
     <div class="max-w-7xl mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Tentang Magang</h2>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 font-poppins">Tentang Magang</h2>
         <div class="w-20 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($benefits as $index => $benefit)
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="text-3xl mb-4">{{ $benefit->icon }}</div>
-                    <div class="text-lg font-bold text-blue-700 mb-2">{{ $benefit->title }}</div>
-                    <div class="text-base text-gray-700">{{ $benefit->description }}</div>
+                    <div class="text-lg font-bold text-blue-700 mb-2 font-poppins">{{ $benefit->title }}</div>
+                    <div class="text-base text-gray-700 font-poppins">{{ $benefit->description }}</div>
                 </div>
             @endforeach
         </div>
@@ -190,12 +190,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Bidang Section -->
 <div class="py-16" id="bidang">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Kategori Bidang Magang</h2>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 font-poppins">Kategori Bidang Magang</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $index => $cat)
-                <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl">
+                <a href="{{ route('categories.show', $cat->slug) }}" class="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     @if($cat->photo)
                         <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
                     @else
@@ -203,8 +203,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="text-sm">No Image</span>
                         </div>
                     @endif
-                    <div class="p-4">
-                        <div class="text-lg font-bold text-blue-700">{{ $cat->name }}</div>
+                    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4">
+                        <div class="text-lg font-bold text-white font-poppins">{{ $cat->name }}</div>
                     </div>
                 </a>
             @endforeach
@@ -215,17 +216,17 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Persyaratan Section -->
 <div class="py-16" id="persyaratan">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Persyaratan</h2>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 font-poppins">Persyaratan</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($requirements as $index => $req)
-                <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="text-2xl mb-2">{{ $req->icon }}</div>
-                    <div class="text-lg font-bold text-blue-700 mb-2">
+                    <div class="text-lg font-bold text-blue-700 mb-2 font-poppins">
                         {{ $req->title }}
                     </div>
-                    <div class="text-base text-gray-800">{{ $req->description }}</div>
+                    <div class="text-base text-gray-800 font-poppins">{{ $req->description }}</div>
                 </div>
             @endforeach
         </div>
@@ -235,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Testimonial Section -->
 <div class="py-16" id="testimonial">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 font-poppins">
             Apa Kata Mereka tentang Program Magang Ini
         </h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
@@ -276,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Cara Mendaftar Section -->
 <div id="howtoapply" class="py-16">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4">Cara Mendaftar</h2>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 font-poppins">Cara Mendaftar</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-8">
