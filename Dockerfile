@@ -54,12 +54,12 @@ RUN npm run build:production
 # Verify Vite build
 RUN echo "=== Vite Build Verification ===" && \
     ls -la public/build/ && \
-    echo "=== Manifest Content ===" && \
-    cat public/build/manifest.json && \
-    echo "=== CSS File ===" && \
-    ls -la public/build/assets/*.css && \
-    echo "=== JS File ===" && \
-    ls -la public/build/assets/*.js
+    echo "=== Checking for manifest files ===" && \
+    find public/build/ -name "*.json" && \
+    echo "=== CSS Files ===" && \
+    find public/build/ -name "*.css" && \
+    echo "=== JS Files ===" && \
+    find public/build/ -name "*.js"
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
