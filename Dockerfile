@@ -70,9 +70,6 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configure Apache
 RUN a2enmod rewrite
 
-# ✅ Tambahkan baris ini untuk menghindari warning AH00558
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
 # Set environment variables
 ENV APACHE_RUN_USER=www-data
 ENV APACHE_RUN_GROUP=www-data
