@@ -15,6 +15,13 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post', compact('post'));
+        // Get related posts from the same category, excluding current post
+        $sidePosts = Post::where('category_id', $post->category_id)
+            ->where('id', '!=', $post->id)
+            ->latest()
+            ->take(5)
+            ->get();
+            
+        return view('post', compact('post', 'sidePosts'));
     }
 } 

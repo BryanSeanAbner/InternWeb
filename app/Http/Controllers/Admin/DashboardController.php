@@ -12,20 +12,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // Get statistics
         $totalBerita = Post::count();
         $totalKategori = Category::count();
         $totalTestimoni = Testimonial::count();
         
-        $beritaTerbaru = Post::with('category')
-            ->latest()
-            ->take(5)
-            ->get();
-            
-        $kategoriPopuler = Category::withCount('posts')
-            ->orderBy('posts_count', 'desc')
-            ->take(5)
-            ->get();
-
+        // Get latest posts
+        $beritaTerbaru = Post::with('category')->latest()->take(5)->get();
+        
+        // Get popular categories with post count
+        $kategoriPopuler = Category::withCount('posts')->orderBy('posts_count', 'desc')->take(5)->get();
+        
         return view('admin.dashboard', compact(
             'totalBerita',
             'totalKategori', 

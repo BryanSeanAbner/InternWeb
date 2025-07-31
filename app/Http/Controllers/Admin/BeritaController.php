@@ -24,16 +24,21 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'body' => 'required|string',
+            'judul' => 'required|string|max:255',
+            'isi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $data = $request->all();
+        $data = [
+            'title' => $request->judul,
+            'body' => $request->isi,
+            'category_id' => $request->category_id,
+            'slug' => \Str::slug($request->judul),
+        ];
         
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
+        if ($request->hasFile('gambar')) {
+            $photo = $request->file('gambar');
             $photoName = time() . '.' . $photo->getClientOriginalExtension();
             $photo->storeAs('public', $photoName);
             $data['photo'] = $photoName;
@@ -44,38 +49,43 @@ class BeritaController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan');
     }
 
-    public function edit(Post $post)
+    public function edit(Post $beritum)
     {
         $categories = Category::all();
-        return view('admin.berita.edit', compact('post', 'categories'));
+        return view('admin.berita.edit', compact('beritum', 'categories'));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $beritum)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'body' => 'required|string',
+            'judul' => 'required|string|max:255',
+            'isi' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $data = $request->all();
+        $data = [
+            'title' => $request->judul,
+            'body' => $request->isi,
+            'category_id' => $request->category_id,
+            'slug' => \Str::slug($request->judul),
+        ];
         
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
+        if ($request->hasFile('gambar')) {
+            $photo = $request->file('gambar');
             $photoName = time() . '.' . $photo->getClientOriginalExtension();
             $photo->storeAs('public', $photoName);
             $data['photo'] = $photoName;
         }
 
-        $post->update($data);
+        $beritum->update($data);
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $beritum)
     {
-        $post->delete();
+        $beritum->delete();
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus');
     }
 } 

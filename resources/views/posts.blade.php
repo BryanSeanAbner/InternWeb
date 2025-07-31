@@ -1,10 +1,11 @@
-<x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
-
 @extends('layouts.app')
 
 @section('content')
 <div class="bg-white">
+    <div class="pt-20">
+        <div class="text-black text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-left mb-4 sm:mb-6 font-poppins px-4 sm:px-6 lg:px-8 py-4 rounded-lg ml-4 sm:ml-4 lg:ml-12 mt-2 sm:mt-2">
+            Semua Berita
+        </div>
     <header class="navbar-sticky fixed inset-x-0 top-0 z-50">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
@@ -60,7 +61,6 @@
     </div>
     </header> 
 </div>
-<div class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black-700 text-left mb-4 sm:mb-6 font-poppins px-4 sm:px-6 lg:px-8">Semua Berita</div>
     <div class="py-4 mx-auto max-w-screen-xl lg:py-4 lg:px-0">
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">  
             @foreach ($posts as $post)
@@ -103,4 +103,4 @@
             @endforeach
         </div>
     </div>
-</x-layout>
+@endsection
