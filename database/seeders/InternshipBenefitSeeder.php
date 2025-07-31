@@ -25,14 +25,12 @@ class InternshipBenefitSeeder extends Seeder
                 'title' => 'Berkontribusi dalam Proyek Nyata',
                 'description' => 'Bekerja pada produksi TV aktual, segmen berita, dan kampanye media yang menjangkau ribuan pemirsa.'
             ],
-            [
-                'icon' => '🚀',
-                'title' => 'Meningkatkan Rasa Percaya Diri',
-                'description' => 'Mengembangkan kemandirian, keterampilan kepemimpinan, dan kepercayaan diri profesional dalam lingkungan belajar yang mendukung.'
-            ],
         ];
         foreach ($data as $item) {
-            InternshipBenefit::create($item);
+            InternshipBenefit::firstOrCreate(
+                ['title' => $item['title']],
+                $item
+            );
         }
     }
 }

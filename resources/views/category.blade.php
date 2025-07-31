@@ -1,260 +1,246 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $category->name }} - Nusantara TV Internship</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; line-height: 1.6; overflow-x: hidden; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
-        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.1); padding: 24px 0; position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s ease; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 32px; font-weight: 900; color: #1a1a1a; letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { text-decoration: none; color: #4a4a4a; font-weight: 500; font-size: 16px; transition: all 0.3s ease; position: relative; padding: 8px 0; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #1a1a1a; transition: width 0.3s ease; }
-        .nav-links a:hover { color: #1a1a1a; }
-        .nav-links a:hover::after { width: 100%; }
-        .hero-section { padding: 140px 0 100px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%); position: relative; overflow: hidden; }
-        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 30% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.03) 0%, transparent 50%); pointer-events: none; }
-        .hero-content { display: grid; grid-template-columns: 1fr 500px; gap: 80px; align-items: center; position: relative; z-index: 2; }
-        .hero-text h1 { font-size: 64px; font-weight: 900; color: #1a1a1a; margin-bottom: 24px; letter-spacing: -0.03em; line-height: 1.1; }
-        .hero-text p { font-size: 20px; color: #4a4a4a; margin-bottom: 40px; max-width: 600px; line-height: 1.7; }
-        .hero-image { background: #ffffff; border-radius: 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.05); overflow: hidden; height: 400px; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.3s ease; }
-        .hero-image:hover { transform: translateY(-10px); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15); }
-        .placeholder-image { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-size: 24px; font-weight: 600; }
-        /* Tambahan untuk section program magang unggulan */
-        .programs-section { padding: 80px 0 40px; background: #f8f9fa; }
-        .programs-section .section-title { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.02em; }
-        .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
-        .program-card { background: #fff; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.07); padding: 40px 32px; display: flex; flex-direction: column; align-items: flex-start; transition: box-shadow 0.3s; }
-        .program-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
-        .program-title { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
-        .program-description { font-size: 16px; color: #555; margin-bottom: 0; }
-        @media (max-width: 1024px) { .hero-content { grid-template-columns: 1fr; gap: 60px; text-align: center; } .hero-text h1 { font-size: 48px; } .programs-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 768px) { .container { padding: 0 20px; } .hero-section { padding: 120px 0 80px; } .hero-text h1 { font-size: 36px; } .hero-text p { font-size: 18px; } .programs-grid { grid-template-columns: 1fr; } }
-        .marquee-track {
-          animation: marquee-left 180s linear infinite;
-        }
-        @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        /* Testimonial Card Style */
-        .testimonial-section {
-            background: transparent;
-            padding: 64px 0 48px 0;
-            margin-top: 0;
-            border-radius: 32px;
-        }
-        .testimonial-section h2 {
-            font-size:2.5rem;
-            font-weight:700;
-            text-align:center;
-            color:#fff;
-            margin-bottom: 18px;
-        }
-        /* Hapus animasi marquee dan tampilkan testimonial statis grid */
-        .testimonial-section .marquee-track {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            animation: none !important;
-            justify-items: center;
-            justify-content: center;
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media (min-width: 1024px) {
-            .testimonial-section .marquee-track {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .testimonial-section .marquee-track {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 599px) {
-            .testimonial-section .marquee-track {
-                grid-template-columns: 1fr;
-            }
-        }
-        @keyframes marquee-left {}
-        .testimonial-section .bg-white\/80 {
-            background: rgba(255,255,255,0.8);
-        }
-        .testimonial-section .rounded-xl {
-            border-radius: 1rem;
-        }
-        .testimonial-section .shadow-lg {
-            box-shadow: 0 8px 32px 0 rgba(37,99,235,0.10);
-        }
-        .testimonial-section .border {
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-        .testimonial-section .p-6 {
-            padding: 1.5rem;
-        }
-        .testimonial-section .max-w-sm {
-            width: 100%;
-            max-width: 600px;
-            min-width: 320px;
-        }
-        .testimonial-section .w-full {
-            width: 100%;
-        }
-        .testimonial-section .flex-shrink-0 {
-            flex-shrink: 0;
-        }
-        .testimonial-section .flex {
-            display: flex;
-        }
-        .testimonial-section .flex-col {
-            flex-direction: column;
-        }
-        .testimonial-section .items-center {
-            align-items: center;
-        }
-        .testimonial-section .text-gray-800 {
-            color: #1a202c;
-        }
-        .testimonial-section .w-16 {
-            width: 4rem;
-        }
-        .testimonial-section .h-16 {
-            height: 4rem;
-        }
-        .testimonial-section .rounded-full {
-            border-radius: 9999px;
-        }
-        .testimonial-section .mb-3 {
-            margin-bottom: 0.75rem;
-        }
-        .testimonial-section .border-2 {
-            border-width: 2px;
-        }
-        .testimonial-section .shadow {
-            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
-        }
-        .testimonial-section .italic {
-            font-style: italic;
-        }
-        .testimonial-section .text-sm {
-            font-size: 0.875rem;
-        }
-        .testimonial-section .text-center {
-            text-align: center;
-        }
-        .testimonial-section .text-gray-700 {
-            color: #4a5568;
-        }
-        .testimonial-section .font-bold {
-            font-weight: 700;
-        }
-        .testimonial-section .text-base {
-            font-size: 1rem;
-        }
-        .testimonial-section .mb-1 {
-            margin-bottom: 0.25rem;
-        }
-        .testimonial-section .text-blue-900 {
-            color: #1e3a8a;
-        }
-        .testimonial-section .text-xs {
-            font-size: 0.75rem;
-        }
-        .testimonial-section .text-gray-500 {
-            color: #6b7280;
-        }
-        @media (max-width: 900px) {
-            .testimonial-section .marquee-track {
-                gap: 1rem;
-            }
-            .testimonial-section .max-w-sm {
-                max-width: 18rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">Nusantara TV</div>
-                <nav class="nav-links">
-                    <a href="/">Beranda</a>
-                    <a href="#program">Program Magang</a>
-                    <a href="#tentang">Tentang</a>
-                    <a href="#kontak">Kontak</a>
-                </nav>
+@extends('layouts.app')
+
+@section('content')
+<div class="bg-white">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
+    <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
+        <div class="flex lg:flex-1">
+            <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+        </div>
+        <div class="flex lg:hidden">
+            <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black focus:outline-none">
+                <span class="sr-only">Open main menu</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
+                    <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-8">
+            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
+            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Tentang</a>
+            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Bidang</a>
+            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Persyaratan</a>
+            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Testimonial</a>
+            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Cara Mendaftar</a>
+            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Kontak</a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
+        <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
+        <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
+            <div class="flex items-center justify-between w-full pl-6 pr-2">
+                <a href="#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+                <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
+                    <span class="sr-only">Close menu</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
+                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flow-root bg-white w-full">
+                <div class="flex-1 mt-4 w-full pl-6">
+                    <div class="space-y-2 flex flex-col w-full">
+                        <a href="#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
+                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
+                        <a href="#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Tentang</a>
+                        <a href="#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
+                        <a href="#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
+                        <a href="#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Testimonial</a>
+                        <a href="#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Cara Mendaftar</a>
+                        <a href="#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Kontak</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>{{ $category->name }}</h1>
-                    <p>{{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}</p>
-                </div>
-                <div class="hero-image" style="display: flex; align-items: center; justify-content: center; padding: 0;">
+    </div>
+    </header> 
+</div>
+
+<!-- Hero Section -->
+<section class="pt-20 pb-16 md:pb-20 lg:pb-24 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="text-center lg:text-left">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight font-poppins">
+                    {{ $category->name }}
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 font-poppins">
+                    {{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}
+                </p>
+            </div>
+            <div class="relative pt-10">
+                <div class="hero-image-container bg-white rounded-2xl shadow-2xl overflow-hidden">
                     @if($category->photo)
-                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
+                        <img src="{{ asset('storage/' . $category->photo) }}" alt="{{ $category->name }}" class="hero-image w-full h-80 md:h-96 object-cover">
                     @else
-                        <div class="placeholder-image">
+                        <div class="hero-placeholder w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold">
                             {{ $category->icon ?? '📺' }} {{ $category->sub_name ?? $category->name }}
                         </div>
                     @endif
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Section Program Magang Unggulan (dinamis dari subcategory, pakai struktur HTML user) -->
-    @if(isset($subcategories) && $subcategories->count())
-    <section class="programs-section">
-        <div class="container">
-            <h2 class="section-title">Program Magang Unggulan</h2>
-            <div class="programs-grid">
-                @foreach($subcategories as $sub)
-                <div class="program-card">
-                    <h3 class="program-title">{{ $sub->name }}</h3>
-                    <p class="program-description">{{ $sub->description }}</p>
-                </div>
-                @endforeach
-            </div>
+<!-- Section Program Magang Unggulan -->
+@if(isset($subcategories) && $subcategories->count())
+<section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4 font-poppins">Program Magang Unggulan</h2>
+            <div class="w-32 h-1 bg-blue-700 mx-auto rounded"></div>
         </div>
-    </section>
-    @endif
-
-    <!-- Section Testimonial untuk kategori ini (mengikuti tampilan home.blade.php) -->
-    @if(isset($testimonials) && count($testimonials))
-    <div class="testimonial-section" id="testimonial" style="background: transparent; padding: 64px 0 48px 0; margin-top: 0; border-radius: 32px;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 style="font-size:2.5rem; font-weight:700; text-align:center; color:#222; margin-bottom: 18px;">Apa Kata Mereka tentang Program Magang Ini</h2>
-            <div style="width: 120px; height: 4px; background: #fff; margin: 0 auto 40px auto; border-radius: 2px;"></div>
-            <div class="relative w-full overflow-hidden py-8 bg-transparent">
-                <div class="flex gap-8 marquee-track w-max">
-                    @foreach($testimonials as $t)   
-                        <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800">
-                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
-                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                            <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}</div>
-                            @if($t->category)
-                                <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
-                            @endif  
-                        </div>
-                    @endforeach
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($subcategories as $sub)
+            <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 font-poppins">{{ $sub->name }}</h3>
+                <p class="text-gray-600 leading-relaxed font-poppins">{{ $sub->description }}</p>
             </div>
+            @endforeach
         </div>
     </div>
-    @endif
-    
-</body>
-</html> 
+</section>
+@endif
+
+<!-- Section Testimonial -->
+@if(isset($testimonials) && count($testimonials))
+<div class="testimonial-section bg-transparent py-16 md:py-20 lg:py-24 mt-0 rounded-[32px]" id="testimonial">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-700 mb-4 font-poppins">
+            Apa Kata Mereka tentang Program Magang Ini
+        </h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
+        <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            @foreach($testimonials as $t)   
+                <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800">
+                    <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
+                    <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
+                    <div class="font-bold text-base mb-1 text-blue-900">{{ $t->name }}</div>
+                    @if($t->category)
+                        <div class="text-xs text-gray-500">{{ $t->category->name }}</div>
+                    @endif  
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
+<!-- Section Berita Terkait -->
+@if(isset($posts) && count($posts))
+<section class="py-16 md:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4 font-poppins">Berita Terkait {{ $category->name }}</h2>
+            <div class="w-32 h-1 bg-blue-700 mx-auto rounded"></div>
+        </div>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach($posts as $post)
+                <div class="group bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col min-h-[420px] p-8 hover:shadow-2xl transition-shadow duration-300">
+                    <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-xl overflow-hidden">
+                        @if($post->photo)
+                            <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-xl" />
+                        @else
+                            <span class="text-xl text-gray-500 font-semibold">IMAGE</span>
+                        @endif
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="inline-block bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-poppins">
+                            {{ $post->category->name }}
+                        </span>
+                        <span class="text-base text-gray-500 font-poppins">
+                            {{ $post->created_at->format('d M Y') }}
+                        </span>
+                    </div>
+                    <h4 class="font-extrabold text-2xl mb-1 font-poppins">
+                        <a href="{{ route('posts.show', $post) }}" class="text-gray-900 hover:text-blue-700 transition-colors duration-200">
+                            {{ $post->title }}
+                        </a>
+                    </h4>
+                    <p class="text-gray-500 text-base mb-6 font-poppins">
+                        {{ Str::limit(strip_tags($post->body), 100) }}
+                    </p>
+                    <a href="{{ route('posts.show', $post) }}" class="mt-auto text-blue-700 font-bold flex items-center gap-2 hover:underline font-poppins transition-all duration-200 hover:text-blue-800">
+                        Read more <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+<!-- Mobile Navbar Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const openBtn = document.getElementById('mobile-menu-open');
+        const closeBtn = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            mobileMenu.classList.remove('hidden');
+        });
+        
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            mobileMenu.classList.add('hidden');
+        });
+        
+        mobileMenu.querySelector('.bg-black\/40').addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+        });
+        
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    });
+</script>
+
+<!-- Image Animation Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroImage = document.querySelector('.hero-image');
+        
+        if (heroImage) {
+            // Add loading class initially
+            heroImage.classList.add('loading');
+            
+            // Handle image load event
+            heroImage.addEventListener('load', function() {
+                this.classList.remove('loading');
+                this.classList.add('loaded');
+            });
+            
+            // Handle image error event
+            heroImage.addEventListener('error', function() {
+                this.classList.remove('loading');
+                // You can add fallback image here if needed
+            });
+            
+            // Check if image is already loaded (cached)
+            if (heroImage.complete) {
+                heroImage.classList.remove('loading');
+                heroImage.classList.add('loaded');
+            }
+        }
+        
+        // Add click animation for image
+        const imageContainer = document.querySelector('.hero-image-container');
+        if (imageContainer) {
+            imageContainer.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        }
+    });
+</script>
+@endsection 

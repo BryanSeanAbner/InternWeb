@@ -3,13 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\TestimonialController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
