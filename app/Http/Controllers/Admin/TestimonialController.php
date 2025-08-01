@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PhotoController;
 
 class TestimonialController extends Controller
 {
@@ -34,10 +35,9 @@ class TestimonialController extends Controller
         $data = $request->all();
         
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoName = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public', $photoName);
-            $data['photo'] = $photoName;
+            $file = $request->file('photo');
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $data['photo'] = $base64;
         }
 
         Testimonial::create($data);
@@ -64,10 +64,9 @@ class TestimonialController extends Controller
         $data = $request->all();
         
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoName = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public', $photoName);
-            $data['photo'] = $photoName;
+            $file = $request->file('photo');
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $data['photo'] = $base64;
         }
 
         $testimonial->update($data);

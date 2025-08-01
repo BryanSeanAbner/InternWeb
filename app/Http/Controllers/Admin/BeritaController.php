@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PhotoController;
 
 class BeritaController extends Controller
 {
@@ -38,10 +39,9 @@ class BeritaController extends Controller
         ];
         
         if ($request->hasFile('gambar')) {
-            $photo = $request->file('gambar');
-            $photoName = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public', $photoName);
-            $data['photo'] = $photoName;
+            $file = $request->file('gambar');
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $data['photo'] = $base64;
         }
 
         Post::create($data);
@@ -72,10 +72,9 @@ class BeritaController extends Controller
         ];
         
         if ($request->hasFile('gambar')) {
-            $photo = $request->file('gambar');
-            $photoName = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public', $photoName);
-            $data['photo'] = $photoName;
+            $file = $request->file('gambar');
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $data['photo'] = $base64;
         }
 
         $beritum->update($data);

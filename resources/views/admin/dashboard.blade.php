@@ -65,7 +65,7 @@
                     <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                         <div class="flex-1">
                             <h4 class="font-medium text-gray-800">{{ Str::limit($berita->title, 40) }}</h4>
-                            <p class="text-sm text-gray-500">{{ $berita->category->name }} • {{ $berita->created_at->format('d M Y') }}</p>
+                            <p class="text-sm text-gray-500">{{ $berita->category ? $berita->category->name : 'Uncategorized' }} • {{ $berita->created_at->format('d M Y') }}</p>
                         </div>
                         <a href="{{ route('admin.berita.edit', $berita) }}" class="text-blue-600 hover:text-blue-800">
                             <i class="fa-solid fa-edit"></i>

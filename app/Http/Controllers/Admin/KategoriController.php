@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PhotoController;
 
 class KategoriController extends Controller
 {
@@ -21,8 +22,8 @@ class KategoriController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         $posts = Post::where('category_id', $category->id)->latest()->paginate(12);
         
-        // Get subcategories if they exist
-        $subcategories = $category->subcategories ?? collect();
+        // Get subcategories for this category
+        $subcategories = \App\Models\Subcategory::where('category_id', $category->id)->get();
         
         // Get testimonials for this category
         $testimonials = \App\Models\Testimonial::where('category_id', $category->id)->get();
@@ -50,10 +51,10 @@ class KategoriController extends Controller
         ];
         
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoName = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public/kategori', $photoName);
-            $data['photo'] = 'kategori/' . $photoName;
+            $file = $request->file('photo');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/categories', $filename);
+            $data['photo'] = 'categories/' . $filename;
         }
 
         Category::create($data);
@@ -81,10 +82,15 @@ class KategoriController extends Controller
         ];
         
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoName = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public/kategori', $photoName);
-            $data['photo'] = 'kategori/' . $photoName;
+            // Delete old photo if exists
+            if ($kategori->photo && file_exists(storage_path('app/public/' . $kategori->photo))) {
+                unlink(storage_path('app/public/' . $kategori->photo));
+            }
+            
+            $file = $request->file('photo');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/categories', $filename);
+            $data['photo'] = 'categories/' . $filename;
         }
 
         $kategori->update($data);
@@ -94,6 +100,11 @@ class KategoriController extends Controller
 
     public function destroy(Category $kategori)
     {
+        // Delete photo if exists
+        if ($kategori->photo && file_exists(storage_path('app/public/' . $kategori->photo))) {
+            unlink(storage_path('app/public/' . $kategori->photo));
+        }
+        
         $kategori->delete();
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus');
     }

@@ -18,7 +18,7 @@
                     <div class="flex justify-between items-center mb-2">
                         <span class="px-3 py-1 rounded-full text-xs font-semibold"
                               style="background:{{ $post->category->color ?? '#eee' }}20; color:{{ $post->category->color ?? '#333' }}">
-                            {{ $post->category->name ?? '-' }}
+                            {{ $post->category ? $post->category->name : '-' }}
                         </span>
                         <span class="text-xs text-gray-500">
                             {{ $post->created_at->diffForHumans() }}

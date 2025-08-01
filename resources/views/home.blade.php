@@ -84,16 +84,12 @@
         @foreach(($allPosts ?? $latestPosts) as $index => $post)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl card-hover animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
                 <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
-                    @if($post->photo)
-                        <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
-                    @else
-                        <span class="text-xl text-gray-500 font-semibold">IMAGE</span>
-                    @endif
+                    <img src="@photoWithFallback($post->photo, 'berita')" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
                 </div>
                 
                 <div class="flex justify-between items-center mb-4">
                     <span class="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold uppercase">
-                        {{ $post->category->name }}
+                        {{ $post->category ? $post->category->name : 'Uncategorized' }}
                     </span>
                     <span class="text-base text-gray-500">
                         {{ $post->created_at->format('d M Y') }}
@@ -147,17 +143,10 @@
     <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">Kategori Bidang Magang</h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $index => $cat)
                 <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl card-hover animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
-                    @if($cat->photo)
-                        <img src="{{ asset('storage/' . $cat->photo) }}" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
-                    @else
-                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
-                            <span class="text-sm">No Image</span>
-                        </div>
-                    @endif
+                    <img src="@photoWithFallback($cat->photo, 'kategori')" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
                     <div class="p-4">
                         <div class="text-lg font-bold text-blue-700">{{ $cat->name }}</div>
                     </div>
@@ -195,37 +184,21 @@
         </h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
         
-        <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
-        <div class="overflow-hidden relative py-8">
-            <div class="flex animate-scroll-x whitespace-nowrap gap-4">
+                 <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
+         <div class="overflow-hidden relative py-8">
+             <div class="flex animate-scroll-x gap-4">
                 @foreach($testimonials as $t)
-                    <div class="testimonial-item bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2">
-                        <div class="flex flex-col items-center">
-                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
-                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                            <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
-                            @if($t->category)
-                                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
-
-                {{-- Duplikat seluruh testimonial untuk loop seamless --}}
-                @foreach($testimonials as $t)
-                    <div class="testimonial-item bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2">
-                        <div class="flex flex-col items-center">
-                            <img src="{{ $t->photo ? asset('storage/'.$t->photo) : asset('img/default-avatar.png') }}" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow" />
-                            <div class="italic text-sm mb-3 text-center text-gray-700">"{{ $t->description }}"</div>
-                            <div class="font-bold text-base mb-1 text-blue-700 text-center">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
-                            @if($t->category)
-                                <div class="text-xs text-gray-500 text-center">{{ $t->category->name }}</div>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+                     <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2 min-h-[280px] flex flex-col items-center break-words">
+                         <img src="@photoWithFallback($t->photo, 'testimonials')" alt="{{ $t->name }}" class="w-20 h-20 rounded-full mb-3 border-2 border-white shadow flex-shrink-0" />
+                         <div class="italic text-sm mb-3 text-center text-gray-700 flex-grow">"{{ $t->description }}"</div>
+                         <div class="font-bold text-base mb-1 text-blue-700 text-center flex-shrink-0">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                         @if($t->category)
+                             <div class="text-xs text-gray-500 text-center flex-shrink-0">{{ $t->category ? $t->category->name : 'Uncategorized' }}</div>
+                         @endif
+                     </div>
+                 @endforeach
+             </div>
+         </div>
     </div>
 </div>
 

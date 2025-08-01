@@ -11,7 +11,7 @@
         <div>
             <a href="{{ route('admin.subkategori.index', $cat->slug) }}" class="font-semibold text-lg text-blue-700 hover:underline">{{ $cat->name }}</a>
             <div class="text-gray-500 text-sm mt-2">
-                <span class="font-semibold">Deskripsi:</span> {{ $cat->description ?: '-' }}
+                <span class="font-semibold">Deskripsi:</span> {{ Str::limit($cat->description ?: '-' ,60) }}
             </div>
         </div>
         <div class="flex gap-2 mt-4 justify-end">

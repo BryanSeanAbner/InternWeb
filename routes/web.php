@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -25,6 +26,9 @@ Route::resource('posts', PostController::class)->only(['index', 'show']);
 // Route untuk AJAX modal detail postingan
 Route::get('/posts/{post}/modal', [PostController::class, 'modal'])->name('posts.modal');
 
+// Route untuk subkategori publik
+Route::get('/categories/{categorySlug}/{subcategorySlug}', [SubcategoryController::class, 'show'])->name('subcategories.show');
+
 // Admin page, hanya bisa diakses jika sudah login
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
@@ -35,9 +39,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'index'])->name('subkategori.index');
     Route::get('subkategori/{kategori}/create', [App\Http\Controllers\Admin\SubkategoriController::class, 'create'])->name('subkategori.create');
     Route::post('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'store'])->name('subkategori.store');
-    Route::get('subkategori/{kategori}/{subkategori}/edit', [App\Http\Controllers\Admin\SubkategoriController::class, 'edit'])->name('subkategori.edit');
-    Route::put('subkategori/{kategori}/{subkategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'update'])->name('subkategori.update');
-    Route::delete('subkategori/{kategori}/{subkategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'destroy'])->name('subkategori.destroy');
+    Route::get('subkategori/{kategori}/{subcategory}/edit', [App\Http\Controllers\Admin\SubkategoriController::class, 'edit'])->name('subkategori.edit');
+    Route::put('subkategori/{kategori}/{subcategory}', [App\Http\Controllers\Admin\SubkategoriController::class, 'update'])->name('subkategori.update');
+    Route::delete('subkategori/{kategori}/{subcategory}', [App\Http\Controllers\Admin\SubkategoriController::class, 'destroy'])->name('subkategori.destroy');
 });
 
 // Route kategori

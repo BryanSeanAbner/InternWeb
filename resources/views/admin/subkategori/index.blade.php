@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex justify-between items-center mb-8">
     <h2 class="text-2xl font-bold">Daftar Subkategori dari {{ $category->name }}</h2>
-    <a href="{{ route('categories.subcategories.create', $category->slug) }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tambah Subkategori</a>
+    <a href="{{ route('admin.subkategori.create', $category->slug) }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tambah Subkategori</a>
 </div>
 <div class="bg-white rounded shadow p-6 text-gray-700">
     <table class="min-w-full">
@@ -20,8 +20,8 @@
                 <td class="py-2 px-4">{{ $sub->name }}</td>
                 <td class="py-2 px-4">{{ $sub->description }}</td>
                 <td class="py-2 px-4">
-                    <a href="{{ route('admin.subkategori.edit', [$category->slug, $sub->id]) }}" class="text-blue-600 hover:underline mr-2">Edit</a>
-                    <form action="{{ route('admin.subkategori.destroy', [$category->slug, $sub->id]) }}" method="POST" class="inline">
+                    <a href="{{ route('admin.subkategori.edit', [$category->slug, $sub]) }}" class="text-blue-600 hover:underline mr-2">Edit</a>
+                    <form action="{{ route('admin.subkategori.destroy', [$category->slug, $sub]) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-600 hover:underline" onclick="return confirm('Yakin hapus?')">Hapus</button>

@@ -67,7 +67,7 @@
                 <article class="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-md">
                     <div class="w-full h-24 sm:h-28 md:h-32 lg:h-36 bg-gray-100 flex items-center justify-center text-gray-500 text-sm sm:text-base mb-4 sm:mb-5 rounded-xl overflow-hidden">
                         @if($post->photo)
-                            <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                            <img src="@photo($post->photo)" alt="{{ $post->title }}" class="w-full h-full object-cover">
                         @else
                             <span class="text-sm sm:text-base">IMAGE</span>
                         @endif
@@ -75,7 +75,7 @@
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <a href="/categories/{{ $post->category->slug }}">
                             <span class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
-                                {{ $post->category->name }}
+                                {{ $post->category ? $post->category->name : 'Uncategorized' }}
                             </span>
                         </a>
                         <span class="text-sm">{{ $post->created_at->format('d M Y') }}</span>

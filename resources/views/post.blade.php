@@ -65,7 +65,7 @@
         <div class="lg:col-span-2">
             <div class="w-full h-56 md:h-80 rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden mb-8">
                 @if($post->photo)
-                    <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover" />
+                    <img src="@photo($post->photo)" alt="{{ $post->title }}" class="w-full h-full object-cover" />
                 @else
                     <span class="text-gray-500">FEATURED STORY IMAGE</span>
                 @endif
@@ -93,7 +93,7 @@
                     <a href="{{ route('posts.show', $side) }}" class="bg-white rounded-lg shadow-xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
                         <div class="w-full h-28 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden mb-3">
                             @if($side->photo)
-                                <img src="{{ asset('storage/' . $side->photo) }}" alt="{{ $side->title }}" class="w-full h-full object-cover" />
+                                <img src="@photo($side->photo)" alt="{{ $side->title }}" class="w-full h-full object-cover" />
                             @else
                                 <span class="text-gray-500 text-sm">IMAGE</span>
                             @endif
