@@ -233,7 +233,7 @@
         
         @if($applySteps->last() && $applySteps->last()->button_text)
             <div class="text-center mt-10 animate-fade-in-up animation-delay-800">
-                <a href="{{ $applySteps->last()->button_link ?? '#' }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
+                <a href="{{ route('form') }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
                     {{ $applySteps->last()->button_text }}
                 </a>
             </div>
