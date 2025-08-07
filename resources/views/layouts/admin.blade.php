@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Panel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,6 +28,9 @@
                 <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.testimonials.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
                     <i class="fa-solid fa-comment-dots"></i> Testimoni
                 </a>
+                <a href="{{ route('admin.account.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.account.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
+                    <i class="fa-solid fa-user-cog"></i> Pengaturan Akun
+                </a>
             </nav>
         </aside>
         <!-- Overlay for mobile -->
@@ -40,7 +44,7 @@
                     <h1 class="text-2xl font-semibold text-gray-800">@yield('admin-title', 'Admin Panel')</h1>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span class="text-gray-700 font-medium pl-6 text-sm md:text-base font-poppins">Hi, Admin Nusantara TV</span>
+                    <span class="text-gray-700 font-medium pl-6 text-sm md:text-base font-poppins">Hi, {{ auth()->user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="ml-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm md:text-base">Logout</button>

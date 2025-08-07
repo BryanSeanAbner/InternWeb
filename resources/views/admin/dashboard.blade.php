@@ -8,6 +8,22 @@
         <p class="text-gray-600">Kelola konten website Nusantara TV dengan mudah</p>
     </div>
 
+    <!-- Info Box -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+        <div class="flex items-start">
+            <i class="fas fa-info-circle text-blue-600 mt-1 mr-3"></i>
+            <div class="text-sm text-blue-800">
+                <p class="font-medium mb-1">Ketentuan Dashboard Admin:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Dashboard menampilkan statistik konten website</li>
+                    <li>Gunakan menu di sidebar untuk navigasi</li>
+                    <li>Semua perubahan akan langsung tersimpan</li>
+                    <li>Pastikan untuk logout setelah selesai</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <!-- Statistik Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Total Berita -->
@@ -120,4 +136,43 @@
         </div>
     </div>
 </div>
+
+<script>
+// Admin dashboard validation
+document.addEventListener('DOMContentLoaded', function() {
+    // Add confirmation for delete actions
+    document.querySelectorAll('a[href*="delete"], a[href*="destroy"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (!confirm('Apakah Anda yakin ingin menghapus item ini?')) {
+                e.preventDefault();
+            }
+        });
+    });
+
+    // Add confirmation for logout
+    document.querySelectorAll('a[href*="logout"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (!confirm('Apakah Anda yakin ingin keluar dari aplikasi?')) {
+                e.preventDefault();
+            }
+        });
+    });
+
+    // Add tooltips for better UX
+    document.querySelectorAll('[title]').forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'absolute z-50 px-2 py-1 text-sm text-white bg-gray-900 rounded shadow-lg';
+            tooltip.textContent = this.title;
+            tooltip.style.left = this.offsetLeft + 'px';
+            tooltip.style.top = (this.offsetTop - 30) + 'px';
+            document.body.appendChild(tooltip);
+            
+            this.addEventListener('mouseleave', function() {
+                tooltip.remove();
+            });
+        });
+    });
+});
+</script>
 @endsection 

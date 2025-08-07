@@ -17,6 +17,9 @@
         
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        
+        <!-- Password Toggle Script -->
+        <script src="{{ asset('js/password-toggle.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
         <!-- Page Content -->

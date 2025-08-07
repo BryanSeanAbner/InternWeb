@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasswordHistoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
@@ -8,17 +9,19 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\AccountController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('admin.account.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/password-history', [PasswordHistoryController::class, 'index'])->name('password.history');
 });
 
 Route::resource('posts', PostController::class)->only(['index', 'show']);
@@ -35,7 +38,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('berita', BeritaController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('testimonials', TestimonialController::class);
-    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['create', 'store', 'show']);
+    Route::get('account', [AccountController::class, 'index'])->name('account.index');
+    Route::post('account', [AccountController::class, 'index'])->name('account.index.post');
+    Route::post('account/change-password', [AccountController::class, 'changePassword'])->name('account.change-password');
+    Route::post('account/change-username', [AccountController::class, 'changeUsername'])->name('account.change-username');
+
+
+
     Route::get('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'index'])->name('subkategori.index');
     Route::get('subkategori/{kategori}/create', [App\Http\Controllers\Admin\SubkategoriController::class, 'create'])->name('subkategori.create');
     Route::post('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'store'])->name('subkategori.store');

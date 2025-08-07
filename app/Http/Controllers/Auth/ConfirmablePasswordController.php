@@ -38,6 +38,9 @@ class ConfirmablePasswordController extends Controller
     {
         $request->validateWithBag('password', [
             'password' => ['required', 'password'],
+        ], [
+            'password.required' => 'Password wajib diisi.',
+            'password.password' => 'Password tidak sesuai.',
         ]);
 
         $request->session()->put('auth.password_confirmed_at', time());

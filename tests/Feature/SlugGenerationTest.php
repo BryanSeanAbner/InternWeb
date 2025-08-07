@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 
 class SlugGenerationTest extends TestCase
 {
@@ -19,7 +20,11 @@ class SlugGenerationTest extends TestCase
             'title' => 'Test Post',
             'body' => 'Test body',
             'slug' => 'test-post',
-            'author_id' => User::factory()->create()->id,
+            'author_id' => User::create([
+                'name' => 'testuser1',
+                'email' => 'test1@example.com',
+                'password' => Hash::make('password')
+            ])->id,
         ]);
 
         // Create second post with same title
@@ -27,7 +32,11 @@ class SlugGenerationTest extends TestCase
             'title' => 'Test Post',
             'body' => 'Test body 2',
             'slug' => Post::generateUniqueSlug('Test Post'),
-            'author_id' => User::factory()->create()->id,
+            'author_id' => User::create([
+                'name' => 'testuser2',
+                'email' => 'test2@example.com',
+                'password' => Hash::make('password')
+            ])->id,
         ]);
 
         $this->assertEquals('test-post', $post1->slug);
@@ -58,7 +67,11 @@ class SlugGenerationTest extends TestCase
 
     public function test_update_post_slug_excludes_current_post()
     {
-        $user = User::factory()->create();
+        $user = User::create([
+            'name' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password')
+        ]);
         
         // Create first post
         $post1 = Post::create([

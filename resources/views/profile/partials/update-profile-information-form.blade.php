@@ -9,6 +9,22 @@
         </p>
     </header>
 
+    <!-- Info Box -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+        <div class="flex items-start">
+            <i class="fas fa-info-circle text-blue-600 mt-1 mr-3"></i>
+            <div class="text-sm text-blue-800">
+                <p class="font-medium mb-1">Ketentuan Update Profil:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Nama wajib diisi dan maksimal 255 karakter</li>
+                    <li>Email wajib diisi dengan format yang valid</li>
+                    <li>Email akan diverifikasi setelah diupdate</li>
+                    <li>Pastikan email yang diisi aktif dan dapat diakses</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
@@ -61,4 +77,91 @@
             @endif
         </div>
     </form>
+
+    <script>
+    // Profile information form validation
+    document.querySelector('form[action*="profile.update"]').addEventListener('submit', function(e) {
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        
+        let isValid = true;
+        
+        // Name validation
+        if (!name.value.trim()) {
+            alert('Nama wajib diisi');
+            isValid = false;
+        } else if (name.value.length > 255) {
+            alert('Nama tidak boleh lebih dari 255 karakter');
+            isValid = false;
+        }
+        
+        // Email validation
+        if (!email.value.trim()) {
+            alert('Email wajib diisi');
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+            alert('Format email tidak valid');
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+
+    // Real-time validation feedback
+    document.getElementById('name')?.addEventListener('input', function(e) {
+        const value = this.value.trim();
+        const feedback = document.createElement('div');
+        feedback.id = 'name-feedback';
+        feedback.className = 'text-sm mt-1';
+        
+        // Remove existing feedback
+        const existingFeedback = document.getElementById('name-feedback');
+        if (existingFeedback) {
+            existingFeedback.remove();
+        }
+        
+        // Insert feedback after name input
+        this.parentNode.insertBefore(feedback, this.nextSibling);
+        
+        if (value.length === 0) {
+            feedback.textContent = '';
+            feedback.className = 'text-sm mt-1';
+        } else if (value.length > 255) {
+            feedback.textContent = 'Nama tidak boleh lebih dari 255 karakter';
+            feedback.className = 'text-red-600 text-sm mt-1';
+        } else {
+            feedback.textContent = 'Nama telah diisi';
+            feedback.className = 'text-green-600 text-sm mt-1';
+        }
+    });
+
+    document.getElementById('email')?.addEventListener('input', function(e) {
+        const value = this.value.trim();
+        const feedback = document.createElement('div');
+        feedback.id = 'email-feedback';
+        feedback.className = 'text-sm mt-1';
+        
+        // Remove existing feedback
+        const existingFeedback = document.getElementById('email-feedback');
+        if (existingFeedback) {
+            existingFeedback.remove();
+        }
+        
+        // Insert feedback after email input
+        this.parentNode.insertBefore(feedback, this.nextSibling);
+        
+        if (value.length === 0) {
+            feedback.textContent = '';
+            feedback.className = 'text-sm mt-1';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            feedback.textContent = 'Format email tidak valid';
+            feedback.className = 'text-red-600 text-sm mt-1';
+        } else {
+            feedback.textContent = 'Format email valid';
+            feedback.className = 'text-green-600 text-sm mt-1';
+        }
+    });
+    </script>
 </section>

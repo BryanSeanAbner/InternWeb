@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -19,32 +20,44 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->create();
+        $user = User::create([
+            'name' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password')
+        ]);
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'username' => 'testuser',
             'password' => 'password',
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect('/dashboard');
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
     {
-        $user = User::factory()->create();
+        $user = User::create([
+            'name' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password')
+        ]);
 
-        $this->post('/login', [
-            'email' => $user->email,
+        $response = $this->post('/login', [
+            'username' => 'testuser',
             'password' => 'wrong-password',
         ]);
 
         $this->assertGuest();
     }
 
-    public function test_users_can_logout(): void
+    public function test_users_can_log_out(): void
     {
-        $user = User::factory()->create();
+        $user = User::create([
+            'name' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password')
+        ]);
 
         $response = $this->actingAs($user)->post('/logout');
 
