@@ -1,43 +1,153 @@
 @extends('layouts.admin')
 @section('admin-title', 'Edit Berita')
 @section('content')
-<div class="max-w-2xl mx-auto bg-white rounded shadow p-8">
-    <h2 class="text-xl font-bold mb-6">Edit Berita</h2>
-    <form action="{{ route('admin.berita.update', $beritum) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <div class="mb-4">
-            <label class="block font-semibold mb-1">Gambar Berita</label>
-            <input type="file" name="gambar" class="border rounded w-full px-3 py-2">
-            @if($beritum->photo)
-                <img src="@photo($beritum->photo)" alt="Gambar" class="h-24 mt-2">
-            @endif
-            @error('gambar')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
+
+<!-- Header Section -->
+<div class="mb-8">
+    <div class="flex items-center justify-between">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-900">Edit Berita</h2>
+            <p class="mt-2 text-gray-600">Perbarui informasi berita yang dipilih</p>
         </div>
-        <div class="mb-4">
-            <label class="block font-semibold mb-1">Judul Berita</label>
-            <input type="text" name="judul" class="border rounded w-full px-3 py-2" value="{{ old('judul', $beritum->title) }}" required>
-            @error('judul')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
-        </div>
-        <div class="mb-4">
-            <label class="block font-semibold mb-1">Bidang Kategori</label>
-            <select name="category_id" class="border rounded w-full px-3 py-2" required>
-                <option value="">-- Pilih Kategori --</option>
-                @foreach($categories as $cat)
-                    <option value="{{ $cat->id }}" {{ old('category_id', $beritum->category_id) == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                @endforeach
-            </select>
-            @error('category_id')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
-        </div>
-        <div class="mb-4">
-            <label class="block font-semibold mb-1">Isi Berita</label>
-            <textarea name="isi" class="border rounded w-full px-3 py-2" rows="10">{{ old('isi', $beritum->body) }}</textarea>
-            @error('isi')<div class="text-red-500 text-sm">{{ $message }}</div>@enderror
-        </div>
-        <div class="flex gap-2">
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
-            <a href="{{ route('admin.berita.index') }}" class="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100">Batal</a>
-        </div>
-    </form>
+        <a href="{{ route('admin.berita.index') }}" 
+           class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+            <i class="fa-solid fa-arrow-left mr-2"></i>
+            Kembali
+        </a>
+    </div>
 </div>
+
+<!-- Form Container -->
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <!-- Form Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+            <h3 class="text-lg font-semibold text-white flex items-center">
+                <i class="fa-solid fa-edit mr-3"></i>
+                Form Edit Berita
+            </h3>
+        </div>
+
+        <!-- Form Content -->
+        <form action="{{ route('admin.berita.update', $beritum) }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
+            @csrf
+            @method('PUT')
+            
+            <!-- Gambar Berita -->
+            <div class="space-y-2">
+                <label for="gambar" class="block text-sm font-medium text-gray-700">
+                    <i class="fa-solid fa-image mr-2 text-blue-600"></i>
+                    Gambar Berita
+                </label>
+                
+                <!-- Current Image Preview -->
+                @if($beritum->photo)
+                    <div class="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-sm font-medium text-gray-700 mb-2">Gambar Saat Ini:</p>
+                        <div class="flex items-center space-x-4">
+                            <img src="@photo($beritum->photo)" alt="Gambar Berita" class="h-20 w-20 object-cover rounded-lg border border-gray-300">
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-600">Gambar berita yang sedang digunakan</p>
+                                <p class="text-xs text-gray-500">Upload gambar baru untuk menggantinya</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                
+                <!-- File Upload Input -->
+                <div class="mt-1">
+                    <input id="gambar" name="gambar" type="file" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
+                </div>
+                <p class="text-xs text-gray-500 mt-1">Format yang didukung: PNG, JPG, GIF. Maksimal 10MB</p>
+                @error('gambar')
+                    <p class="text-sm text-red-600 flex items-center">
+                        <i class="fa-solid fa-exclamation-circle mr-1"></i>
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Judul Berita -->
+            <div class="space-y-2">
+                <label for="judul" class="block text-sm font-medium text-gray-700">
+                    <i class="fa-solid fa-heading mr-2 text-blue-600"></i>
+                    Judul Berita
+                </label>
+                <input type="text" 
+                       id="judul" 
+                       name="judul" 
+                       value="{{ old('judul', $beritum->title) }}" 
+                       required
+                       class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                       placeholder="Masukkan judul berita...">
+                @error('judul')
+                    <p class="text-sm text-red-600 flex items-center">
+                        <i class="fa-solid fa-exclamation-circle mr-1"></i>
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Kategori -->
+            <div class="space-y-2">
+                <label for="category_id" class="block text-sm font-medium text-gray-700">
+                    <i class="fa-solid fa-tags mr-2 text-blue-600"></i>
+                    Kategori
+                </label>
+                <select id="category_id" 
+                        name="category_id" 
+                        required
+                        class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
+                    <option value="">-- Pilih Kategori --</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}" {{ old('category_id', $beritum->category_id) == $cat->id ? 'selected' : '' }}>
+                            {{ $cat->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <p class="text-sm text-red-600 flex items-center">
+                        <i class="fa-solid fa-exclamation-circle mr-1"></i>
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Isi Berita -->
+            <div class="space-y-2">
+                <label for="isi" class="block text-sm font-medium text-gray-700">
+                    <i class="fa-solid fa-align-left mr-2 text-blue-600"></i>
+                    Isi Berita
+                </label>
+                <textarea id="isi" 
+                          name="isi" 
+                          rows="12" 
+                          required
+                          class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-vertical"
+                          placeholder="Tulis isi berita di sini...">{{ old('isi', $beritum->body) }}</textarea>
+                @error('isi')
+                    <p class="text-sm text-red-600 flex items-center">
+                        <i class="fa-solid fa-exclamation-circle mr-1"></i>
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex items-center justify-end space-x-3 pt-6 border-t border-gray-200">
+                <a href="{{ route('admin.berita.index') }}" 
+                   class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                    <i class="fa-solid fa-times mr-2"></i>
+                    Batal
+                </a>
+                <button type="submit" 
+                        class="inline-flex items-center px-6 py-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105 shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i>
+                    Simpan Perubahan
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @endsection 

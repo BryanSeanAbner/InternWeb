@@ -52,9 +52,8 @@ class KategoriController extends Controller
         
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/categories', $filename);
-            $data['photo'] = 'categories/' . $filename;
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $data['photo'] = $base64;
         }
 
         Category::create($data);
@@ -82,15 +81,9 @@ class KategoriController extends Controller
         ];
         
         if ($request->hasFile('photo')) {
-            // Delete old photo if exists
-            if ($kategori->photo && file_exists(storage_path('app/public/' . $kategori->photo))) {
-                unlink(storage_path('app/public/' . $kategori->photo));
-            }
-            
             $file = $request->file('photo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/categories', $filename);
-            $data['photo'] = 'categories/' . $filename;
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $data['photo'] = $base64;
         }
 
         $kategori->update($data);
@@ -100,11 +93,6 @@ class KategoriController extends Controller
 
     public function destroy(Category $kategori)
     {
-        // Delete photo if exists
-        if ($kategori->photo && file_exists(storage_path('app/public/' . $kategori->photo))) {
-            unlink(storage_path('app/public/' . $kategori->photo));
-        }
-        
         $kategori->delete();
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus');
     }

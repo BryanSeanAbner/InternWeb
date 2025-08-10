@@ -6,6 +6,7 @@ use App\Models\Post;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Category;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,11 +19,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(CategorySeeder::class);
         // \App\Models\Post::factory(10)->create();
         // \App\Models\Testimonial::factory(5)->create();
-        User::firstOrCreate(
+        $user = User::firstOrCreate(
             ['username' => 'admin'],
             [
-                'name' => 'Admin NTV',
-                'email' => 'adminntv@gmail.com',
                 'password' => bcrypt('pswd'),
             ]
         );

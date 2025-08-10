@@ -27,6 +27,9 @@
                 <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.testimonials.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
                     <i class="fa-solid fa-comment-dots"></i> Testimoni
                 </a>
+                <a href="{{ route('admin.account-settings.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.account-settings.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
+                    <i class="fa-solid fa-user-cog"></i> Pengaturan Akun
+                </a>
             </nav>
         </aside>
         <!-- Overlay for mobile -->
@@ -40,7 +43,7 @@
                     <h1 class="text-2xl font-semibold text-gray-800">@yield('admin-title', 'Admin Panel')</h1>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span class="text-gray-700 font-medium pl-6 text-sm md:text-base font-poppins">Hi, Admin Nusantara TV</span>
+                    <span class="text-gray-700 font-medium pl-6 text-sm md:text-base font-poppins">Hi, {{ Auth::user()->username }}</span>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="ml-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm md:text-base">Logout</button>
@@ -48,7 +51,7 @@
                 </div>
             </header>
             <!-- Page Content -->
-            <main class="flex-1 p-2 sm:p-4 md:p-8 bg-gray-50">
+            <main class="flex-1 p-2 sm:p-4 md:p-6 bg-gray-50">
                 @yield('content')
             </main>
         </div>

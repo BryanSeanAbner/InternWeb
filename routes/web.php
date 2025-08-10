@@ -8,6 +8,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\AccountSettingsController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -36,6 +37,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('kategori', KategoriController::class);
     Route::resource('testimonials', TestimonialController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['create', 'store', 'show']);
+    
+    // Pengaturan Akun
+    Route::get('account-settings', [AccountSettingsController::class, 'index'])->name('account-settings.index');
+    Route::put('account-settings/username', [AccountSettingsController::class, 'updateUsername'])->name('account-settings.update-username');
+    Route::put('account-settings/password', [AccountSettingsController::class, 'updatePassword'])->name('account-settings.update-password');
     Route::get('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'index'])->name('subkategori.index');
     Route::get('subkategori/{kategori}/create', [App\Http\Controllers\Admin\SubkategoriController::class, 'create'])->name('subkategori.create');
     Route::post('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'store'])->name('subkategori.store');
