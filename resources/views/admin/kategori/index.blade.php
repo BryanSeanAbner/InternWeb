@@ -71,11 +71,24 @@
                     <a href="{{ route('admin.subkategori.index', $category->slug) }}" 
                        class="text-blue-700 hover:text-blue-800 hover:underline transition-colors duration-200">
                         {{ $category->name }}
-                    </a>
+                    </a>    
                 </h3>
                 <p class="text-sm text-gray-600 leading-relaxed">
                     {{ Str::limit($category->description ?: 'Tidak ada deskripsi', 80) }}
                 </p>
+                <div class="flex items-center mt-2">
+                    @if($category->is_required)
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fa-solid fa-home mr-1"></i>
+                            Ditampilkan di Home
+                        </span>
+                    @else
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                            <i class="fa-solid fa-list mr-1"></i>
+                            Hanya di Daftar Kategori
+                        </span>
+                    @endif
+                </div>
             </div>
             
             <!-- Action Buttons -->
@@ -85,6 +98,11 @@
                        class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                         <i class="fa-solid fa-folder mr-1"></i>
                         Subkategori
+                        @if($category->subcategories_count > 0)
+                        <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-lg">
+                            {{ $category->subcategories_count }}
+                        </span>
+                        @endif
                     </a>
                 </div>
                 <div class="flex items-center space-x-2">

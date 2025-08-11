@@ -32,6 +32,13 @@
 <!-- Header Section -->
 <div class="flex justify-between items-center mb-8">
     <div>
+        <div class="flex items-center mb-2">
+            <a href="{{ route('admin.kategori.index') }}" 
+               class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200 mr-4">
+                <i class="fa-solid fa-arrow-left mr-2"></i>
+                Kembali ke Kategori
+            </a>
+        </div>
         <h2 class="text-3xl font-bold text-gray-900">Daftar Subkategori dari {{ $category->name }}</h2>
         <p class="mt-2 text-gray-600">Kelola semua subkategori dalam kategori ini</p>
     </div>

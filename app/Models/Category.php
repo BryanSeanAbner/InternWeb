@@ -14,6 +14,7 @@ class Category extends Model
         'slug',
         'description',
         'photo',
+        'is_required',
     ];
 
     public function posts()

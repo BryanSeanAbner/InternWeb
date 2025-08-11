@@ -17,8 +17,8 @@
                 <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Form Pendaftaran Magang</h2>
                 <p class="text-white text-lg font-medium mb-3">Bergabunglah bersama keluarga besar Nusantara TV</p>
                 <p class="text-white text-base opacity-90 max-w-2xl mx-auto leading-relaxed">
-                    Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
-                </p>
+                        Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
+                    </p>
             </div>
 
 
@@ -573,23 +573,23 @@
                                 @enderror
                             </div>
 
-                                                    <!-- Semester -->
-                        <div class="space-y-4 group">
-                            <label for="semester" class="block text-blue-700 font-bold text-xl">
-                                <span class="flex items-center">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                            <!-- Semester -->
+                            <div class="space-y-4 group">
+                                <label for="semester" class="block text-blue-700 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
                                         <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                        </svg>
-                                    </div>
-                                    Semester
-                                    <span class="text-red-500 ml-2 text-2xl">*</span>
-                                </span>
-                            </label>
-                            <div class="relative">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                            </svg>
+                                        </div>
+                                        Semester
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
                                 <select 
-                                    id="semester" 
-                                    name="semester" 
+                                        id="semester" 
+                                        name="semester" 
                                     class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('semester') border-red-500 bg-red-50 @enderror"
                                 >
                                     <option value="">Pilih semester</option>
@@ -603,21 +603,21 @@
                                     <option value="Semester 8" {{ old('semester') == 'Semester 8' ? 'selected' : '' }}>Semester 8</option>
                                     <option value="Lulus" {{ old('semester') == 'Lulus' ? 'selected' : '' }}>Lulus</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
                                     <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                                    </svg>
+                                        </svg>
+                                    </div>
                                 </div>
+                                @error('semester')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
-                            @error('semester')
-                            <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
-                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                </svg>
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
                         </div>
                     </div>
                         
@@ -899,27 +899,27 @@
                                     <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Tujuan</span>
                                 </div>
                             </div>
-                            <div class="relative">
-                                <textarea 
-                                    id="alasan_mendaftar" 
-                                    name="alasan_mendaftar" 
-                                    rows="6"
+                        <div class="relative">
+                            <textarea 
+                                id="alasan_mendaftar" 
+                                name="alasan_mendaftar" 
+                                rows="6"
                                     class="w-full px-6 py-5 border-2 border-blue-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-500 resize-vertical shadow-sm hover:shadow-md"
                                     placeholder="Contoh: Saya tertarik dengan dunia penyiaran dan ingin mengembangkan kemampuan dalam produksi konten digital. Saya berharap dapat belajar langsung dari para profesional di Nusantara TV..."
-                                >{{ old('alasan_mendaftar') }}</textarea>
+                            >{{ old('alasan_mendaftar') }}</textarea>
                                 <div class="absolute bottom-4 right-4">
                                     <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                                         <span id="char-count">0</span>/500
-                                    </div>
+                        </div>
                                 </div>
                             </div>
                             <div class="mt-4 p-3 bg-blue-100 rounded-lg">
                                 <p class="text-blue-700 text-sm font-medium flex items-center">
                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                                    </svg>
-                                    Minimal 10 karakter - Maksimal 500 karakter
-                                </p>
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                                Minimal 10 karakter - Maksimal 500 karakter
+                            </p>
                             </div>
                         </div>
                     </div>

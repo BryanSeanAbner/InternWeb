@@ -13,7 +13,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $categories = Category::latest()->paginate(10);
+        $categories = Category::withCount('subcategories')->latest()->paginate(10);
         return view('admin.kategori.index', compact('categories'));
     }
 
@@ -48,6 +48,7 @@ class KategoriController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'slug' => \Str::slug($request->name),
+            'is_required' => $request->has('is_required'),
         ];
         
         if ($request->hasFile('photo')) {
@@ -78,6 +79,7 @@ class KategoriController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'slug' => \Str::slug($request->name),
+            'is_required' => $request->has('is_required'),
         ];
         
         if ($request->hasFile('photo')) {
