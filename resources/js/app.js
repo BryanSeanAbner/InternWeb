@@ -1,6 +1,6 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
+import Alpine from 'alpinejs/dist/module.esm.js';
 
 window.Alpine = Alpine;
 
