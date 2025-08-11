@@ -31,13 +31,15 @@
                         </p>
                     </div>
                     <div class="flex items-center justify-between mt-4">
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-3">
                             @if($post->author && $post->author->profile_photo_url ?? false)
                                 <img src="{{ $post->author->profile_photo_url }}" 
                                      alt="{{ $post->author->name }}" 
-                                     class="w-8 h-8 rounded-full object-cover">
+                                     class="w-12 h-12 rounded-full object-cover border-2 border-gray-200 shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105">
                             @else
-                                <span class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-400">?</span>
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-sm text-white font-bold border-2 border-gray-200 shadow-md">
+                                    {{ substr($post->author->name ?? 'U', 0, 1) }}
+                                </div>
                             @endif
                             <span class="font-semibold">{{ $post->author->name ?? '-' }}</span>
                         </div>

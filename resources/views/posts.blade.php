@@ -73,11 +73,17 @@
                         @endif
                     </div>
                     <div class="flex justify-between items-center mb-5 text-gray-500">
-                        <a href="/categories/{{ $post->category->slug }}">
-                            <span class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
-                                {{ $post->category ? $post->category->name : 'Uncategorized' }}
+                        @if($post->category)
+                            <a href="/categories/{{ $post->category->slug }}">
+                                <span class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                                    {{ $post->category->name }}
+                                </span>
+                            </a>
+                        @else
+                            <span class="inline-block bg-gray-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                                Uncategorized
                             </span>
-                        </a>
+                        @endif
                         <span class="text-sm">{{ $post->created_at->format('d M Y') }}</span>
                     </div>
                     <a href="{{ route('posts.show', $post) }}" class="hover:underline">

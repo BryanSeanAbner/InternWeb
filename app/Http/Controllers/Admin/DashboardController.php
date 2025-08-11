@@ -23,12 +23,16 @@ class DashboardController extends Controller
         // Get popular categories with post count
         $kategoriPopuler = Category::withCount('posts')->orderBy('posts_count', 'desc')->take(5)->get();
         
+        // Get latest testimonials
+        $testimoniTerbaru = Testimonial::with('category')->latest()->take(3)->get();
+        
         return view('admin.dashboard', compact(
             'totalBerita',
             'totalKategori', 
             'totalTestimoni',
             'beritaTerbaru',
-            'kategoriPopuler'
+            'kategoriPopuler',
+            'testimoniTerbaru'
         ));
     }
 } 

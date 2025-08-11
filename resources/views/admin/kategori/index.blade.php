@@ -47,16 +47,18 @@
     @forelse($categories as $category)
     <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
         <!-- Category Photo -->
-        <div class="h-48 bg-gray-100 overflow-hidden">
+        <div class="h-48 bg-gray-100 overflow-hidden relative">
             @if($category->photo)
                 <img src="@photo($category->photo)" 
                      alt="{{ $category->name }}" 
-                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                     style="aspect-ratio: 16/9;">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
             @else
-                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                    <div class="text-center">
-                        <i class="fa-solid fa-image text-4xl text-gray-400 mb-2"></i>
-                        <p class="text-sm text-gray-500">No Image</p>
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+                    <div class="text-center text-white">
+                        <i class="fa-solid fa-image text-4xl mb-2 opacity-80"></i>
+                        <p class="text-sm font-semibold">No Image</p>
                     </div>
                 </div>
             @endif

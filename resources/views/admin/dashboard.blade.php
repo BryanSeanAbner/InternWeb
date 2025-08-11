@@ -101,6 +101,42 @@
         </div>
     </div>
 
+    <!-- Testimoni Terbaru -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-gray-800">Testimoni Terbaru</h3>
+            <a href="{{ route('admin.testimonials.index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                Lihat Semua →
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @forelse($testimoniTerbaru as $testimoni)
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="flex-shrink-0">
+                            <img src="@photoWithFallback($testimoni->photo, 'testimonials')" 
+                                 alt="{{ $testimoni->name }}" 
+                                 class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-gray-800">{{ Str::limit($testimoni->name, 20) }}</h4>
+                            <p class="text-sm text-gray-500">{{ $testimoni->category ? $testimoni->category->name : 'Uncategorized' }}</p>
+                        </div>
+                        <a href="{{ route('admin.testimonials.edit', $testimoni) }}" class="text-blue-600 hover:text-blue-800 flex-shrink-0">
+                            <i class="fa-solid fa-edit"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">{{ Str::limit($testimoni->description, 80) }}</p>
+                    <p class="text-xs text-gray-500">{{ $testimoni->created_at->format('d M Y') }}</p>
+                </div>
+            @empty
+                <div class="col-span-full">
+                    <p class="text-gray-500 text-center py-8">Belum ada testimoni</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
+
     <!-- Quick Actions -->
     <div class="bg-white rounded-lg shadow p-6">
         <h3 class="text-xl font-bold text-gray-800 mb-4">Aksi Cepat</h3>

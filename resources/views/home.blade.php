@@ -183,13 +183,16 @@
             Apa Kata Mereka tentang Program Magang Ini
         </h2>
         <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
-        
-                 <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
+    
          <div class="overflow-hidden relative py-8">
              <div class="flex animate-scroll-x gap-4">
                 @foreach($testimonials as $t)
                      <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2 min-h-[280px] flex flex-col items-center break-words">
-                         <img src="@photoWithFallback($t->photo, 'testimonials')" alt="{{ $t->name }}" class="w-20 h-20 rounded-full mb-3 border-2 border-white shadow flex-shrink-0" />
+                         <div class="mb-3">
+                             <img src="@photoWithFallback($t->photo, 'testimonials')" 
+                                  alt="{{ $t->name }}" 
+                                  class="w-24 h-24 rounded-full object-cover border-3 border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105" />
+                         </div>
                          <div class="italic text-sm mb-3 text-center text-gray-700 flex-grow">"{{ $t->description }}"</div>
                          <div class="font-bold text-base mb-1 text-blue-700 text-center flex-shrink-0">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
                          @if($t->category)

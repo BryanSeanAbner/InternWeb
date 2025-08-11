@@ -69,9 +69,13 @@
                 @if($kategori->photo)
                     <div class="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <p class="text-sm font-medium text-gray-700 mb-2">Foto Saat Ini:</p>
-                        <img src="@photo($kategori->photo)" 
-                             alt="Foto Kategori" 
-                             class="h-32 w-auto object-cover rounded-lg border border-gray-300 shadow-sm">
+                        <div class="relative inline-block">
+                            <img src="@photo($kategori->photo)" 
+                                 alt="Foto Kategori" 
+                                 class="h-32 w-32 object-cover rounded-lg border-2 border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                 style="aspect-ratio: 1/1;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
                     </div>
                 @endif
                 

@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $latestPosts = Post::with('category')->latest()->take(6)->get();
+        $latestPosts = Post::with('category')->latest()->take(3)->get();
         $categories = Category::all();
         $testimonials = Testimonial::with('category')->get();
         $benefits = InternshipBenefit::all();

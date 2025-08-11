@@ -95,7 +95,7 @@
             @foreach($subcategories as $sub)
             <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 font-poppins">{{ $sub->name }}</h3>
-                <p class="text-gray-600 leading-relaxed font-poppins">{{ $sub->description }}</p>
+                <div class="text-gray-600 leading-relaxed font-poppins prose prose-sm prose-ol:list-decimal prose-ul:list-disc prose-li:my-1 text-justify">{!! $sub->description !!}</div>
             </div>
             @endforeach
         </div>
@@ -105,24 +105,30 @@
 
 <!-- Section Testimonial -->
 @if(isset($testimonials) && count($testimonials))
-<div class="testimonial-section bg-transparent py-16 md:py-20 lg:py-24 mt-0 rounded-[32px]" id="testimonial">
-    <div class="max-w-7xl mx-auto px-2 sm:px-4">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-black mb-4 font-poppins">
+<div class="py-16" id="testimonial">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">
             Apa Kata Mereka tentang Program Magang Ini di {{ $category->name}}
         </h2>
-        <div class="w-32 h-1 bg-black mx-auto mb-10 rounded"></div>
-                 <!-- Responsive grid: scroll-x di mobile, grid di md+ -->
-         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                          @foreach($testimonials as $t)   
-                 <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-6 max-w-sm w-full flex-shrink-0 flex flex-col items-center text-gray-800 min-h-[280px] break-words">
-                     <img src="@photoWithFallback($t->photo, 'img/default-avatar.png')" alt="{{ $t->name }}" class="w-16 h-16 rounded-full mb-3 border-2 border-white shadow flex-shrink-0" />
-                     <div class="italic text-sm mb-3 text-center text-gray-700 flex-grow">"{{ $t->description }}"</div>
-                     <div class="font-bold text-base mb-1 text-blue-900 text-center flex-shrink-0">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
-                     @if($t->category)
-                         <div class="text-xs text-gray-500 text-center flex-shrink-0">{{ $t->category ? $t->category->name : 'Uncategorized' }}</div>
-                     @endif  
-                 </div>
-             @endforeach
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+    
+         <div class="overflow-hidden relative py-8">
+             <div class="flex animate-scroll-x gap-4">
+                @foreach($testimonials as $t)
+                     <div class="bg-white/80 rounded-xl shadow-lg border border-white/40 p-4 md:p-6 max-w-xs w-full inline-block flex-shrink-0 text-gray-800 mx-2 min-h-[280px] flex flex-col items-center break-words">
+                         <div class="mb-3">
+                             <img src="@photoWithFallback($t->photo, 'testimonials')" 
+                                  alt="{{ $t->name }}" 
+                                  class="w-24 h-24 rounded-full object-cover border-3 border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105" />
+                         </div>
+                         <div class="italic text-sm mb-3 text-center text-gray-700 flex-grow">"{{ $t->description }}"</div>
+                         <div class="font-bold text-base mb-1 text-blue-700 text-center flex-shrink-0">{{ $t->name }}@if($t->instansi) - {{ $t->instansi }}@endif</div>
+                         @if($t->category)
+                             <div class="text-xs text-gray-500 text-center flex-shrink-0">{{ $t->category ? $t->category->name : 'Uncategorized' }}</div>
+                         @endif
+                     </div>
+                 @endforeach
+             </div>
          </div>
     </div>
 </div>
@@ -157,6 +163,45 @@
         });
     });
 </script>
+
+<style>
+/* Custom styling untuk memastikan list dirender dengan benar di halaman kategori */
+.prose ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5rem !important;
+    margin-left: 0 !important;
+}
+
+.prose ul {
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+    margin-left: 0 !important;
+}
+
+.prose li {
+    margin-bottom: 0.25rem !important;
+    display: list-item !important;
+}
+
+.prose ol li::marker {
+    color: inherit !important;
+    font-weight: inherit !important;
+}
+
+.prose ul li::marker {
+    color: inherit !important;
+    font-weight: inherit !important;
+}
+
+/* Text justify untuk semua elemen dalam prose */
+.prose p {
+    text-align: justify !important;
+}
+
+.prose li {
+    text-align: justify !important;
+}
+</style>
 
 <!-- Image Animation Script -->
 <script>

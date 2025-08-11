@@ -1,61 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 py-8 px-4 relative overflow-hidden">
-    <!-- Floating Background Elements -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-20 left-10 w-32 h-32 bg-blue-200 bg-opacity-20 rounded-full animate-pulse"></div>
-        <div class="absolute top-40 right-20 w-24 h-24 bg-indigo-300 bg-opacity-30 rounded-full animate-bounce"></div>
-        <div class="absolute bottom-40 left-1/4 w-40 h-40 bg-blue-300 bg-opacity-10 rounded-full animate-pulse"></div>
-        <div class="absolute top-1/3 right-1/4 w-20 h-20 bg-white bg-opacity-30 rounded-full animate-bounce"></div>
-        <div class="absolute bottom-20 right-10 w-36 h-36 bg-blue-400 bg-opacity-15 rounded-full animate-pulse"></div>
-    </div>
+<div class="min-h-screen bg-gray-50 py-8 px-4 relative">
 
     <div class="max-w-3xl mx-auto relative z-10">
-        <!-- Enhanced Logo and Brand Header -->
-        <div class="text-center mb-12 transform hover:scale-105 transition-transform duration-500">
-            <div class="relative inline-block mb-6">
-                <div class="absolute inset-0 bg-blue-600 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-                <div class="relative inline-flex items-center justify-center w-42 h-42 bg-white bg-opacity-95 backdrop-blur-sm rounded-full shadow-2xl border-4 border-blue-100">
-                    <img src="{{ asset('img/logo.png') }}" alt="Logo Nusantara TV" class="w-36 h-36 rounded-full shadow-lg" />
-                </div>
-            </div>
-            <h1 class="text-6xl lg:text-7xl font-black bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 bg-clip-text text-transparent mb-4 tracking-tight drop-shadow-sm">NUSANTARA TV</h1>
-            <p class="text-blue-700 text-2xl font-bold mb-4 drop-shadow-sm">Televisi Digital Nasional Indonesia</p>
-            <div class="flex items-center justify-center space-x-4 mb-8">
-                <div class="h-1 w-20 bg-gradient-to-r from-transparent via-blue-700 to-transparent rounded-full"></div>
-                <div class="h-3 w-3 bg-blue-600 rounded-full animate-pulse"></div>
-                <div class="h-1 w-20 bg-gradient-to-r from-transparent via-blue-700 to-transparent rounded-full"></div>
-            </div>
-            <div class="inline-flex items-center bg-white bg-opacity-90 backdrop-blur-sm px-8 py-4 rounded-full shadow-xl border border-blue-200 hover:shadow-2xl transition-all duration-300">
-                <svg class="w-6 h-6 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-blue-700 font-bold text-lg">Program Magang Profesional</span>
-            </div>
-        </div>
+
 
         <!-- Enhanced Main Form Card -->
         <div class="bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white border-opacity-50 hover:shadow-3xl transition-all duration-500">
-            <!-- Enhanced Header Section -->
-            <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 px-8 py-16 text-center relative overflow-hidden">
-                <!-- Animated Background Pattern -->
-                <div class="absolute inset-0 opacity-10">
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-pulse"></div>
+            <!-- Header Section -->
+            <div class="bg-blue-700 px-8 py-12 text-center">
+                <!-- Logo Nusantara TV -->
+                <div class="flex items-center justify-center mb-6">
+                    <img src="{{ asset('img/logo.png') }}" alt="Logo Nusantara TV" class="w-20 h-20" />
                 </div>
-                
-                <div class="relative z-10">
-                    <div class="inline-flex items-center justify-center w-24 h-24 bg-white bg-opacity-20 backdrop-blur-sm rounded-full mb-6 shadow-2xl hover:scale-110 transition-transform duration-300">
-                        <svg class="w-12 h-12 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h2 class="text-4xl lg:text-5xl font-black text-white mb-4 drop-shadow-lg">Form Pendaftaran Magang</h2>
-                    <p class="text-white text-xl lg:text-2xl font-semibold opacity-95 mb-3">Bergabunglah bersama keluarga besar Nusantara TV</p>
-                    <p class="text-white text-base lg:text-lg opacity-80 max-w-3xl mx-auto leading-relaxed">
-                        Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
-                    </p>
-                </div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Form Pendaftaran Magang</h2>
+                <p class="text-white text-lg font-medium mb-3">Bergabunglah bersama keluarga besar Nusantara TV</p>
+                <p class="text-white text-base opacity-90 max-w-2xl mx-auto leading-relaxed">
+                    Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
+                </p>
             </div>
 
 
@@ -63,17 +26,17 @@
             <div class="px-8 lg:px-12 py-12">
                 <!-- Success Alert -->
                 @if(session('success'))
-                <div class="mb-10 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-2xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                <div class="mb-8 bg-green-50 border border-green-200 rounded-lg p-6">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
                         </div>
-                        <div class="ml-6">
-                            <p class="text-green-800 font-bold text-xl mb-2">🎉 Pendaftaran Berhasil!</p>
+                        <div class="ml-4">
+                            <p class="text-green-800 font-bold text-lg mb-1">Pendaftaran Berhasil!</p>
                             <p class="text-green-700 text-base">{{ session('success') }}</p>
                         </div>
                     </div>
@@ -82,21 +45,21 @@
 
                 <!-- Error Alert -->
                 @if($errors->any())
-                <div class="mb-10 bg-gradient-to-r from-red-50 to-pink-50 border-l-4 border-red-500 rounded-2xl p-8 shadow-lg">
+                <div class="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
-                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
                         </div>
-                        <div class="ml-6">
-                            <p class="text-red-800 font-bold text-xl mb-3">⚠️ Terdapat kesalahan pada form:</p>
-                            <ul class="text-red-700 text-base space-y-2">
+                        <div class="ml-4">
+                            <p class="text-red-800 font-bold text-lg mb-2">Terdapat kesalahan pada form:</p>
+                            <ul class="text-red-700 text-base space-y-1">
                                 @foreach($errors->all() as $error)
                                 <li class="flex items-center">
-                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-2"></span>
                                     {{ $error }}
                                 </li>
                                 @endforeach
@@ -111,16 +74,16 @@
                     @csrf
                     
                     <!-- Personal Information Section -->
-                    <div class="relative">
-                        <div class="flex items-center border-l-4 border-blue-700 pl-8 mb-10 bg-gradient-to-r from-blue-50 to-transparent py-6 rounded-r-2xl">
-                            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full flex items-center justify-center mr-6 shadow-xl hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    <div class="mb-8">
+                        <div class="flex items-center border-l-4 border-blue-700 pl-6 mb-6 bg-blue-50 py-4 rounded-r-lg">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-3xl font-black text-blue-700 mb-2">Informasi Pribadi</h3>
-                                <p class="text-gray-600 text-lg">Pastikan data yang Anda masukkan sesuai dengan identitas resmi</p>
+                                <h3 class="text-2xl font-bold text-blue-700 mb-1">Informasi Pribadi</h3>
+                                <p class="text-gray-600 text-base">Pastikan data yang Anda masukkan sesuai dengan identitas resmi</p>
                             </div>
                         </div>
                     </div>
@@ -610,43 +573,51 @@
                                 @enderror
                             </div>
 
-                            <!-- Semester -->
-                            <div class="space-y-4 group">
-                                <label for="semester" class="block text-blue-700 font-bold text-xl">
-                                    <span class="flex items-center">
-                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                            </svg>
-                                        </div>
-                                        Semester
-                                        <span class="text-red-500 ml-2 text-2xl">*</span>
-                                    </span>
-                                </label>
-                                <div class="relative">
-                                    <input 
-                                        type="text" 
-                                        id="semester" 
-                                        name="semester" 
-                                        value="{{ old('semester') }}"
-                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('semester') border-red-500 bg-red-50 @enderror"
-                                        placeholder="semester yang sedang di tempuh"
-                                    >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                                                    <!-- Semester -->
+                        <div class="space-y-4 group">
+                            <label for="semester" class="block text-blue-700 font-bold text-xl">
+                                <span class="flex items-center">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                        <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                                         </svg>
                                     </div>
-                                </div>
-                                @error('semester')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    Semester
+                                    <span class="text-red-500 ml-2 text-2xl">*</span>
+                                </span>
+                            </label>
+                            <div class="relative">
+                                <select 
+                                    id="semester" 
+                                    name="semester" 
+                                    class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('semester') border-red-500 bg-red-50 @enderror"
+                                >
+                                    <option value="">Pilih semester</option>
+                                    <option value="Semester 1" {{ old('semester') == 'Semester 1' ? 'selected' : '' }}>Semester 1</option>
+                                    <option value="Semester 2" {{ old('semester') == 'Semester 2' ? 'selected' : '' }}>Semester 2</option>
+                                    <option value="Semester 3" {{ old('semester') == 'Semester 3' ? 'selected' : '' }}>Semester 3</option>
+                                    <option value="Semester 4" {{ old('semester') == 'Semester 4' ? 'selected' : '' }}>Semester 4</option>
+                                    <option value="Semester 5" {{ old('semester') == 'Semester 5' ? 'selected' : '' }}>Semester 5</option>
+                                    <option value="Semester 6" {{ old('semester') == 'Semester 6' ? 'selected' : '' }}>Semester 6</option>
+                                    <option value="Semester 7" {{ old('semester') == 'Semester 7' ? 'selected' : '' }}>Semester 7</option>
+                                    <option value="Semester 8" {{ old('semester') == 'Semester 8' ? 'selected' : '' }}>Semester 8</option>
+                                    <option value="Lulus" {{ old('semester') == 'Lulus' ? 'selected' : '' }}>Lulus</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                     </svg>
-                                    {{ $message }}
-                                </p>
-                                @enderror
+                                </div>
                             </div>
+                            @error('semester')
+                            <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
                         </div>
                     </div>
                         
@@ -660,7 +631,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-3xl font-black text-purple-600 mb-2">Informasi Magang</h3>
+                                <h3 class="text-3xl font-black text-blue-600 mb-2">Informasi Magang</h3>
                                 <p class="text-gray-600 text-lg">Detail periode dan bidang magang yang diminati</p>
                             </div>
                         </div>
@@ -668,10 +639,10 @@
                         <div class="space-y-10">
                             <!-- Tanggal Mulai Magang -->
                             <div class="space-y-4 group">
-                                <label for="tanggal_mulai_magang" class="block text-purple-600 font-bold text-xl">
+                                <label for="tanggal_mulai_magang" class="block text-blue-600 font-bold text-xl">
                                     <span class="flex items-center">
-                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                             </svg>
                                         </div>
@@ -685,7 +656,7 @@
                                         id="tanggal_mulai_magang" 
                                         name="tanggal_mulai_magang" 
                                         value="{{ old('tanggal_mulai_magang') }}"
-                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-purple-500 group-hover:border-purple-400 @error('tanggal_mulai_magang') border-red-500 bg-red-50 @enderror"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tanggal_mulai_magang') border-red-500 bg-red-50 @enderror"
                                     >
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-5">
                                         <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -705,10 +676,10 @@
 
                             <!-- Tanggal Selesai Magang -->
                             <div class="space-y-4 group">
-                                <label for="tanggal_selesai_magang" class="block text-purple-600 font-bold text-xl">
+                                <label for="tanggal_selesai_magang" class="block text-blue-600 font-bold text-xl">
                                     <span class="flex items-center">
-                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                             </svg>
                                         </div>
@@ -722,7 +693,7 @@
                                         id="tanggal_selesai_magang" 
                                         name="tanggal_selesai_magang" 
                                         value="{{ old('tanggal_selesai_magang') }}"
-                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-purple-500 group-hover:border-purple-400 @error('tanggal_selesai_magang') border-red-500 bg-red-50 @enderror"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tanggal_selesai_magang') border-red-500 bg-red-50 @enderror"
                                     >
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-5">
                                         <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -742,109 +713,138 @@
 
                             <!-- Bidang Minat Magang -->
                             <div class="space-y-4 group">
-                                <label class="block text-purple-600 font-bold text-xl">
+                                <label class="block text-blue-600 font-bold text-xl">
                                     <span class="flex items-center">
-                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                                             </svg>
                                         </div>
                                         Bidang Minat Magang
                                         <span class="text-red-500 ml-2 text-2xl">*</span>
-                                        <span class="text-gray-500 text-base font-normal ml-3">(akan disesuaikan dengan kuota divisi yang tersedia)</span>
                                     </span>
                                 </label>
-                                <div class="bg-white border-2 border-gray-300 rounded-xl p-6 hover:border-purple-500 transition-all duration-300 shadow-sm hover:shadow-md">
-                                    <div class="grid gap-4">
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                                    <p class="text-blue-700 text-base mb-4 font-medium">Pilih salah satu bidang yang sesuai dengan minat dan kemampuan Anda:</p>
+                                    <div class="grid gap-3">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Social Media Editing"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Social Media Editing' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Social Media Editing</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Social Media Editing</span>
+                                                <p class="text-gray-600 text-sm mt-1">Mengedit dan mengelola konten media sosial</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Master Control Room (MCR)"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Master Control Room (MCR)' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Master Control Room (MCR)</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Master Control Room (MCR)</span>
+                                                <p class="text-gray-600 text-sm mt-1">Mengontrol dan mengatur siaran televisi</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Produksi Program TV"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Produksi Program TV' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Produksi Program TV</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Produksi Program TV</span>
+                                                <p class="text-gray-600 text-sm mt-1">Membuat dan memproduksi program televisi</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Support Jadwal Program TV"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Support Jadwal Program TV' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Support Jadwal Program TV</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Support Jadwal Program TV</span>
+                                                <p class="text-gray-600 text-sm mt-1">Mengatur dan mengelola jadwal program</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Research and Development (R & D) Program TV"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Research and Development (R & D) Program TV' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Research and Development (R & D) Program TV</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Research and Development (R & D) Program TV</span>
+                                                <p class="text-gray-600 text-sm mt-1">Penelitian dan pengembangan program televisi</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Support Marketing"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Support Marketing' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Support Marketing</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Support Marketing</span>
+                                                <p class="text-gray-600 text-sm mt-1">Mendukung kegiatan marketing dan promosi</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Repoter Sosialmedia Live Streaming"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Repoter Sosialmedia Live Streaming' ? 'checked' : '' }}
                                             >
-                                            <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Repoter Sosialmedia Live Streaming</span>
+                                            <div class="ml-3">
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Reporter Sosial Media Live Streaming</span>
+                                                <p class="text-gray-600 text-sm mt-1">Melaporkan dan streaming langsung di media sosial</p>
+                                            </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio">
+                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Lainnya"
-                                                class="w-5 h-5 text-purple-600 border-2 border-gray-300 focus:ring-purple-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
                                                 {{ old('bidang_minat_magang') == 'Lainnya' ? 'checked' : '' }}
                                             >
                                             <div class="ml-3 flex-1">
-                                                <span class="text-gray-700 text-lg font-medium group-hover/radio:text-purple-600 transition-colors duration-200">Yang lain:</span>
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Bidang Lainnya</span>
                                                 <input 
                                                     type="text" 
                                                     name="bidang_minat_lainnya" 
                                                     value="{{ old('bidang_minat_lainnya') }}"
-                                                    class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-base"
+                                                    class="mt-2 w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base transition-all duration-300"
                                                     placeholder="Sebutkan bidang minat lainnya..."
                                                 >
                                             </div>
                                         </label>
+                                    </div>
+                                    <div class="mt-4 p-3 bg-blue-100 rounded-lg">
+                                        <p class="text-blue-700 text-sm font-medium">
+                                            <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                            </svg>
+                                            Pilihan akan disesuaikan dengan kuota divisi yang tersedia
+                                        </p>
                                     </div>
                                 </div>
                                 @error('bidang_minat_magang')
@@ -886,25 +886,41 @@
                                     </svg>
                                 </div>
                                 Alasan Mendaftar
-                                <span class="text-gray-400 text-lg font-normal ml-3 bg-gray-100 px-3 py-1 rounded-full">(Opsional)</span>
+                                <span class="text-blue-500 text-lg font-normal ml-3 bg-blue-100 px-3 py-1 rounded-full">(Opsional)</span>
                             </span>
                         </label>
-                        <div class="relative">
-                            <textarea 
-                                id="alasan_mendaftar" 
-                                name="alasan_mendaftar" 
-                                rows="6"
-                                class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500"
-                                placeholder="Ceritakan motivasi dan alasan Anda bergabung dengan Nusantara TV..."
-                            >{{ old('alasan_mendaftar') }}</textarea>
-                        </div>
-                        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 shadow-sm">
-                            <p class="text-gray-600 text-base flex items-center">
-                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                                </svg>
-                                Minimal 10 karakter - Maksimal 500 karakter
-                            </p>
+                        <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <div class="mb-4">
+                                <p class="text-blue-700 text-base font-medium mb-2">Ceritakan motivasi dan alasan Anda bergabung dengan Nusantara TV:</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Pengalaman</span>
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Karir</span>
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Minat</span>
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Tujuan</span>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <textarea 
+                                    id="alasan_mendaftar" 
+                                    name="alasan_mendaftar" 
+                                    rows="6"
+                                    class="w-full px-6 py-5 border-2 border-blue-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-500 resize-vertical shadow-sm hover:shadow-md"
+                                    placeholder="Contoh: Saya tertarik dengan dunia penyiaran dan ingin mengembangkan kemampuan dalam produksi konten digital. Saya berharap dapat belajar langsung dari para profesional di Nusantara TV..."
+                                >{{ old('alasan_mendaftar') }}</textarea>
+                                <div class="absolute bottom-4 right-4">
+                                    <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                                        <span id="char-count">0</span>/500
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-blue-100 rounded-lg">
+                                <p class="text-blue-700 text-sm font-medium flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Minimal 10 karakter - Maksimal 500 karakter
+                                </p>
+                            </div>
                         </div>
                     </div>
 
@@ -937,11 +953,9 @@
                             class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 text-white font-black px-20 py-6 rounded-2xl text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-blue-300 active:scale-95 relative overflow-hidden"
                         >
                             <!-- Button glow effect -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity duration-300 animate-pulse"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity"></div>
                             <span class="flex items-center justify-center relative z-10">
-                                <svg class="w-7 h-7 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                </svg>
+                                <img src="{{ asset('img/logo.png') }}" alt="Logo Nusantara TV" class="w-6 h-6 mr-3" />
                                 Kirim Pendaftaran
                             </span>
                         </button>
@@ -1029,4 +1043,80 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript untuk fitur tambahan -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Character counter untuk alasan mendaftar
+    const alasanTextarea = document.getElementById('alasan_mendaftar');
+    const charCount = document.getElementById('char-count');
+    
+    if (alasanTextarea && charCount) {
+        // Set initial count
+        charCount.textContent = alasanTextarea.value.length;
+        
+        // Update count on input
+        alasanTextarea.addEventListener('input', function() {
+            const count = this.value.length;
+            charCount.textContent = count;
+            
+            // Change color based on count
+            if (count > 450) {
+                charCount.parentElement.classList.remove('bg-blue-100', 'text-blue-700');
+                charCount.parentElement.classList.add('bg-red-100', 'text-red-700');
+            } else if (count > 400) {
+                charCount.parentElement.classList.remove('bg-blue-100', 'text-blue-700', 'bg-red-100', 'text-red-700');
+                charCount.parentElement.classList.add('bg-yellow-100', 'text-yellow-700');
+            } else {
+                charCount.parentElement.classList.remove('bg-yellow-100', 'text-yellow-700', 'bg-red-100', 'text-red-700');
+                charCount.parentElement.classList.add('bg-blue-100', 'text-blue-700');
+            }
+        });
+    }
+    
+    // Smooth scroll untuk anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Form validation enhancement
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('border-red-500', 'bg-red-50');
+                } else {
+                    field.classList.remove('border-red-500', 'bg-red-50');
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault();
+                // Scroll to first error
+                const firstError = form.querySelector('.border-red-500');
+                if (firstError) {
+                    firstError.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }
+        });
+    }
+});
+</script>
 @endsection

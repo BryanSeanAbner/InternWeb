@@ -63,6 +63,19 @@
                     <i class="fa-solid fa-image mr-2 text-blue-600"></i>
                     Foto Kategori
                 </label>
+                
+                <!-- Photo Preview -->
+                <div id="photo-preview" class="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200 hidden">
+                    <p class="text-sm font-medium text-gray-700 mb-2">Preview Foto:</p>
+                    <div class="relative inline-block">
+                        <img id="preview-image" 
+                             alt="Preview Foto" 
+                             class="h-32 w-32 object-cover rounded-lg border-2 border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                             style="aspect-ratio: 1/1;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+                
                 <input id="photo" 
                        name="photo" 
                        type="file" 
@@ -93,4 +106,26 @@
     </div>
 </div>
 
-@endsection 
+@endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photoInput = document.getElementById('photo');
+    const photoPreview = document.getElementById('photo-preview');
+    const previewImage = document.getElementById('preview-image');
+    
+    photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                photoPreview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            photoPreview.classList.add('hidden');
+        }
+    });
+});
+</script> 

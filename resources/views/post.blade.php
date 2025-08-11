@@ -71,9 +71,15 @@
                 @endif
             </div>
             <div class="bg-white rounded-xl shadow p-6 md:p-10">
-                <a href="{{ route('categories.show', $post->category) }}" class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
-                    {{ $post->category->name ?? 'Uncategorized' }}
-                </a>
+                @if($post->category)
+                    <a href="{{ route('categories.show', $post->category) }}" class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+                        {{ $post->category->name }}
+                    </a>
+                @else
+                    <span class="inline-block bg-gray-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                        Uncategorized
+                    </span>
+                @endif
                 <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 leading-tight font-poppins">{{ $post->title }}</h1>
                 <div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-6">
                     <span class="font-poppins">By Editorial Team</span>
@@ -87,7 +93,7 @@
         </div>
         <!-- Sidebar -->
         <aside class="lg:col-span-1">
-            <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang {{ $post->category->name ?? 'ini' }}</div>
+            <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang {{ $post->category ? $post->category->name : 'ini' }}</div>
             <div class="flex flex-col gap-4">
                 @forelse($sidePosts as $side)
                     <a href="{{ route('posts.show', $side) }}" class="bg-white rounded-lg shadow-xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
