@@ -6,10 +6,10 @@
         <div class="text-black text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-left mb-4 sm:mb-6 font-poppins px-4 sm:px-6 lg:px-8 py-4 rounded-lg ml-4 sm:ml-4 lg:ml-12 mt-2 sm:mt-2">
             Semua Berita
         </div>
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-lg transition-all duration-300" id="navbar">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
-            <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+            <a href="{{ route('home') }}#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
         </div>
         <div class="flex lg:hidden">
             <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black focus:outline-none">
@@ -20,14 +20,14 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
-            <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Tentang</a>
-            <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Bidang</a>
-            <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Persyaratan</a>
-            <a href="{{ route('home') }}#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Testimonial</a>
-            <a href="{{ route('home') }}#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Cara Mendaftar</a>
-            <a href="{{ route('home') }}#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Kontak</a>
+            <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Berita</a>
+            <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Tentang</a>
+            <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Bidang</a>
+            <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Persyaratan</a>
+            <a href="{{ route('home') }}#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Testimonial</a>
+            <a href="{{ route('home') }}#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Cara Mendaftar</a>
+            <a href="{{ route('home') }}#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Kontak</a>
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
@@ -64,7 +64,7 @@
     <div class="py-4 mx-auto max-w-screen-xl lg:py-4 lg:px-0">
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">  
             @foreach ($posts as $post)
-                <article class="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+                <article class="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 animate-fade-in-up">
                     <div class="w-full h-24 sm:h-28 md:h-32 lg:h-36 bg-gray-100 flex items-center justify-center text-gray-500 text-sm sm:text-base mb-4 sm:mb-5 rounded-xl overflow-hidden">
                         @if($post->photo)
                             <img src="@photo($post->photo)" alt="{{ $post->title }}" class="w-full h-full object-cover">
@@ -73,14 +73,16 @@
                         @endif
                     </div>
                     <div class="flex justify-between items-center mb-5 text-gray-500">
-                        @if($post->category)
-                            <a href="/categories/{{ $post->category->slug }}">
-                                <span class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
-                                    {{ $post->category->name }}
-                                </span>
+                        @if($post->category && $post->category->is_required)
+                            <a href="{{ route('categories.show', $post->category->slug) }}" class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-poppins hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+                                {{ $post->category->name }}
                             </a>
+                        @elseif($post->category && !$post->category->is_required)
+                            <span class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-poppins cursor-not-allowed">
+                                {{ $post->category->name }}
+                            </span>
                         @else
-                            <span class="inline-block bg-gray-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                            <span class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-poppins">
                                 Uncategorized
                             </span>
                         @endif
@@ -109,4 +111,38 @@
             @endforeach
         </div>
     </div>
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.getElementById('navbar');
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
+        } else {
+            navbar.classList.remove('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
+        }
+    });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in-up');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all elements with scroll-animation class
+    document.querySelectorAll('.scroll-animation').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
 @endsection

@@ -9,6 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
+        // Get all posts regardless of category display status
         $posts = Post::with('category')->latest()->paginate(12);
         return view('posts', compact('posts'));
     }

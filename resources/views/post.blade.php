@@ -4,10 +4,10 @@
 
 <!-- Header/Navbar -->
 <div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50">
+    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-lg transition-all duration-300" id="navbar">
     <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
         <div class="flex lg:flex-1">
-            <a href="{{ route('home') }}" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+            <a href="{{ route('home') }}#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
         </div>
         <div class="flex lg:hidden">
             <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black focus:outline-none">
@@ -18,14 +18,14 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
-            <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Tentang</a>
-            <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Bidang</a>
-            <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Persyaratan</a>
-            <a href="{{ route('home') }}#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Testimonial</a>
-            <a href="{{ route('home') }}#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Cara Mendaftar</a>
-            <a href="{{ route('home') }}#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Kontak</a>
+            <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Home</a>
+            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Berita</a>
+            <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Tentang</a>
+            <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Bidang</a>
+            <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Persyaratan</a>
+            <a href="{{ route('home') }}#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Testimonial</a>
+            <a href="{{ route('home') }}#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Cara Mendaftar</a>
+            <a href="{{ route('home') }}#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Kontak</a>
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
@@ -33,7 +33,7 @@
         <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
         <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
             <div class="flex items-center justify-between w-full pl-6 pr-2">
-                <a href="{{ route('home') }}" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+                <a href="{{ route('home') }}#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
                 <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
                     <span class="sr-only">Close menu</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
@@ -62,21 +62,25 @@
     <!-- Main Content -->
     <main class="pt-20 max-w-7xl mx-auto mt-8 px-4 md:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Post Detail -->
-        <div class="lg:col-span-2">
-            <div class="w-full h-56 md:h-80 rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden mb-8">
+        <div class="lg:col-span-2 animate-fade-in-up">
+            <div class="w-full h-56 md:h-80 rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden mb-8 shadow-lg">
                 @if($post->photo)
                     <img src="@photo($post->photo)" alt="{{ $post->title }}" class="w-full h-full object-cover" />
                 @else
                     <span class="text-gray-500">FEATURED STORY IMAGE</span>
                 @endif
             </div>
-            <div class="bg-white rounded-xl shadow p-6 md:p-10">
-                @if($post->category)
-                    <a href="{{ route('categories.show', $post->category) }}" class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-10">
+                @if($post->category && $post->category->is_required)
+                    <a href="{{ route('categories.show', $post->category->slug) }}" class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
                         {{ $post->category->name }}
                     </a>
+                @elseif($post->category && !$post->category->is_required)
+                    <span class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins cursor-not-allowed">
+                        {{ $post->category->name }}
+                    </span>
                 @else
-                    <span class="inline-block bg-gray-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+                    <span class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
                         Uncategorized
                     </span>
                 @endif
@@ -92,11 +96,11 @@
             </div>
         </div>
         <!-- Sidebar -->
-        <aside class="lg:col-span-1">
+        <aside class="lg:col-span-1 animate-fade-in-up">
             <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang {{ $post->category ? $post->category->name : 'ini' }}</div>
             <div class="flex flex-col gap-4">
                 @forelse($sidePosts as $side)
-                    <a href="{{ route('posts.show', $side) }}" class="bg-white rounded-lg shadow-xl p-4 flex flex-col hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
+                    <a href="{{ route('posts.show', $side) }}" class="bg-white rounded-lg shadow-lg p-4 flex flex-col hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer animate-fade-in-up">
                         <div class="w-full h-28 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden mb-3">
                             @if($side->photo)
                                 <img src="@photo($side->photo)" alt="{{ $side->title }}" class="w-full h-full object-cover" />
@@ -120,6 +124,8 @@
             const openBtn = document.getElementById('mobile-menu-open');
             const closeBtn = document.getElementById('mobile-menu-close');
             const mobileMenu = document.getElementById('mobile-menu');
+            const navbar = document.getElementById('navbar');
+            
             openBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 mobileMenu.classList.remove('hidden');
@@ -135,6 +141,34 @@
                 link.addEventListener('click', function() {
                     mobileMenu.classList.add('hidden');
                 });
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
+                } else {
+                    navbar.classList.remove('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
+                }
+            });
+            
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in-up');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all elements with scroll-animation class
+            document.querySelectorAll('.scroll-animation').forEach(el => {
+                observer.observe(el);
             });
         });
     </script>

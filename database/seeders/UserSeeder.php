@@ -13,13 +13,18 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // User admin untuk deploy dan testing
-        User::firstOrCreate(
+        // User admin untuk testing dan deploy
+        $user = User::firstOrCreate(
             ['username' => 'admin'],
             [
                 'password' => Hash::make('pswd'),
-                'plain_password' => 'pswd',
             ]
         );
+        
+        // Set encrypted password menggunakan method yang benar
+        if ($user) {
+            $user->setEncryptedPassword('pswd');
+            $user->save();
+        }
     }
 }

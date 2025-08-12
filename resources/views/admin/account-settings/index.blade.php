@@ -13,11 +13,11 @@ use Illuminate\Support\Str;
 @section('admin-title', 'Pengaturan Akun')
 
 @section('content')
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-4 md:py-8 animate-fade-in-up">
 
         <!-- Alert Messages -->
         @if(session('success'))
-            <div class="mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4 shadow-sm">
+            <div class="mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4 shadow-lg animate-fade-in-up">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
                         <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
         @endif
 
         @if($errors->any())
-            <div class="mb-6 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-4 shadow-sm">
+            <div class="mb-6 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-4 shadow-lg animate-fade-in-up">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
                         <i class="fa-solid fa-exclamation-triangle text-red-500 text-xl"></i>
@@ -47,20 +47,20 @@ use Illuminate\Support\Str;
             </div>
         @endif
 
-        <div class="space-y-6">
+        <div class="space-y-4 md:space-y-6">
             
             <!-- Informasi Akun Card -->
-            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-4">
-                    <h2 class="text-xl font-semibold text-white flex items-center">
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 px-4 md:px-6 py-4">
+                    <h2 class="text-lg md:text-xl font-semibold text-white flex items-center">
                         <i class="fa-solid fa-info-circle mr-3"></i>
                         Informasi Akun
                     </h2>
                 </div>
                 
-                <div class="p-6">
+                <div class="p-4 md:p-6">
                     <!-- Header Row -->
-                    <div class="grid grid-cols-3 gap-4 mb-3">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
                         <div class="text-center">
                             <span class="font-medium text-gray-700">Username:</span>
                         </div>
@@ -73,7 +73,7 @@ use Illuminate\Support\Str;
                     </div>
                     
                     <!-- Data Row -->
-                    <div class="grid grid-cols-3 gap-4 items-center py-3">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center py-3">
                         <div class="text-center">
                             <span class="text-gray-900 font-medium">{{ $user->username }}</span>
                         </div>
@@ -81,33 +81,33 @@ use Illuminate\Support\Str;
                             <div class="flex items-center justify-center space-x-2">
                                 <span class="text-gray-900" id="password-display">***</span>
                                 <button type="button" 
-                                        class="text-gray-400 hover:text-gray-600 transition-colors"
-                                        onclick="togglePasswordDisplay()"
-                                        title="Toggle password visibility">
+                                        class="text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
+                                        onclick="showPasswordVerification()"
+                                        title="Verifikasi password untuk melihat password">
                                     <i class="fa-solid fa-eye-slash" id="password-toggle-icon"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="text-center">
-                            <span class="text-gray-900">{{ $user->updated_at->diffForHumans() }}</span>
+                            <span class="text-gray-900 text-sm md:text-base">{{ $user->updated_at->diffForHumans() }}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Forms Row -->
-            <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-4 md:gap-6">
                 
                 <!-- Ubah Username Card -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                    <div class="bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-4">
-                        <h2 class="text-xl font-semibold text-white flex items-center">
+                <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-500 px-4 md:px-6 py-4">
+                        <h2 class="text-lg md:text-xl font-semibold text-white flex items-center">
                             <i class="fa-solid fa-user-edit mr-3"></i>
                             Ubah Username
                         </h2>
                     </div>
-                    <div class="p-6">
-                        <form action="{{ route('admin.account-settings.update-username') }}" method="POST" class="space-y-6">
+                    <div class="p-4 md:p-6">
+                        <form action="{{ route('admin.account-settings.update-username') }}" method="POST" class="space-y-4 md:space-y-6">
                             @csrf
                             @method('PUT')
                             <div>
@@ -119,7 +119,7 @@ use Illuminate\Support\Str;
                                     <input type="text" 
                                            id="username" 
                                            name="username" 
-                                           value="{{ old('username', $user->username) }}"
+                                           value="{{ e(old('username', $user->username)) }}"
                                            class="block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                            placeholder="Masukkan username baru"
                                            required>
@@ -141,15 +141,15 @@ use Illuminate\Support\Str;
                 </div>
 
                 <!-- Ubah Password Card -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                    <div class="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-4">
-                        <h2 class="text-xl font-semibold text-white flex items-center">
+                <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="bg-gradient-to-r from-green-500 to-emerald-500 px-4 md:px-6 py-4">
+                        <h2 class="text-lg md:text-xl font-semibold text-white flex items-center">
                             <i class="fa-solid fa-lock mr-3"></i>
                             Ubah Password
                         </h2>
                     </div>
-                    <div class="p-6">
-                        <form action="{{ route('admin.account-settings.update-password') }}" method="POST" class="space-y-6">
+                    <div class="p-4 md:p-6">
+                        <form action="{{ route('admin.account-settings.update-password') }}" method="POST" class="space-y-4 md:space-y-6">
                             @csrf
                             @method('PUT')
                             
@@ -167,7 +167,7 @@ use Illuminate\Support\Str;
                                            placeholder="Masukkan password saat ini"
                                            required>
                                     <button type="button" 
-                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
                                             onclick="togglePassword('current_password')">
                                         <i class="fa-solid fa-eye-slash" id="current_password_icon"></i>
                                     </button>
@@ -195,7 +195,7 @@ use Illuminate\Support\Str;
                                             onkeyup="checkPasswordStrength(); checkPasswordConfirmation()"
                                             required>
                                     <button type="button" 
-                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
                                             onclick="togglePassword('new_password')">
                                         <i class="fa-solid fa-eye-slash" id="new_password_icon"></i>
                                     </button>
@@ -256,7 +256,7 @@ use Illuminate\Support\Str;
                                             onkeyup="checkPasswordConfirmation()"
                                             required>
                                      <button type="button" 
-                                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
                                              onclick="togglePassword('new_password_confirmation')">
                                          <i class="fa-solid fa-eye-slash" id="new_password_confirmation_icon"></i>
                                      </button>
@@ -280,14 +280,14 @@ use Illuminate\Support\Str;
             </div>
 
             <!-- Security Tips Card -->
-            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
-                    <h3 class="text-lg font-semibold text-white flex items-center">
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-4 md:px-6 py-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-white flex items-center">
                         <i class="fa-solid fa-shield-alt mr-3"></i>
                         Tips Keamanan
                     </h3>
                 </div>
-                <div class="p-6">
+                <div class="p-4 md:p-6">
                     <ul class="grid grid-cols-1 md:grid-cols-1 gap-3 text-sm text-gray-700">
                         <li class="flex items-start">
                             <i class="fa-solid fa-check-circle text-green-500 mt-0.5 mr-3 flex-shrink-0"></i>
@@ -308,38 +308,145 @@ use Illuminate\Support\Str;
                     </ul>
                 </div>
             </div>
+                </div>
+    </div>
+
+    <!-- Password Verification Modal -->
+    <div id="password-verification-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">🔐 Verifikasi Password</h3>
+                    <button type="button" onclick="hidePasswordVerification()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <p class="text-sm text-gray-600 mb-4">
+                    Masukkan password login Anda untuk melihat password yang tersimpan.
+                </p>
+                
+                <form id="verification-form" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label for="verification_password" class="block text-sm font-medium text-gray-700 mb-2">
+                            Password Login
+                        </label>
+                        <input type="password" 
+                               id="verification_password" 
+                               name="verification_password" 
+                               class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Masukkan password login"
+                               required>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button type="button" 
+                                onclick="hidePasswordVerification()"
+                                class="flex-1 px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                            Batal
+                        </button>
+                        <button type="submit" 
+                                class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            Verifikasi
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="verification-error" class="mt-3 text-sm text-red-600 hidden"></div>
+            </div>
         </div>
-</div>
+    </div>
 
-<script>
-// Password data
-let currentPasswordData = '';
+    <script>
+// Password verification state
 let isPasswordVisible = false;
+let verifiedPassword = '';
 
-// Initialize password data
+// Show password verification modal
+function showPasswordVerification() {
+    document.getElementById('password-verification-modal').classList.remove('hidden');
+    document.getElementById('verification_password').focus();
+}
+
+// Hide password verification modal
+function hidePasswordVerification() {
+    document.getElementById('password-verification-modal').classList.add('hidden');
+    document.getElementById('verification-form').reset();
+    document.getElementById('verification-error').classList.add('hidden');
+}
+
+// Handle password verification form submission
 document.addEventListener('DOMContentLoaded', function() {
-    const passwordDataElement = document.getElementById('password-data');
-    if (passwordDataElement) {
-        currentPasswordData = passwordDataElement.getAttribute('data-current-password');
-    }
+    document.getElementById('verification-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const verificationPassword = formData.get('verification_password');
+        
+        // Send verification request
+        fetch('{{ route("admin.account-settings.verify-password") }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                verification_password: verificationPassword
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Verification successful
+                verifiedPassword = data.password;
+                showPassword();
+                hidePasswordVerification();
+            } else {
+                // Verification failed
+                document.getElementById('verification-error').textContent = data.message;
+                document.getElementById('verification-error').classList.remove('hidden');
+            }
+        })
+        .catch(error => {
+            document.getElementById('verification-error').textContent = 'Terjadi kesalahan saat verifikasi';
+            document.getElementById('verification-error').classList.remove('hidden');
+        });
+    });
 });
 
+// Show password after verification
+function showPassword() {
+    const passwordDisplay = document.getElementById('password-display');
+    const toggleIcon = document.getElementById('password-toggle-icon');
+    
+    if (verifiedPassword) {
+        passwordDisplay.textContent = verifiedPassword;
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+        isPasswordVisible = true;
+    }
+}
+
+// Toggle password visibility
 function togglePasswordDisplay() {
     const passwordDisplay = document.getElementById('password-display');
     const toggleIcon = document.getElementById('password-toggle-icon');
     
     if (!isPasswordVisible) {
-        // Show current password (password aktif) - mata terbuka
-        if (currentPasswordData && currentPasswordData !== '***') {
-            passwordDisplay.textContent = currentPasswordData;
-        } else {
-            passwordDisplay.textContent = 'Password aktif tersembunyi';
+        // Show verification modal if password not verified
+        if (!verifiedPassword) {
+            showPasswordVerification();
+            return;
         }
+        
+        // Show password
+        passwordDisplay.textContent = verifiedPassword;
         toggleIcon.classList.remove('fa-eye-slash');
         toggleIcon.classList.add('fa-eye');
         isPasswordVisible = true;
     } else {
-        // Hide password - menggunakan *** - mata tertutup
+        // Hide password
         passwordDisplay.textContent = '***';
         toggleIcon.classList.remove('fa-eye');
         toggleIcon.classList.add('fa-eye-slash');

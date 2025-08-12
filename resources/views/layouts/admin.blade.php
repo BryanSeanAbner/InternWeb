@@ -3,86 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Panel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <div id="app" class="flex min-h-screen">
+<body class="bg-gray-50">
+    <div class="flex h-screen">
         <!-- Sidebar -->
-        <aside id="sidebar" class="fixed z-30 inset-y-0 left-0 w-64 bg-white border-r flex flex-col transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 md:static md:inset-0">
-            <div class="h-20 flex items-center justify-center border-b">
-                <span class="font-bold text-xl tracking-wide text-blue-700 font-poppins">Nusantara TV Admin</span>
+        <aside class="w-64 bg-white shadow-lg fixed h-full z-30">
+            <!-- Sidebar Header -->
+            <div class="bg-white text-blue-600 p-6 border-b">
+                <h1 class="text-xl font-bold text-center">Admin Page</h1>
             </div>
-            <nav class="flex-1 py-6 px-4 space-y-2">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
-                    <i class="fa-solid fa-gauge"></i> Dashboard
+            
+            <!-- Navigation -->
+            <nav class="mt-4">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 text-blue-700' : '' }}">
+                    <i class="fa-solid fa-gauge mr-3"></i>
+                    Dashboard
                 </a>
-                <a href="{{ route('admin.berita.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.berita.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
-                    <i class="fa-solid fa-newspaper"></i> Berita
+                
+                <a href="{{ route('admin.berita.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 {{ request()->routeIs('admin.berita.*') ? 'bg-blue-100 text-blue-700' : '' }}">
+                    <i class="fa-solid fa-newspaper mr-3"></i>
+                    Berita
                 </a>
-                <a href="{{ route('admin.kategori.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.kategori.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
-                    <i class="fa-solid fa-list"></i> Kategori
+                
+                <a href="{{ route('admin.kategori.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 {{ request()->routeIs('admin.kategori.*') ? 'bg-blue-100 text-blue-700' : '' }}">
+                    <i class="fa-solid fa-list mr-3"></i>
+                    Kategori
                 </a>
-                <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.testimonials.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
-                    <i class="fa-solid fa-comment-dots"></i> Testimoni
+                
+                <a href="{{ route('admin.testimonials.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 {{ request()->routeIs('admin.testimonials.*') ? 'bg-blue-100 text-blue-700' : '' }}">
+                    <i class="fa-solid fa-comment-dots mr-3"></i>
+                    Testimoni
                 </a>
-                <a href="{{ route('admin.account-settings.index') }}" class="flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-blue-50 font-medium text-gray-700 {{ request()->routeIs('admin.account-settings.*') ? 'bg-blue-100 font-bold text-blue-700' : '' }}">
-                    <i class="fa-solid fa-user-cog"></i> Pengaturan Akun
+                
+                <a href="{{ route('admin.account-settings.index') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 {{ request()->routeIs('admin.account-settings.*') ? 'bg-blue-100 text-blue-700' : '' }}">
+                    <i class="fa-solid fa-user-cog mr-3"></i>
+                    Pengaturan Akun
                 </a>
             </nav>
+            
+            <!-- Empty bottom area -->
+            <div class="absolute bottom-0 w-full h-16"></div>
         </aside>
-        <!-- Overlay for mobile -->
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-30 z-20 hidden md:hidden" onclick="toggleSidebar()"></div>
+
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
+        <div class="flex-1 ml-64">
             <!-- Header -->
-            <header class="h-20 bg-white flex items-center justify-between px-4 md:px-8 border-b shadow-sm sticky top-0 z-10">
-                <div class="flex items-center gap-4">
-                    <button id="sidebar-toggle" class="block md:hidden text-2xl text-gray-500 focus:outline-none" onclick="toggleSidebar()"><i class="fa fa-bars"></i></button>
-                    <h1 class="text-2xl font-semibold text-gray-800">@yield('admin-title', 'Admin Panel')</h1>
-                </div>
-                <div class="flex items-center gap-3">
-                    <span class="text-gray-700 font-medium pl-6 text-sm md:text-base font-poppins">Hi, {{ Auth::user()->username }}</span>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="ml-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm md:text-base">Logout</button>
-                    </form>
+            <header class="bg-white shadow-sm border-b px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-800">@yield('admin-title', 'Admin Panel')</h2>
+                    
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-700 font-medium">Hi, {{ Auth::user()->username }}</span>
+                        
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
+                                <i class="fa-solid fa-sign-out-alt mr-2"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </header>
+
             <!-- Page Content -->
-            <main class="flex-1 p-2 sm:p-4 md:p-6 bg-gray-50">
+            <main class="p-6">
                 @yield('content')
             </main>
         </div>
     </div>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            if (sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.remove('-translate-x-full');
-                sidebar.classList.add('translate-x-0');
-                overlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                sidebar.classList.remove('translate-x-0');
-                overlay.classList.add('hidden');
+
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-        // Close sidebar on resize to desktop
-        window.addEventListener('resize', function() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            if (window.innerWidth >= 768) {
-                sidebar.classList.remove('-translate-x-full');
-                sidebar.classList.add('translate-x-0');
-                overlay.classList.add('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                sidebar.classList.remove('translate-x-0');
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
             }
-        });
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .animate-slide-in-left {
+            animation: slideInLeft 0.5s ease-out;
+        }
+        
+        .animate-pulse-hover:hover {
+            animation: pulse 0.3s ease-in-out;
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+
+    <script>
+        // Script untuk fitur lain jika diperlukan
     </script>
 </body>
 </html> 
