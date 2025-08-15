@@ -229,13 +229,6 @@
     @endif
 </div>
 
-<style>
-    .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('css/admin-dashboard.css') }}">
 
 @endsection 

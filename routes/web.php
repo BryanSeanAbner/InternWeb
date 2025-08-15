@@ -12,15 +12,10 @@ use App\Http\Controllers\Admin\AccountSettingsController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route untuk PhotoController
+Route::get('/photo/{type}/{id}', [App\Http\Controllers\PhotoController::class, 'getPhoto'])->name('photo.get');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Dashboard dan Profile routes dihapus karena tidak digunakan
 
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 

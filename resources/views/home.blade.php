@@ -21,7 +21,7 @@
         
         <div class="hidden lg:flex lg:gap-x-8">
             <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Berita</a>
+                         <a href="{{ route('posts.index') }}" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Berita</a>
             <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Tentang</a>
             <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Bidang</a>
             <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Persyaratan</a>
@@ -46,7 +46,7 @@
             </div>
             <div class="mt-4">
                 <a href="#home" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Home</a>
-                <a href="#berita" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
+                                 <a href="{{ route('posts.index') }}" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
                 <a href="#tentang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Tentang</a>
                 <a href="#bidang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Bidang</a>
                 <a href="#persyaratan" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Persyaratan</a>
@@ -83,7 +83,7 @@
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         @foreach(($allPosts ?? $latestPosts) as $index => $post)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl card-hover scroll-animation transform hover:-translate-y-2 transition-all duration-300">
-                <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
+                <div class="relative mb-6 bg-gray-100 rounded-lg overflow-hidden aspect-[5/3]">
                     <img src="@photoWithFallback($post->photo, 'berita')" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
                 </div>
                 
@@ -156,10 +156,16 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $index => $cat)
                 <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl card-hover scroll-animation transform hover:-translate-y-2 transition-all duration-300">
-                    <img src="@photoWithFallback($cat->photo, 'kategori')" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
-                    <div class="p-4">
-                        <div class="text-lg font-bold text-blue-700">{{ $cat->name }}</div>
+                    <div class="aspect-[5/3] overflow-hidden relative group">
+                        <img src="@photoWithFallback($cat->photo, 'kategori')" alt="{{ $cat->name }}" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-110" />
+                        <!-- Overlay dengan teks -->
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center transition-all duration-300 group-hover:bg-opacity-60">
+                            <div class="text-white text-center">
+                                <h3 class="text-xl font-bold">{{ $cat->name }}</h3>
+                            </div>
+                        </div>
                     </div>
+                    
                 </a>
             @endforeach
         </div>
@@ -310,61 +316,6 @@
     <img src="{{ asset('img/whatsapp-logo.png') }}" alt="WhatsApp" class="w-12 h-12">
 </a>
 
-<!-- Scripts -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const openBtn = document.getElementById('mobile-menu-open');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navbar = document.getElementById('navbar');
-    
-    // Open mobile menu
-    openBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileMenu.classList.remove('hidden');
-    });
-    
-    // Close mobile menu
-    closeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileMenu.classList.add('hidden');
-    });
-    
-    // Close on backdrop click
-    mobileMenu.querySelector('.bg-black').addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-    });
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
-        } else {
-            navbar.classList.remove('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
-        }
-    });
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in-up');
-            } else {
-                // Remove animation class when element is out of viewport
-                entry.target.classList.remove('animate-fade-in-up');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all elements with scroll-animation class
-    document.querySelectorAll('.scroll-animation').forEach(el => {
-        observer.observe(el);
-    });
-});
-</script>
+<!-- External JavaScript -->
+    <script src="{{ asset('js/script.js') }}"></script>
 @endsection

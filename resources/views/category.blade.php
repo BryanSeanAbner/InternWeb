@@ -59,16 +59,16 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="text-center lg:text-left scroll-animation">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-poppins">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-700 mb-6 font-poppins">
                     {{ $category->name }}
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-600 mb-8 font-poppins">
+                <p class="text-lg sm:text-xl text-black mb-8 font-poppins text-justify">
                     {{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}
                 </p>
             </div>
                                     <div class="relative scroll-animation">
                 @if($category->photo)
-                    <img src="@photo($category->photo)" alt="{{ $category->name }}" class="w-full h-80 md:h-96 object-cover rounded-lg shadow-lg">
+                    <img src="@photo($category->photo)" alt="{{ $category->name }}" class="w-full h-80 md:h-96 pt-8 object-cover rounded-lg shadow-lg">
                 @else
                     <div class="w-full h-80 md:h-96 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 text-2xl font-semibold font-poppins">
                         📺 {{ $category->name }}
@@ -84,14 +84,14 @@
 <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 scroll-animation">
-            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4 font-poppins">Spesialisasi {{ $category->name }}</h2>
-            <div class="w-32 h-1 bg-black mx-auto rounded"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4 font-poppins">Spesialisasi {{ $category->name }}</h2>
+            <div class="w-32 h-1 bg-blue-700 mx-auto rounded"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($subcategories as $sub)
                                     <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 scroll-animation">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 font-poppins">{{ $sub->name }}</h3>
-                <div class="text-gray-600 leading-relaxed font-poppins">{!! $sub->description !!}</div>
+                <div class="prose prose-gray max-w-none text-gray-600 leading-relaxed font-poppins">{!! $sub->description !!}</div>
             </div>
             @endforeach
         </div>
@@ -130,94 +130,7 @@
 </section>
 @endif
 
-<!-- Optimized Script -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const openBtn = document.getElementById('mobile-menu-open');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    openBtn.addEventListener('click', function() {
-        mobileMenu.classList.remove('hidden');
-    });
-    
-    closeBtn.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-    });
-    
-    mobileMenu.querySelector('.bg-black\\/40').addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-    });
-    
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
-        } else {
-            navbar.classList.remove('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
-        }
-    });
-    
-    // Optimized Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in-up');
-            } else {
-                // Remove animation class when element is out of viewport for re-animation
-                entry.target.classList.remove('animate-fade-in-up');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all elements with scroll-animation class
-    document.querySelectorAll('.scroll-animation').forEach(el => {
-        observer.observe(el);
-    });
-});
-</script>
-
-<style>
-/* Optimized scroll animation styles */
-.scroll-animation {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-}
-
-.scroll-animation.animate-fade-in-up {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Font Poppins fallback */
-.font-poppins {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-/* Horizontal scroll animation for testimonials */
-@keyframes scroll-x {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.animate-scroll-x {
-    animation: scroll-x 30s linear infinite;
-}
-
-.animate-scroll-x:hover {
-    animation-play-state: paused;
-}
-</style>
+<!-- External CSS and JS -->
+<link rel="stylesheet" href="{{ asset('css/category.css') }}">
+<script src="{{ asset('js/category.js') }}"></script>
 @endsection 

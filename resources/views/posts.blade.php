@@ -3,7 +3,7 @@
 @section('content')
 <div class="bg-white">
     <div class="pt-20">
-        <div class="text-black text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-left mb-4 sm:mb-6 font-poppins px-4 sm:px-6 lg:px-8 py-4 rounded-lg ml-4 sm:ml-4 lg:ml-12 mt-2 sm:mt-2">
+        <div class="text-black text-sm sm:text-base md:text-lg lg:text-xl font-bold text-left mb-2 sm:mb-4 font-poppins px-2 sm:px-4 lg:px-6 py-2 rounded-lg ml-2 sm:ml-4 lg:ml-8 mt-1 sm:mt-2">
             Semua Berita
         </div>
     <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-lg transition-all duration-300" id="navbar">
@@ -21,7 +21,7 @@
         </div>
         <div class="hidden lg:flex lg:gap-x-8">
             <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Berita</a>
+                         <a href="{{ route('posts.index') }}" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Berita</a>
             <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Tentang</a>
             <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Bidang</a>
             <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins transition-colors duration-200">Persyaratan</a>
@@ -47,7 +47,7 @@
                 <div class="flex-1 mt-4 w-full pl-6">
                     <div class="space-y-2 flex flex-col w-full">
                         <a href="{{ route('home') }}#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
-                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100font-poppins">Berita</a>
+                                                 <a href="{{ route('posts.index') }}" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
                         <a href="{{ route('home') }}#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100  font-poppins">Tentang</a>
                         <a href="{{ route('home') }}#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
                         <a href="{{ route('home') }}#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
@@ -65,9 +65,9 @@
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">  
             @foreach ($posts as $post)
                 <article class="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 animate-fade-in-up">
-                    <div class="w-full h-24 sm:h-28 md:h-32 lg:h-36 bg-gray-100 flex items-center justify-center text-gray-500 text-sm sm:text-base mb-4 sm:mb-5 rounded-xl overflow-hidden">
+                    <div class="w-full aspect-[5/3] bg-gray-100 flex items-center justify-center text-gray-500 text-sm sm:text-base mb-4 sm:mb-5 rounded-xl overflow-hidden">
                         @if($post->photo)
-                            <img src="@photo($post->photo)" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                            <img src="@photo($post->photo)" alt="{{ $post->title }}" class="w-full h-full object-cover object-center">
                         @else
                             <span class="text-sm sm:text-base">IMAGE</span>
                         @endif
@@ -111,38 +111,6 @@
             @endforeach
         </div>
     </div>
-<!-- Scripts -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.getElementById('navbar');
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
-        } else {
-            navbar.classList.remove('shadow-xl', 'bg-white/95', 'backdrop-blur-sm');
-        }
-    });
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in-up');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all elements with scroll-animation class
-    document.querySelectorAll('.scroll-animation').forEach(el => {
-        observer.observe(el);
-    });
-});
-</script>
+<!-- External JavaScript -->
+<script src="{{ asset('js/posts.js') }}"></script>
 @endsection

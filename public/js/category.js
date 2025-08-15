@@ -1,26 +1,21 @@
-// Home Page JavaScript
+// Category Page JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu functionality
+    // Mobile menu toggle
     const openBtn = document.getElementById('mobile-menu-open');
     const closeBtn = document.getElementById('mobile-menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
-    const navbar = document.getElementById('navbar');
     
     if (openBtn && closeBtn && mobileMenu) {
-        // Open mobile menu
-        openBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+        openBtn.addEventListener('click', function() {
             mobileMenu.classList.remove('hidden');
         });
         
-        // Close mobile menu
-        closeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+        closeBtn.addEventListener('click', function() {
             mobileMenu.classList.add('hidden');
         });
         
-        // Close on backdrop click
-        const backdrop = mobileMenu.querySelector('.bg-black');
+        const backdrop = mobileMenu.querySelector('.bg-black\\/40');
         if (backdrop) {
             backdrop.addEventListener('click', function() {
                 mobileMenu.classList.add('hidden');
@@ -29,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
     if (navbar) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
@@ -39,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Intersection Observer for scroll animations
+    // Optimized Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -50,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-fade-in-up');
             } else {
-                // Remove animation class when element is out of viewport
+                // Remove animation class when element is out of viewport for re-animation
                 entry.target.classList.remove('animate-fade-in-up');
             }
         });
@@ -60,21 +56,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.scroll-animation').forEach(el => {
         observer.observe(el);
     });
-    
-    // Memastikan semua button dapat diklik
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.style.pointerEvents = 'auto';
-        button.style.cursor = 'pointer';
-    });
-    
-    console.log('Home page functionality telah diinisialisasi');
 });
-
-// Fungsi untuk toggle mobile menu (fallback)
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenu) {
-        mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
-    }
-}

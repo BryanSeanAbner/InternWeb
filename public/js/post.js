@@ -1,31 +1,34 @@
-// Home Page JavaScript
+// Post Page JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu functionality
     const openBtn = document.getElementById('mobile-menu-open');
     const closeBtn = document.getElementById('mobile-menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
     const navbar = document.getElementById('navbar');
     
     if (openBtn && closeBtn && mobileMenu) {
-        // Open mobile menu
         openBtn.addEventListener('click', function(e) {
             e.preventDefault();
             mobileMenu.classList.remove('hidden');
         });
         
-        // Close mobile menu
         closeBtn.addEventListener('click', function(e) {
             e.preventDefault();
             mobileMenu.classList.add('hidden');
         });
         
-        // Close on backdrop click
-        const backdrop = mobileMenu.querySelector('.bg-black');
+        const backdrop = mobileMenu.querySelector('.bg-black\\/40');
         if (backdrop) {
             backdrop.addEventListener('click', function() {
                 mobileMenu.classList.add('hidden');
             });
         }
+        
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
     }
     
     // Navbar scroll effect
@@ -49,9 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-fade-in-up');
-            } else {
-                // Remove animation class when element is out of viewport
-                entry.target.classList.remove('animate-fade-in-up');
             }
         });
     }, observerOptions);
@@ -60,21 +60,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.scroll-animation').forEach(el => {
         observer.observe(el);
     });
-    
-    // Memastikan semua button dapat diklik
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.style.pointerEvents = 'auto';
-        button.style.cursor = 'pointer';
-    });
-    
-    console.log('Home page functionality telah diinisialisasi');
 });
-
-// Fungsi untuk toggle mobile menu (fallback)
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenu) {
-        mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
-    }
-}

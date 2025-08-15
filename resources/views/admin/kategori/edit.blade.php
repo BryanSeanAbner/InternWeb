@@ -135,24 +135,4 @@
 
 @endsection
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Toggle switch functionality
-    const toggleSwitch = document.querySelector('input[name="is_required"]');
-    const offText = toggleSwitch.parentElement.querySelector('.text-gray-500');
-    const onText = toggleSwitch.parentElement.querySelector('.text-blue-600');
-
-    function updateToggleText() {
-        if (toggleSwitch.checked) {
-            offText.classList.add('hidden');
-            onText.classList.remove('hidden');
-        } else {
-            offText.classList.remove('hidden');
-            onText.classList.add('hidden');
-        }
-    }
-
-    toggleSwitch.addEventListener('change', updateToggleText);
-    updateToggleText(); // Initial state
-});
-</script> 
+<script src="{{ asset('js/admin-kategori.js') }}"></script> 
