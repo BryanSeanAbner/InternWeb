@@ -187,13 +187,13 @@ use Illuminate\Support\Str;
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <i class="fa-solid fa-lock text-gray-400"></i>
                                     </div>
-                                                                         <input type="password" 
-                                            id="new_password" 
-                                            name="new_password" 
-                                            class="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
-                                            placeholder="Masukkan password baru (minimal 8 karakter)"
-                                            onkeyup="checkPasswordStrength(); checkPasswordConfirmation()"
-                                            required>
+                                    <input type="password" 
+                                           id="new_password" 
+                                           name="new_password" 
+                                           class="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                                           placeholder="Masukkan password baru (minimal 8 karakter)"
+                                           onkeyup="checkPasswordStrength(); checkPasswordConfirmation()"
+                                           required>
                                     <button type="button" 
                                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
                                             onclick="togglePassword('new_password')">
@@ -241,33 +241,33 @@ use Illuminate\Support\Str;
                                 @enderror
                             </div>
 
-                                                         <!-- Confirm Password -->
-                             <div>
-                                 <label for="new_password_confirmation" class="block text-sm font-semibold text-gray-700 mb-3">Konfirmasi Password Baru</label>
-                                 <div class="relative">
-                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                         <i class="fa-solid fa-check text-gray-400" id="confirm-check-icon"></i>
-                                     </div>
-                                     <input type="password" 
-                                            id="new_password_confirmation" 
-                                            name="new_password_confirmation" 
-                                            class="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
-                                            placeholder="Konfirmasi password baru"
-                                            onkeyup="checkPasswordConfirmation()"
-                                            required>
-                                     <button type="button" 
-                                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
-                                             onclick="togglePassword('new_password_confirmation')">
-                                         <i class="fa-solid fa-eye-slash" id="new_password_confirmation_icon"></i>
-                                     </button>
-                                 </div>
-                                 <div id="password-match-message" class="mt-2 text-sm hidden">
-                                     <p class="text-green-600 flex items-center">
-                                         <i class="fa-solid fa-check-circle mr-1"></i>
-                                         Password cocok!
-                                     </p>
-                                 </div>
-                             </div>
+                            <!-- Confirm Password -->
+                            <div>
+                                <label for="new_password_confirmation" class="block text-sm font-semibold text-gray-700 mb-3">Konfirmasi Password Baru</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa-solid fa-check text-gray-400" id="confirm-check-icon"></i>
+                                    </div>
+                                    <input type="password" 
+                                           id="new_password_confirmation" 
+                                           name="new_password_confirmation" 
+                                           class="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                                           placeholder="Konfirmasi password baru"
+                                           onkeyup="checkPasswordConfirmation()"
+                                           required>
+                                    <button type="button" 
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110"
+                                            onclick="togglePassword('new_password_confirmation')">
+                                        <i class="fa-solid fa-eye-slash" id="new_password_confirmation_icon"></i>
+                                    </button>
+                                </div>
+                                <div id="password-match-message" class="mt-2 text-sm hidden">
+                                    <p class="text-green-600 flex items-center">
+                                        <i class="fa-solid fa-check-circle mr-1"></i>
+                                        Password cocok!
+                                    </p>
+                                </div>
+                            </div>
 
                             <button type="submit" 
                                     class="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105">
@@ -308,7 +308,7 @@ use Illuminate\Support\Str;
                     </ul>
                 </div>
             </div>
-                </div>
+        </div>
     </div>
 
     <!-- Password Verification Modal -->
@@ -359,115 +359,4 @@ use Illuminate\Support\Str;
     </div>
 
     <script src="{{ asset('js/admin-account-settings.js') }}"></script>
-        passwordDisplay.textContent = '***';
-        toggleIcon.classList.remove('fa-eye');
-        toggleIcon.classList.add('fa-eye-slash');
-        isPasswordVisible = false;
-    }
-}
-
-function togglePassword(fieldId) {
-    const field = document.getElementById(fieldId);
-    const icon = document.getElementById(fieldId + '_icon');
-    
-    if (field.type === 'password') {
-        field.type = 'text';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-    } else {
-        field.type = 'password';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-    }
-}
-
-function checkPasswordStrength() {
-    const password = document.getElementById('new_password').value;
-    const strengthBar = document.getElementById('password-strength-bar');
-    const strengthText = document.getElementById('password-strength-text');
-    
-    // Requirements
-    const hasLength = password.length >= 8;
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasLowercase = /[a-z]/.test(password);
-    const hasNumber = /[0-9]/.test(password);
-    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    
-    // Update requirement indicators
-    updateRequirement('req-length', hasLength);
-    updateRequirement('req-uppercase', hasUppercase);
-    updateRequirement('req-lowercase', hasLowercase);
-    updateRequirement('req-number', hasNumber);
-    updateRequirement('req-special', hasSpecial);
-    
-    // Calculate strength
-    let strength = 0;
-    if (hasLength) strength += 20;
-    if (hasUppercase) strength += 20;
-    if (hasLowercase) strength += 20;
-    if (hasNumber) strength += 20;
-    if (hasSpecial) strength += 20;
-    
-    // Update strength bar and text
-    strengthBar.style.width = strength + '%';
-    
-    if (strength === 0) {
-        strengthBar.className = 'h-2 rounded-full transition-all duration-300';
-        strengthText.textContent = 'Kosong';
-        strengthText.className = 'text-sm font-medium text-gray-500';
-    } else if (strength <= 40) {
-        strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-red-500';
-        strengthText.textContent = 'Lemah';
-        strengthText.className = 'text-sm font-medium text-red-500';
-    } else if (strength <= 60) {
-        strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-yellow-500';
-        strengthText.textContent = 'Sedang';
-        strengthText.className = 'text-sm font-medium text-yellow-600';
-    } else if (strength <= 80) {
-        strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-blue-500';
-        strengthText.textContent = 'Kuat';
-        strengthText.className = 'text-sm font-medium text-blue-600';
-    } else {
-        strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-green-500';
-        strengthText.textContent = 'Sangat Kuat';
-        strengthText.className = 'text-sm font-medium text-green-600';
-    }
-}
-
-function updateRequirement(elementId, isMet) {
-    const element = document.getElementById(elementId);
-    const icon = element.querySelector('i');
-    
-    if (isMet) {
-        icon.className = 'fa-solid fa-check text-green-500 mr-2';
-        element.className = 'flex items-center text-green-600';
-    } else {
-        icon.className = 'fa-solid fa-circle text-gray-300 mr-2';
-        element.className = 'flex items-center text-gray-600';
-    }
-}
-
-function checkPasswordConfirmation() {
-    const newPassword = document.getElementById('new_password').value;
-    const confirmPassword = document.getElementById('new_password_confirmation').value;
-    const confirmIcon = document.getElementById('confirm-check-icon');
-    const matchMessage = document.getElementById('password-match-message');
-    
-    if (confirmPassword.length > 0) {
-        if (newPassword === confirmPassword) {
-            // Password cocok - tampilkan centang hijau
-            confirmIcon.className = 'fa-solid fa-check text-green-500';
-            matchMessage.classList.remove('hidden');
-        } else {
-            // Password tidak cocok - tampilkan centang abu-abu
-            confirmIcon.className = 'fa-solid fa-check text-gray-400';
-            matchMessage.classList.add('hidden');
-        }
-    } else {
-        // Field kosong - tampilkan centang abu-abu
-        confirmIcon.className = 'fa-solid fa-check text-gray-400';
-        matchMessage.classList.add('hidden');
-    }
-}
-</script>
 @endsection
