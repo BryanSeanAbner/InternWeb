@@ -73,6 +73,21 @@
     </div>
 </div>
 
+<!-- Hero Section -->
+<div id="home" class="relative h-screen flex items-center justify-start bg-cover bg-center mb-12 pt-20 scroll-animation" style="background-image: url('{{ asset('img/hero.jpg') }}');">
+    <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6 scroll-animation">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            Mulai Pengalaman Magangmu di Nusantara TV
+        </h1>
+        <p class="text-lg text-white mb-6">
+            Bergabunglah dalam magang kami untuk pengalaman berharga di dunia penyiaran dan produksi media.
+        </p>
+        <a href="#howtoapply" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            Cara Mendaftar
+        </a>
+    </div>
+</div>
+
 <!-- Berita Section -->
 <div id="berita" class="py-8 container mx-auto px-4">
     <div class="flex flex-col items-center mb-8 scroll-animation">
