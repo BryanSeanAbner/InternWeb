@@ -11,6 +11,6 @@ class Requirement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'icon', 'title', 'description',
+        'icon', 'title', 'description', 'is_optional',
     ];
 }

@@ -39,10 +39,7 @@ class ApplyStepSeeder extends Seeder
             ],
         ];
         foreach ($data as $item) {
-            ApplyStep::firstOrCreate(
-                ['step_number' => $item['step_number']],
-                $item
-            );
+            ApplyStep::create($item);
         }
     }
 }

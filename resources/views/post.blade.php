@@ -1,134 +1,285 @@
-@extends('layouts.app')
-
-@section('content')
-
-<!-- Header/Navbar -->
-<div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
-    <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
-        <div class="flex lg:flex-1">
-            <a href="#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
-        </div>
-        <div class="flex lg:hidden">
-            <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black focus:outline-none">
-                <span class="sr-only">Open main menu</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
-                    <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-        </div>
-        <div class="hidden lg:flex lg:gap-x-8">
-            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
-            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Tentang</a>
-            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Bidang</a>
-            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Persyaratan</a>
-            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Testimonial</a>
-            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Cara Mendaftar</a>
-            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Kontak</a>
-        </div>
-    </nav>
-    <!-- Mobile menu, show/hide based on menu open state. -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
-        <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
-        <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
-            <div class="flex items-center justify-between w-full pl-6 pr-2">
-                <a href="#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
-                <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
-                    <span class="sr-only">Close menu</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
-                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $post->title }} - Nusantara TV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        :root {
+            --primary-black: #000000;
+            --secondary-black: #1a1a1a;
+            --accent-gray: #333333;
+            --light-gray: #666666;
+            --border-gray: #e0e0e0;
+            --background-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background-gray);
+            color: var(--accent-gray);
+            margin: 0;
+        }
+        .header {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            height: 80px;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo-tagline {
+            font-size: 11px;
+            color: #999;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+        .nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+        .nav a:hover {
+            color: #ccc;
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+        .nav a:hover::after {
+            width: 100%;
+        }
+        .search-container {
+            position: relative;
+        }
+        .search-input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            padding: 10px 40px 10px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            width: 280px;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+        }
+        .search-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        .featured-image {
+            width: 100%;
+            height: 350px;
+            background: var(--background-gray);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-gray);
+            font-size: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+        .side-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .side-article {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        .side-article-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-black);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        .side-article-meta {
+            font-size: 12px;
+            color: var(--light-gray);
+            margin-bottom: 12px;
+        }
+        .side-article-excerpt {
+            font-size: 14px;
+            color: var(--accent-gray);
+            line-height: 1.5;
+        }
+        .detail-content {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            padding: 40px 32px;
+        }
+        .detail-category {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+        .detail-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            line-height: 1.15;
+        }
+        .detail-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 15px;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        .detail-body {
+            font-size: 1.15rem;
+            color: #333;
+            line-height: 1.7;
+        }
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .side-articles {
+                flex-direction: row;
+                gap: 16px;
+            }
+        }
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 20px; height: auto; }
+            .main-content { padding: 0 8px; }
+            .detail-content { padding: 20px 8px; }
+            .featured-image { height: 180px; }
+            .detail-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <div class="logo">NUSANTARA TV</div>
+                <div class="logo-tagline">PROFESSIONAL MEDIA NETWORK</div>
             </div>
-            <div class="flow-root bg-white w-full">
-                <div class="flex-1 mt-4 w-full pl-6">
-                    <div class="space-y-2 flex flex-col w-full">
-                        <a href="#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
-                        <a href="#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
-                        <a href="#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Tentang</a>
-                        <a href="#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
-                        <a href="#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
-                        <a href="#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Testimonial</a>
-                        <a href="#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Cara Mendaftar</a>
-                        <a href="#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Kontak</a>
-                    </div>
-                </div>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/posts">News</a>
+                <a href="#internships">Internships</a>
+                <a href="#programs">Programs</a>
+                <a href="#about">About</a>
+            </nav>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search news, articles...">
             </div>
         </div>
-    </div>
-    </header> 
-</div>
-    <!-- Main Content -->
-    <main class="pt-20 max-w-7xl mx-auto mt-8 px-4 md:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Post Detail -->
-        <div class="lg:col-span-2">
-            <div class="w-full h-56 md:h-80 rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden mb-8">
+    </header>
+    <main class="main-content">
+        <div>
+            <div class="featured-image">
                 @if($post->photo)
-                    <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="w-full h-full object-cover" />
+                    <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}">
                 @else
-                    <span class="text-gray-500">FEATURED STORY IMAGE</span>
+                    FEATURED STORY IMAGE
                 @endif
             </div>
-            <div class="bg-white rounded-xl shadow p-6 md:p-10">
-                <div class="inline-block bg-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 font-poppins">
+            <div class="detail-content">
+                <div class="detail-category">
                     {{ $post->category->name ?? 'Uncategorized' }}
                 </div>
-                <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 leading-tight font-poppins">{{ $post->title }}</h1>
-                <div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-6">
-                    <span class="font-poppins">By Editorial Team</span>
-                    <span class="font-poppins">|</span>
-                    <span class="font-poppins">{{ $post->created_at->format('F d, Y') }}</span>
+                <h1 class="detail-title">{{ $post->title }}</h1>
+                <div class="detail-meta">
+                    <span>By Editorial Team</span>
+                    <span>{{ $post->created_at->format('F d, Y') }}</span>
+                    <span>8 min read</span>
                 </div>
-                <div class="prose max-w-none text-gray-800 text-base md:text-lg leading-relaxed">
-                    {!! nl2br(e($post->body)) !!}
-                </div>
+                <div class="detail-body">{!! nl2br(e($post->body)) !!}</div>
             </div>
         </div>
-        <!-- Sidebar -->
-        <aside class="lg:col-span-1">
-            <div class="text-xl font-bold mb-6 text-gray-800 font-poppins">Berita yang serupa dengan bidang ini</div>
-            <div class="flex flex-col gap-4">
+        <aside>
+            <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 18px; color: #222;">Berita yang serupa dengan bidang ini</div>
+            <div class="side-articles">
                 @forelse($sidePosts as $side)
-                    <div class="bg-white rounded-lg shadow-xl p-4 flex flex-col">
-                        <div class="w-full h-28 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden mb-3">
+                    <div class="side-article">
+                        <div class="side-article-image" style="width:100%;height:120px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;color:#888;font-size:13px;margin-bottom:10px;border-radius:8px;overflow:hidden;">
                             @if($side->photo)
-                                <img src="{{ asset('storage/' . $side->photo) }}" alt="{{ $side->title }}" class="w-full h-full object-cover" />
+                                <img src="{{ asset('storage/' . $side->photo) }}" alt="{{ $side->title }}" style="width:100%;height:100%;object-fit:cover;">
                             @else
-                                <span class="text-gray-500 text-sm">IMAGE</span>
+                                IMAGE
                             @endif
                         </div>
-                        <div class="font-semibold text-gray-900 text-base mb-1 font-poppins">{{ $side->title }}</div>
-                        <div class="text-xs text-gray-500 mb-2 font-poppins">{{ $side->created_at->format('F d, Y') }}</div>
-                        <div class="text-sm text-gray-700 font-poppins">{{ Str::limit(strip_tags($side->body), 100) }}</div>
+                        <div class="side-article-title">{{ $side->title }}</div>
+                        <div class="side-article-meta">{{ $side->created_at->format('F d, Y') }}</div>
+                        <div class="side-article-excerpt">{{ Str::limit(strip_tags($side->body), 100) }}</div>
                     </div>
                 @empty
-                    <div class="text-gray-400 text-sm font-poppins">Tidak ada berita serupa.</div>
+                    <div style="color:#888;">Tidak ada berita serupa.</div>
                 @endforelse
             </div>
         </aside>
     </main>
-    <!-- Mobile Navbar Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const openBtn = document.getElementById('mobile-menu-open');
-            const closeBtn = document.getElementById('mobile-menu-close');
-            const mobileMenu = document.getElementById('mobile-menu');
-            openBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                mobileMenu.classList.remove('hidden');
-            });
-            closeBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                mobileMenu.classList.add('hidden');
-            });
-            mobileMenu.querySelector('.bg-black\/40').addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        });
-    </script>
+</body>
+</html>

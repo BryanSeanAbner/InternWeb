@@ -73,7 +73,6 @@ class KategoriController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         $subcategories = $category->subcategories;
         $testimonials = \App\Models\Testimonial::where('category_id', $category->id)->get();
-        $posts = \App\Models\Post::where('category_id', $category->id)->latest()->get();
-        return view('category', compact('category', 'subcategories', 'testimonials', 'posts'));
+        return view('category', compact('category', 'subcategories', 'testimonials'));
     }
 }
