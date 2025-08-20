@@ -14,6 +14,7 @@ class Category extends Model
         'slug',
         'description',
         'photo',
+        'is_required',
     ];
 
     public function posts()
@@ -24,5 +25,10 @@ class Category extends Model
     public function subcategories()
     {
         return $this->hasMany(Subcategory::class);
+    }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
     }
 } 

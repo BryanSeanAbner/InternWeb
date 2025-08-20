@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $latestPosts = Post::with('category')->latest()->take(3)->get();
-        $categories = Category::all();
+        $categories = Category::where('is_required', true)->get();
         $testimonials = Testimonial::with('category')->get();
         $benefits = InternshipBenefit::all();
         $requirements = Requirement::all();

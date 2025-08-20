@@ -2,80 +2,76 @@
 
 @section('content')
 <div class="bg-white">
-    <header class="navbar-sticky fixed inset-x-0 top-0 z-50 shadow-xl">
-    <nav aria-label="Global" class=" bg-white flex items-center justify-between p-4 md:p-6 lg:px-8">
-        <div class="flex lg:flex-1">
-            <a href="{{ route('home') }}#home" class="-m-1.5 p-1.5 text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
-        </div>
-        <div class="flex lg:hidden">
-            <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black focus:outline-none">
-                <span class="sr-only">Open main menu</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
-                    <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-        </div>
-        <div class="hidden lg:flex lg:gap-x-8">
-            <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Home</a>
-            <a href="{{ route('home') }}#berita" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Berita</a>
-            <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Tentang</a>
-            <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Bidang</a>
-            <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Persyaratan</a>
-            <a href="{{ route('home') }}#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Testimonial</a>
-            <a href="{{ route('home') }}#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Cara Mendaftar</a>
-            <a href="{{ route('home') }}#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-200 font-poppins">Kontak</a>
-        </div>
-    </nav>
-    <!-- Mobile menu, show/hide based on menu open state. -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
-        <div class="fixed inset-0 bg-black/40" aria-hidden="true"></div>
-        <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-0 py-4 sm:ring-1 sm:ring-gray-900/10 flex flex-col items-start" style="width:fit-content; min-width:max-content;">
-            <div class="flex items-center justify-between w-full pl-6 pr-2">
-                <a href="{{ route('home') }}#home" class="text-2xl font-bold trackinbig-wide text-blue-700 font-poppins">Nusantara TV</a>
-                <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 focus:outline-none">
-                    <span class="sr-only">Close menu</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="w-7 h-7">
-                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Header -->
+    <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-lg transition-all duration-300" id="navbar">
+        <nav class="flex items-center justify-between p-4 md:p-6">
+            <div class="flex lg:flex-1">
+                <a href="{{ route('home') }}#home" class="text-2xl font-bold tracking-wide text-blue-700 font-poppins">Nusantara TV</a>
+            </div>
+            <div class="flex lg:hidden">
+                <button id="mobile-menu-open" type="button" class="p-2 text-black">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
+                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </div>
-            <div class="flow-root bg-white w-full">
-                <div class="flex-1 mt-4 w-full pl-6">
-                    <div class="space-y-2 flex flex-col w-full">
-                        <a href="{{ route('home') }}#home" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Home</a>
-                        <a href="{{ route('home') }}#berita" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Berita</a>
-                        <a href="{{ route('home') }}#tentang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Tentang</a>
-                        <a href="{{ route('home') }}#bidang" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Bidang</a>
-                        <a href="{{ route('home') }}#persyaratan" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Persyaratan</a>
-                        <a href="{{ route('home') }}#testimonial" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Testimonial</a>
-                        <a href="{{ route('home') }}#howtoapply" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Cara Mendaftar</a>
-                        <a href="{{ route('home') }}#contactus" class="block rounded-lg px-0 py-2 pt-6 text-base font-semibold text-gray-900 hover:bg-gray-100 font-poppins">Kontak</a>
-                    </div>
+            <div class="hidden lg:flex lg:gap-x-8">
+                <a href="{{ route('home') }}#home" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Home</a>
+                <a href="{{ route('home') }}#berita" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Berita</a>
+                <a href="{{ route('home') }}#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Tentang</a>
+                <a href="{{ route('home') }}#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Bidang</a>
+                <a href="{{ route('home') }}#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Persyaratan</a>
+                <a href="{{ route('home') }}#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Testimonial</a>
+                <a href="{{ route('home') }}#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Cara Mendaftar</a>
+                <a href="{{ route('home') }}#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-500 transition-colors font-poppins">Kontak</a>
+            </div>
+        </nav>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
+            <div class="fixed inset-0 bg-black/40"></div>
+            <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-4 py-6 w-64">
+                <div class="flex items-center justify-between mb-6">
+                    <a href="{{ route('home') }}#home" class="text-xl font-bold text-blue-700 font-poppins">Nusantara TV</a>
+                    <button id="mobile-menu-close" type="button" class="p-2 text-gray-700">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
+                            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <a href="{{ route('home') }}#home" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Home</a>
+                    <a href="{{ route('home') }}#berita" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Berita</a>
+                    <a href="{{ route('home') }}#tentang" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Tentang</a>
+                    <a href="{{ route('home') }}#bidang" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Bidang</a>
+                    <a href="{{ route('home') }}#persyaratan" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Persyaratan</a>
+                    <a href="{{ route('home') }}#testimonial" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Testimonial</a>
+                    <a href="{{ route('home') }}#howtoapply" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Cara Mendaftar</a>
+                    <a href="{{ route('home') }}#contactus" class="block text-base font-semibold text-gray-900 hover:text-blue-700 font-poppins">Kontak</a>
                 </div>
             </div>
         </div>
-    </div>
-    </header> 
+    </header>
 </div>
 
 <!-- Hero Section -->
-<section class="pt-20 pb-16 md:pb-20 lg:pb-24 bg-gradient-to-br from-gray-50 to-white">
+<section class="pt-20 pb-16 bg-gradient-to-br from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div class="text-center lg:text-left">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight font-poppins">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left scroll-animation">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-700 mb-6 font-poppins">
                     {{ $category->name }}
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 font-poppins">
+                <p class="text-lg sm:text-xl text-black mb-8 font-poppins text-justify">
                     {{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}
                 </p>
             </div>
-            <div class="relative pt-10">
+                                    <div class="relative scroll-animation">
                 @if($category->photo)
-                    <img src="@photo($category->photo)" alt="{{ $category->name }}" class="hero-image w-full h-80 md:h-96 object-cover hover:shadow-xl transition-shadow duration-300">
+                    <img src="@photo($category->photo)" alt="{{ $category->name }}" class="w-full h-80 md:h-96 pt-8 object-cover rounded-lg shadow-lg">
                 @else
-                    <div class="hero-placeholder w-full h-80 md:h-96 bg-gray-100 flex items-center justify-center text-gray-500 text-2xl font-semibold">
-                        {{ $category->icon ?? '📺' }} {{ $category->sub_name ?? $category->name }}
+                    <div class="w-full h-80 md:h-96 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 text-2xl font-semibold font-poppins">
+                        📺 {{ $category->name }}
                     </div>
                 @endif
             </div>
@@ -83,19 +79,19 @@
     </div>
 </section>
 
-<!-- Section Program Magang Unggulan -->
-@if(isset($subcategories) && $subcategories->count())
-<section class="py-16 md:py-20 bg-white">
+<!-- Subcategories Section -->
+@if(isset($subcategories) && $subcategories->count() > 0)
+<section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-black mb-4 font-poppins">Spesialisasi {{ $category->name }}</h2>
-            <div class="w-32 h-1 bg-black mx-auto rounded"></div>
+        <div class="text-center mb-12 scroll-animation">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-4 font-poppins">Spesialisasi {{ $category->name }}</h2>
+            <div class="w-32 h-1 bg-blue-700 mx-auto rounded"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($subcategories as $sub)
-            <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+                                    <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 scroll-animation">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 font-poppins">{{ $sub->name }}</h3>
-                <div class="text-gray-600 leading-relaxed font-poppins prose prose-sm prose-ol:list-decimal prose-ul:list-disc prose-li:my-1 text-justify">{!! $sub->description !!}</div>
+                <div class="prose prose-gray max-w-none text-gray-600 leading-relaxed font-poppins">{!! $sub->description !!}</div>
             </div>
             @endforeach
         </div>
@@ -103,14 +99,14 @@
 </section>
 @endif
 
-<!-- Section Testimonial -->
-@if(isset($testimonials) && count($testimonials))
-<div class="py-16" id="testimonial">
+<!-- Testimonials Section -->
+@if(isset($testimonials) && count($testimonials) > 0)
+<section class="py-16 bg-gray-50" id="testimonial">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">
-            Apa Kata Mereka tentang Program Magang Ini di {{ $category->name}}
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 scroll-animation font-poppins">
+            Apa Kata Mereka tentang Program Magang Ini di {{ $category->name }}
         </h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
     
          <div class="overflow-hidden relative py-8">
              <div class="flex animate-scroll-x gap-4">
@@ -131,116 +127,10 @@
              </div>
          </div>
     </div>
-</div>
+</section>
 @endif
 
-
-<!-- Mobile Navbar Script -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const openBtn = document.getElementById('mobile-menu-open');
-        const closeBtn = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        openBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            mobileMenu.classList.remove('hidden');
-        });
-        
-        closeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            mobileMenu.classList.add('hidden');
-        });
-        
-        mobileMenu.querySelector('.bg-black\/40').addEventListener('click', function() {
-            mobileMenu.classList.add('hidden');
-        });
-        
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    });
-</script>
-
-<style>
-/* Custom styling untuk memastikan list dirender dengan benar di halaman kategori */
-.prose ol {
-    list-style-type: decimal !important;
-    padding-left: 1.5rem !important;
-    margin-left: 0 !important;
-}
-
-.prose ul {
-    list-style-type: disc !important;
-    padding-left: 1.5rem !important;
-    margin-left: 0 !important;
-}
-
-.prose li {
-    margin-bottom: 0.25rem !important;
-    display: list-item !important;
-}
-
-.prose ol li::marker {
-    color: inherit !important;
-    font-weight: inherit !important;
-}
-
-.prose ul li::marker {
-    color: inherit !important;
-    font-weight: inherit !important;
-}
-
-/* Text justify untuk semua elemen dalam prose */
-.prose p {
-    text-align: justify !important;
-}
-
-.prose li {
-    text-align: justify !important;
-}
-</style>
-
-<!-- Image Animation Script -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const heroImage = document.querySelector('.hero-image');
-        
-        if (heroImage) {
-            // Add loading class initially
-            heroImage.classList.add('loading');
-            
-            // Handle image load event
-            heroImage.addEventListener('load', function() {
-                this.classList.remove('loading');
-                this.classList.add('loaded');
-            });
-            
-            // Handle image error event
-            heroImage.addEventListener('error', function() {
-                this.classList.remove('loading');
-                // You can add fallback image here if needed
-            });
-            
-            // Check if image is already loaded (cached)
-            if (heroImage.complete) {
-                heroImage.classList.remove('loading');
-                heroImage.classList.add('loaded');
-            }
-        }
-        
-        // Add click animation for image
-        const imageContainer = document.querySelector('.hero-image-container');
-        if (imageContainer) {
-            imageContainer.addEventListener('click', function() {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
-            });
-        }
-    });
-</script>
+<!-- External CSS and JS -->
+<link rel="stylesheet" href="{{ asset('css/category.css') }}">
+<script src="{{ asset('js/category.js') }}"></script>
 @endsection 

@@ -2,8 +2,8 @@
 
 @section('content')
 <!-- Header/Navbar -->
-<header class="fixed inset-x-0 top-0 z-50 bg-white border-b border-gray-200 shadow">
-    <nav class="flex items-center justify-between p-4">
+<header class="fixed inset-x-0 top-0 z-50 bg-white border-b border-gray-200 shadow-lg transition-all duration-300" id="navbar">
+    <nav class="flex items-center justify-between p-4 md:p-6">
         <div class="flex">
             <a href="#home" class="text-2xl font-bold text-blue-700">
                 Nusantara TV
@@ -20,14 +20,14 @@
         </div>
         
         <div class="hidden lg:flex lg:gap-x-8">
-            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800">Home</a>
-            <a href="#berita" class="text-base font-semibold text-blue-700 hover:text-blue-800">Berita</a>
-            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Tentang</a>
-            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800">Bidang</a>
-            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800">Persyaratan</a>
-            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800">Testimonial</a>
-            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800">Cara Mendaftar</a>
-            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800">Kontak</a>
+            <a href="#home" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Home</a>
+                         <a href="{{ route('posts.index') }}" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Berita</a>
+            <a href="#tentang" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Tentang</a>
+            <a href="#bidang" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Bidang</a>
+            <a href="#persyaratan" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Persyaratan</a>
+            <a href="#testimonial" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Testimonial</a>
+            <a href="#howtoapply" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Cara Mendaftar</a>
+            <a href="#contactus" class="text-base font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Kontak</a>
         </div>
     </nav>
     
@@ -36,7 +36,7 @@
         <div class="fixed inset-0 bg-black bg-opacity-40"></div>
         <div class="fixed inset-y-0 right-0 bg-white shadow-xl px-4 py-4">
             <div class="flex items-center justify-between w-full">
-                <a href="#home" class="text-2xl font-bold text-blue-700">Nusantara TV</a>
+                <a href="{{ route('home') }}#home" class="text-2xl font-bold text-blue-700">Nusantara TV</a>
                 <button id="mobile-menu-close" type="button" class="text-gray-700">
                     <span class="sr-only">Close menu</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
@@ -46,7 +46,7 @@
             </div>
             <div class="mt-4">
                 <a href="#home" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Home</a>
-                <a href="#berita" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
+                                 <a href="{{ route('posts.index') }}" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
                 <a href="#tentang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Tentang</a>
                 <a href="#bidang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Bidang</a>
                 <a href="#persyaratan" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Persyaratan</a>
@@ -58,16 +58,17 @@
     </div>
 </header>
 
+
 <!-- Hero Section -->
-<div id="home" class="relative h-screen flex items-center justify-start bg-cover bg-center mb-12 pt-20" style="background-image: url('{{ asset('img/hero.jpg') }}');">
-    <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6">
+<div id="home" class="relative h-screen flex items-center justify-start bg-cover bg-center mb-12 pt-20 scroll-animation" style="background-image: url('{{ asset('img/hero.jpg') }}');">
+    <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6 scroll-animation">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
             Mulai Pengalaman Magangmu di Nusantara TV
         </h1>
         <p class="text-lg text-white mb-6">
             Bergabunglah dalam magang kami untuk pengalaman berharga di dunia penyiaran dan produksi media.
         </p>
-        <a href="#howtoapply" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800">
+        <a href="#howtoapply" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
             Cara Mendaftar
         </a>
     </div>
@@ -75,22 +76,32 @@
 
 <!-- Berita Section -->
 <div id="berita" class="py-8 container mx-auto px-4">
-    <div class="flex flex-col items-center mb-8 animate-fade-in-up">
+    <div class="flex flex-col items-center mb-8 scroll-animation">
         <div class="text-3xl md:text-4xl font-bold text-blue-700 text-center mb-2">Berita Terkini</div>
-        <div class="w-20 h-1 bg-blue-700 rounded mb-8 animate-pulse"></div>
+        <div class="w-20 h-1 bg-blue-700 rounded mb-8"></div>
     </div>
     
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         @foreach(($allPosts ?? $latestPosts) as $index => $post)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl card-hover animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
-                <div class="relative flex flex-col items-center justify-center h-48 mb-6 bg-gray-100 rounded-lg overflow-hidden">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col min-h-[420px] p-6 hover:shadow-xl card-hover scroll-animation transform hover:-translate-y-2 transition-all duration-300">
+                <div class="relative mb-6 bg-gray-100 rounded-lg overflow-hidden aspect-[5/3]">
                     <img src="@photoWithFallback($post->photo, 'berita')" alt="{{ $post->title }}" class="w-full h-full object-cover rounded-lg" />
                 </div>
                 
                 <div class="flex justify-between items-center mb-4">
-                    <span class="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold uppercase">
-                        {{ $post->category ? $post->category->name : 'Uncategorized' }}
-                    </span>
+                    @if($post->category && $post->category->is_required)
+                        <a href="{{ route('categories.show', $post->category->slug) }}" class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+                            {{ $post->category->name }}
+                        </a>
+                    @elseif($post->category && !$post->category->is_required)
+                        <span class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase cursor-not-allowed">
+                            {{ $post->category->name }}
+                        </span>
+                    @else
+                        <span class="inline-block bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold uppercase">
+                            Uncategorized
+                        </span>
+                    @endif
                     <span class="text-base text-gray-500">
                         {{ $post->created_at->format('d M Y') }}
                     </span>
@@ -102,7 +113,7 @@
                     </a>
                 </h4>
                 
-                <p class="text-gray-500 text-base mb-6">
+                <p class="text-gray-500 text-base mb-4">
                     {{ Str::limit(strip_tags($post->body), 100) }}
                 </p>
                 
@@ -113,8 +124,8 @@
         @endforeach
     </div>
     
-    <div class="text-center mt-8 animate-fade-in-up animation-delay-600">
-        <a href="{{ route('posts.index') }}" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800">
+    <div class="text-center mt-12 scroll-animation">
+        <a href="{{ route('posts.index') }}" class="bg-blue-700 text-white px-8 py-3 rounded-full text-xl font-semibold hover:bg-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
             Baca Berita Lainnya
         </a>
     </div>
@@ -123,12 +134,12 @@
 <!-- Tentang Section -->
 <div class="py-16" id="tentang">
     <div class="max-w-7xl mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">Tentang Magang</h2>
-        <div class="w-20 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 scroll-animation">Tentang Magang</h2>
+        <div class="w-20 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($benefits as $index => $benefit)
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center card-hover animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center card-hover scroll-animation transform hover:-translate-y-2 transition-all duration-300">
                     <div class="text-3xl mb-4">{{ $benefit->icon }}</div>
                     <div class="text-lg font-bold text-blue-700 mb-2">{{ $benefit->title }}</div>
                     <div class="text-base text-gray-700">{{ $benefit->description }}</div>
@@ -141,15 +152,21 @@
 <!-- Bidang Section -->
 <div class="py-16" id="bidang">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">Kategori Bidang Magang</h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 scroll-animation">Kategori Bidang Magang</h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $index => $cat)
-                <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl card-hover animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
-                    <img src="@photoWithFallback($cat->photo, 'kategori')" alt="{{ $cat->name }}" class="object-cover w-full h-48" />
-                    <div class="p-4">
-                        <div class="text-lg font-bold text-blue-700">{{ $cat->name }}</div>
+                <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl card-hover scroll-animation transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="aspect-[5/3] overflow-hidden relative group">
+                        <img src="@photoWithFallback($cat->photo, 'kategori')" alt="{{ $cat->name }}" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-110" />
+                        <!-- Overlay dengan teks -->
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center transition-all duration-300 group-hover:bg-opacity-60">
+                            <div class="text-white text-center">
+                                <h3 class="text-xl font-bold">{{ $cat->name }}</h3>
+                            </div>
+                        </div>
                     </div>
+                    
                 </a>
             @endforeach
         </div>
@@ -159,12 +176,12 @@
 <!-- Persyaratan Section -->
 <div class="py-16" id="persyaratan">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">Persyaratan</h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 scroll-animation">Persyaratan</h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($requirements as $index => $req)
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover scroll-animation transform hover:-translate-y-2 transition-all duration-300">
                     <div class="text-2xl mb-2">{{ $req->icon }}</div>
                     <div class="text-lg font-bold text-blue-700 mb-2">
                         {{ $req->title }}
@@ -179,10 +196,10 @@
 <!-- Testimonial Section -->
 <div class="py-16" id="testimonial">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 scroll-animation">
             Apa Kata Mereka tentang Program Magang Ini
         </h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
     
          <div class="overflow-hidden relative py-8">
              <div class="flex animate-scroll-x gap-4">
@@ -208,12 +225,12 @@
 <!-- Cara Mendaftar Section -->
 <div id="howtoapply" class="py-16">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 animate-fade-in-up">Cara Mendaftar</h2>
-        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded animate-pulse"></div>
+        <h2 class="text-3xl font-bold text-center text-blue-700 mb-4 scroll-animation">Cara Mendaftar</h2>
+        <div class="w-32 h-1 bg-blue-700 mx-auto mb-10 rounded"></div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-8">
             @foreach($applySteps as $index => $step)
-                <div class="flex flex-col items-center text-center animate-fade-in-up" style="animation-delay: {{ $index * 200 }}ms;">
+                <div class="flex flex-col items-center text-center scroll-animation">
                     <!-- Circle Container -->
                     <div class="mb-4">
                         <div class="w-20 h-20 bg-blue-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
@@ -235,8 +252,8 @@
         </div>
         
         @if($applySteps->last() && $applySteps->last()->button_text)
-            <div class="text-center mt-10 animate-fade-in-up animation-delay-800">
-                <a href="{{ route('form') }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
+            <div class="text-center mt-10 scroll-animation">
+                <a href="https://bit.ly/FROM-INT-NUSANTARATV" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
                     {{ $applySteps->last()->button_text }}
                 </a>
             </div>
@@ -245,25 +262,25 @@
 </div>
 
 <!-- Footer -->
-<footer id="contactus" class="pt-12 mt-12 text-white animate-fade-in-up" style="background: url('{{ asset('img/banner-background.jpg') }}') center/cover no-repeat;">
+<footer id="contactus" class="pt-12 mt-12 text-white scroll-animation" style="background: url('{{ asset('img/banner-background.jpg') }}') center/cover no-repeat;">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap justify-between items-stretch gap-8 px-4">
-        <div class="flex-[2] min-w-[320px] max-w-[900px] mb-8 md:mb-0 flex flex-col animate-slide-in-left">
+        <div class="flex-[2] min-w-[320px] max-w-[900px] mb-8 md:mb-0 flex flex-col scroll-animation">
             <div class="text-2xl font-bold mb-4">Lokasi Nusantara TV</div>
             <div class="w-full h-80 md:h-[32rem] rounded-xl overflow-hidden mb-4 hover:shadow-2xl transition-shadow duration-300">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.585492366193!2d106.87387437428204!3d-6.186187460609973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5689acb01bd%3A0xdb532d1cdbfa11e7!2sNT%20Tower!5e0!3m2!1sen!2sid!4v1752052938203!5m2!1sen!2sid" width="100%" height="100%" class="border-0 w-full h-full" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>  
         </div>
         
-        <div class="flex-[1] min-w-[220px] max-w-[600px] mb-8 md:mb-0 flex flex-col justify-start animate-slide-in-right">
+        <div class="flex-[1] min-w-[220px] max-w-[600px] mb-8 md:mb-0 flex flex-col justify-start scroll-animation">
             <div class="text-2xl font-bold mb-4">Kontak Kami</div>
             <div class="mb-2 hover:text-blue-300 transition-colors duration-300">
-                Email: <br>hello@nttower.com
+                Email: <br>nusantaratv@gmail.com
             </div>
             <div class="mb-2 hover:text-blue-300 transition-colors duration-300">
-                Call us at: <br>0881-0100-65128
+                Hubungi kami: <br>+62 857-7734-9636
             </div>
             <div class="mb-2 hover:text-blue-300 transition-colors duration-300">
-                Our Location: <br>Jl. Pulomas Selatan Kav. Blok, Kota Jakarta Timur 13210
+                Lokasi Kami: <br>Jl. Pulomas Selatan Kav. Blok, Kota Jakarta Timur 13210
             </div>
             
             <div class="flex gap-4 mt-4">
@@ -300,29 +317,6 @@
     <img src="{{ asset('img/whatsapp-logo.png') }}" alt="WhatsApp" class="w-12 h-12">
 </a>
 
-<!-- Scripts -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const openBtn = document.getElementById('mobile-menu-open');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    // Open mobile menu
-    openBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileMenu.classList.remove('hidden');
-    });
-    
-    // Close mobile menu
-    closeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileMenu.classList.add('hidden');
-    });
-    
-    // Close on backdrop click
-    mobileMenu.querySelector('.bg-black').addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-    });
-});
-</script>
+<!-- External JavaScript -->
+    <script src="{{ asset('js/script.js') }}"></script>
 @endsection

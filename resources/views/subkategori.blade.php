@@ -107,42 +107,5 @@
     </div>
 </div>
 
-<style>
-/* Custom styling untuk memastikan list dirender dengan benar */
-.prose ol {
-    list-style-type: decimal !important;
-    padding-left: 1.5rem !important;
-    margin-left: 0 !important;
-}
-
-.prose ul {
-    list-style-type: disc !important;
-    padding-left: 1.5rem !important;
-    margin-left: 0 !important;
-}
-
-.prose li {
-    margin-bottom: 0.25rem !important;
-    display: list-item !important;
-}
-
-.prose ol li::marker {
-    color: inherit !important;
-    font-weight: inherit !important;
-}
-
-.prose ul li::marker {
-    color: inherit !important;
-    font-weight: inherit !important;
-}
-
-/* Text justify untuk semua elemen dalam prose */
-.prose p {
-    text-align: justify !important;
-}
-
-.prose li {
-    text-align: justify !important;
-}
-</style>
+<link rel="stylesheet" href="{{ asset('css/subkategori.css') }}">
 @endsection 

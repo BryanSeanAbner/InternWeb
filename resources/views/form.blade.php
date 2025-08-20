@@ -43,6 +43,14 @@
                         Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
                     </p>
                 </div>
+<<<<<<< HEAD
+=======
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Form Pendaftaran Magang</h2>
+                <p class="text-white text-lg font-medium mb-3">Bergabunglah bersama keluarga besar Nusantara TV</p>
+                <p class="text-white text-base opacity-90 max-w-2xl mx-auto leading-relaxed">
+                        Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
+                    </p>
+>>>>>>> b3f6ad5096182b69fcf358f8a6020cb46068e845
             </div>
 
             <!-- Information Content -->
@@ -543,6 +551,7 @@
                                 </span>
                             </label>
                             <div class="relative">
+<<<<<<< HEAD
                                 <input 
                                     type="text" 
                                     id="asal_sekolah" 
@@ -555,8 +564,194 @@
                                     <svg class="w-8 h-8 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 12l2 2 4-4"/>
                                     </svg>
+=======
+                                    <input 
+                                        type="text" 
+                                        id="asal_sekolah" 
+                                        name="asal_sekolah" 
+                                        value="{{ old('asal_sekolah') }}"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('asal_sekolah') border-red-500 bg-red-50 @enderror"
+                                        placeholder="Nama lengkap sekolah/universitas"
+                                    >
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                                        </svg>
+                                    </div>
                                 </div>
+                                @error('asal_sekolah')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
+
+                            
+                            <div class="space-y-4 group">
+                                <label for="tahun_angkatan" class="block text-blue-700 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                        </div>
+                                        Tahun Angkatan
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="number" 
+                                        id="tahun_angkatan" 
+                                        name="tahun_angkatan" 
+                                        value="{{ old('tahun_angkatan') }}"
+                                        min="2010" 
+                                        max="2030"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tahun_angkatan') border-red-500 bg-red-50 @enderror"
+                                        placeholder="contoh: 2023"
+                                    >
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @error('tahun_angkatan')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <!-- NIM/NIS -->
+                            <div class="space-y-4 group">
+                                <label for="nim_nis" class="block text-blue-700 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                                            </svg>
+                                        </div>
+                                        Nomor Induk Mahasiswa / Siswa
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="text" 
+                                        id="nim_nis" 
+                                        name="nim_nis" 
+                                        value="{{ old('nim_nis') }}"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('nim_nis') border-red-500 bg-red-50 @enderror"
+                                        placeholder="NIM untuk mahasiswa atau NIS untuk siswa"
+                                    >
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @error('nim_nis')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <!-- Jurusan -->
+                            <div class="space-y-4 group">
+                                <label for="jurusan" class="block text-blue-700 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                            </svg>
+                                        </div>
+                                        Jurusan
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="text" 
+                                        id="jurusan" 
+                                        name="jurusan" 
+                                        value="{{ old('jurusan') }}"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('jurusan') border-red-500 bg-red-50 @enderror"
+                                        placeholder="Program studi atau jurusan"
+                                    >
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @error('jurusan')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <!-- Semester -->
+                            <div class="space-y-4 group">
+                                <label for="semester" class="block text-blue-700 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                        <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                            </svg>
+                                        </div>
+                                        Semester
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
+                                <select 
+                                        id="semester" 
+                                        name="semester" 
+                                    class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('semester') border-red-500 bg-red-50 @enderror"
+                                >
+                                    <option value="">Pilih semester</option>
+                                    <option value="Semester 1" {{ old('semester') == 'Semester 1' ? 'selected' : '' }}>Semester 1</option>
+                                    <option value="Semester 2" {{ old('semester') == 'Semester 2' ? 'selected' : '' }}>Semester 2</option>
+                                    <option value="Semester 3" {{ old('semester') == 'Semester 3' ? 'selected' : '' }}>Semester 3</option>
+                                    <option value="Semester 4" {{ old('semester') == 'Semester 4' ? 'selected' : '' }}>Semester 4</option>
+                                    <option value="Semester 5" {{ old('semester') == 'Semester 5' ? 'selected' : '' }}>Semester 5</option>
+                                    <option value="Semester 6" {{ old('semester') == 'Semester 6' ? 'selected' : '' }}>Semester 6</option>
+                                    <option value="Semester 7" {{ old('semester') == 'Semester 7' ? 'selected' : '' }}>Semester 7</option>
+                                    <option value="Semester 8" {{ old('semester') == 'Semester 8' ? 'selected' : '' }}>Semester 8</option>
+                                    <option value="Lulus" {{ old('semester') == 'Lulus' ? 'selected' : '' }}>Lulus</option>
+                                </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </div>
+>>>>>>> b3f6ad5096182b69fcf358f8a6020cb46068e845
+                                </div>
+                                @error('semester')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+<<<<<<< HEAD
                             @error('asal_sekolah')
                             <p class="text-red-500 text-lg flex items-center bg-red-50 p-4 rounded-xl border-2 border-red-200 font-medium">
                                 <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -605,6 +800,8 @@
                                 {{ $message }}
                             </p>
                             @enderror
+=======
+>>>>>>> b3f6ad5096182b69fcf358f8a6020cb46068e845
                         </div>
 
                         <!-- NIM/NIS -->
@@ -1352,6 +1549,7 @@
                                             </svg>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="ml-6 text-left">
                                         <p class="text-yellow-800 font-black text-xl mb-2">Perhatian!</p>
                                         <p class="text-yellow-700 text-lg font-medium">Pastikan semua data yang Anda masukkan sudah benar sebelum mengirim form pendaftaran.</p>
@@ -1363,6 +1561,95 @@
                             <button 
                                 type="submit" 
                                 class="group relative inline-flex items-center justify-center px-16 py-8 text-2xl font-black text-white bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 rounded-3xl hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 focus:outline-none focus:ring-8 focus:ring-blue-300 transition-all duration-500 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-2"
+=======
+                                </div>
+                                @error('bidang_minat_magang')
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+
+                    <!-- Additional Information Section -->
+                    <div class="relative mt-16">
+                        <div class="flex items-center border-l-4 border-blue-300 pl-8 mb-10 bg-gradient-to-r from-blue-50 to-transparent py-6 rounded-r-2xl">
+                            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center mr-6 shadow-xl hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black text-blue-700 mb-2">Informasi Tambahan</h3>
+                                <p class="text-gray-600 text-lg">Informasi ini akan membantu kami memberikan layanan yang lebih baik</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alasan Mendaftar -->
+                    <div class="space-y-4">
+                        <label for="alasan_mendaftar" class="block text-blue-700 font-bold text-xl">
+                            <span class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                    <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                                    </svg>
+                                </div>
+                                Alasan Mendaftar
+                                <span class="text-blue-500 text-lg font-normal ml-3 bg-blue-100 px-3 py-1 rounded-full">(Opsional)</span>
+                            </span>
+                        </label>
+                        <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <div class="mb-4">
+                                <p class="text-blue-700 text-base font-medium mb-2">Ceritakan motivasi dan alasan Anda bergabung dengan Nusantara TV:</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Pengalaman</span>
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Karir</span>
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Minat</span>
+                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Tujuan</span>
+                                </div>
+                            </div>
+                        <div class="relative">
+                            <textarea 
+                                id="alasan_mendaftar" 
+                                name="alasan_mendaftar" 
+                                rows="6"
+                                    class="w-full px-6 py-5 border-2 border-blue-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-500 resize-vertical shadow-sm hover:shadow-md"
+                                    placeholder="Contoh: Saya tertarik dengan dunia penyiaran dan ingin mengembangkan kemampuan dalam produksi konten digital. Saya berharap dapat belajar langsung dari para profesional di Nusantara TV..."
+                            >{{ old('alasan_mendaftar') }}</textarea>
+                                <div class="absolute bottom-4 right-4">
+                                    <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                                        <span id="char-count">0</span>/500
+                        </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-blue-100 rounded-lg">
+                                <p class="text-blue-700 text-sm font-medium flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                                Minimal 10 karakter - Maksimal 500 karakter
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8 mt-12 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-start space-x-4">
+                            <input 
+                                type="checkbox" 
+                                id="terms" 
+                                name="terms" 
+                                class="mt-2 w-6 h-6 text-blue-700 border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:ring-2 shadow-sm"
+                                required
+>>>>>>> b3f6ad5096182b69fcf358f8a6020cb46068e845
                             >
                                 <div class="absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-900 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <svg class="w-10 h-10 mr-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1515,5 +1802,13 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </footer>
 @endsection
+=======
+</div>
+
+<!-- External JavaScript -->
+<script src="{{ asset('js/form.js') }}"></script>
+@endsection
+>>>>>>> b3f6ad5096182b69fcf358f8a6020cb46068e845

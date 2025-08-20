@@ -12,15 +12,10 @@ use App\Http\Controllers\Admin\AccountSettingsController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route untuk PhotoController
+Route::get('/photo/{type}/{id}', [App\Http\Controllers\PhotoController::class, 'getPhoto'])->name('photo.get');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Dashboard dan Profile routes dihapus karena tidak digunakan
 
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 
@@ -40,8 +35,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     
     // Pengaturan Akun
     Route::get('account-settings', [AccountSettingsController::class, 'index'])->name('account-settings.index');
-    Route::put('account-settings/username', [AccountSettingsController::class, 'updateUsername'])->name('account-settings.update-username');
-    Route::put('account-settings/password', [AccountSettingsController::class, 'updatePassword'])->name('account-settings.update-password');
+    Route::post('account-settings/verify-password', [AccountSettingsController::class, 'verifyPassword'])->name('account-settings.verify-password')->middleware('throttle:3,1');
+    Route::put('account-settings/username', [AccountSettingsController::class, 'updateUsername'])->name('account-settings.update-username')->middleware('throttle:5,1');
+    Route::put('account-settings/password', [AccountSettingsController::class, 'updatePassword'])->name('account-settings.update-password')->middleware('throttle:3,1');
     Route::get('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'index'])->name('subkategori.index');
     Route::get('subkategori/{kategori}/create', [App\Http\Controllers\Admin\SubkategoriController::class, 'create'])->name('subkategori.create');
     Route::post('subkategori/{kategori}', [App\Http\Controllers\Admin\SubkategoriController::class, 'store'])->name('subkategori.store');
@@ -50,8 +46,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::delete('subkategori/{kategori}/{subcategory}', [App\Http\Controllers\Admin\SubkategoriController::class, 'destroy'])->name('subkategori.destroy');
 });
 
-// Route kategori
-Route::resource('categories', App\Http\Controllers\Admin\KategoriController::class)->only(['show']);
 // Route kategori by slug
 Route::get('categories/{slug}', [App\Http\Controllers\Admin\KategoriController::class, 'show'])->name('categories.show');
 // Route store kategori
