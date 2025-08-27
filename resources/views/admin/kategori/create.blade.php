@@ -61,7 +61,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     <i class="fa-solid fa-home mr-2 text-blue-600"></i>
-                    Tampilkan di Home
+                    Tampilkan di Home & Form Magang
                 </label>
                 <div class="flex items-center">
                     <label class="relative inline-flex items-center cursor-pointer">
@@ -76,7 +76,7 @@
                         </span>
                     </label>
                     <p class="ml-4 text-sm text-gray-500">
-                        Jika diaktifkan, kategori ini akan ditampilkan di halaman home
+                        Jika diaktifkan, kategori ini akan ditampilkan di halaman home dan sebagai pilihan bidang minat magang
                     </p>
                 </div>
             </div>

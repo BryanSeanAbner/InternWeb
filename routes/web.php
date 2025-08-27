@@ -44,6 +44,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('subkategori/{kategori}/{subcategory}/edit', [App\Http\Controllers\Admin\SubkategoriController::class, 'edit'])->name('subkategori.edit');
     Route::put('subkategori/{kategori}/{subcategory}', [App\Http\Controllers\Admin\SubkategoriController::class, 'update'])->name('subkategori.update');
     Route::delete('subkategori/{kategori}/{subcategory}', [App\Http\Controllers\Admin\SubkategoriController::class, 'destroy'])->name('subkategori.destroy');
+    
+
 });
 
 // Route kategori by slug
@@ -53,19 +55,43 @@ Route::post('categories', [App\Http\Controllers\Admin\KategoriController::class,
 
 Route::resource('categories.subcategories', App\Http\Controllers\Admin\SubkategoriController::class)->except(['show']);
 
-Route::get('/form', function () {
-    return view('form');
-})->name('form');
+// Form routes
+Route::get('/form', [App\Http\Controllers\FormController::class, 'show'])->name('form');
+Route::post('/form-submit', [App\Http\Controllers\FormController::class, 'submit'])->name('form.submit');
 
-// Untuk tampilkan halaman form
-Route::get('/form', function () {
-    return view('form'); // ini harus sesuai nama file form.blade.php
-})->name('form');
+// File access route - requires authentication for security
+Route::get('/storage/{path}', function ($path) {
+    // Check if user is authenticated
+    if (!auth()->check()) {
+        abort(403, 'Unauthorized access to files');
+    }
+    
+    $filePath = storage_path('app/public/' . $path);
+    
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    
+    $mimeType = mime_content_type($filePath);
+    return response()->file($filePath, [
+        'Content-Type' => $mimeType,
+        'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"'
+    ]);
+})->where('path', '.*')->middleware('auth');
 
-// Untuk proses saat form di-submit
-Route::post('/form-submit', function () {
-    // sementara, tes saja apakah berhasil sampai sini
-    return 'Form berhasil dikirim!';
-})->name('form.submit');
+// Public file access route for Google Sheets integration (with token validation)
+Route::get('/public-files/{path}', function ($path) {
+    $filePath = storage_path('app/public/' . $path);
+    
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    
+    $mimeType = mime_content_type($filePath);
+    return response()->file($filePath, [
+        'Content-Type' => $mimeType,
+        'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"'
+    ]);
+})->where('path', '.*');
 
 require __DIR__.'/auth.php';

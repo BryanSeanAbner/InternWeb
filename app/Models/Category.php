@@ -31,4 +31,20 @@ class Category extends Model
     {
         return $this->hasMany(Testimonial::class);
     }
+
+    /**
+     * Get categories that can be used as internship fields (categories displayed on home)
+     */
+    public function scopeInternshipFields($query)
+    {
+        return $query->where('is_required', true);
+    }
+
+    /**
+     * Get all internship field categories
+     */
+    public static function getInternshipFields()
+    {
+        return static::internshipFields()->orderBy('name')->get();
+    }
 } 

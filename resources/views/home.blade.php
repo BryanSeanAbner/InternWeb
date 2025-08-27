@@ -58,7 +58,6 @@
     </div>
 </header>
 
-
 <!-- Hero Section -->
 <div id="home" class="relative h-screen flex items-center justify-start bg-cover bg-center mb-12 pt-20 scroll-animation" style="background-image: url('{{ asset('img/hero.jpg') }}');">
     <div class="ml-4 md:ml-20 max-w-xl bg-black bg-opacity-30 rounded-lg p-6 scroll-animation">
@@ -253,7 +252,7 @@
         
         @if($applySteps->last() && $applySteps->last()->button_text)
             <div class="text-center mt-10 scroll-animation">
-                <a href="https://bit.ly/FROM-INT-NUSANTARATV" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
+                <a href="{{ route('form') }}" class="bg-blue-700 text-white px-16 py-6 rounded-full text-2xl font-semibold hover:bg-blue-800">
                     {{ $applySteps->last()->button_text }}
                 </a>
             </div>
@@ -274,7 +273,7 @@
         <div class="flex-[1] min-w-[220px] max-w-[600px] mb-8 md:mb-0 flex flex-col justify-start scroll-animation">
             <div class="text-2xl font-bold mb-4">Kontak Kami</div>
             <div class="mb-2 hover:text-blue-300 transition-colors duration-300">
-                Email: <br>nusantaratv@gmail.com
+                Email: <br>magang.nusantaratv@gmail.com
             </div>
             <div class="mb-2 hover:text-blue-300 transition-colors duration-300">
                 Hubungi kami: <br>+62 857-7734-9636

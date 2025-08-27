@@ -1,32 +1,47 @@
 @extends('layouts.app')
 
+<style>
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+</style>
+
 @section('content')
-<div class="min-h-screen bg-gray-50 py-8 px-4 relative">
+<div class="py-4 px-4">
+    <div class="max-w-4xl mx-auto relative z-10 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 hover:shadow-3xl transition-all duration-500" style="height: 200px;">
+        <img src="{{ asset('img/nusantaratv_cover.jpeg') }}" alt="Nusantara TV Cover" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+    </div> 
 
-    <div class="max-w-3xl mx-auto relative z-10">
-
-
-        <!-- Enhanced Main Form Card -->
-        <div class="bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white border-opacity-50 hover:shadow-3xl transition-all duration-500">
-            <!-- Header Section -->
-            <div class="bg-blue-700 px-8 py-12 text-center">
-                <!-- Logo Nusantara TV -->
-                <div class="flex items-center justify-center mb-6">
-                    <img src="{{ asset('img/logo.png') }}" alt="Logo Nusantara TV" class="w-20 h-20" />
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Form Pendaftaran Magang</h2>
-                <p class="text-white text-lg font-medium mb-3">Bergabunglah bersama keluarga besar Nusantara TV</p>
-                <p class="text-white text-base opacity-90 max-w-2xl mx-auto leading-relaxed">
-                        Wujudkan impian berkarir di industri penyiaran digital terdepan Indonesia. Silakan lengkapi data diri Anda dengan benar dan lengkap untuk memulai perjalanan profesional yang menginspirasi.
+    <!-- Form Section -->
+    <div class="py-6 px-4">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- Main Form Card -->
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200 hover:shadow-3xl transition-all duration-500">
+                <!-- Form Header -->
+                <div class="bg-gradient-to-r from-blue-700 to-blue-800 px-8 py-8 text-center">
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 drop-shadow-2xl">Form Pendaftaran Magang</h1>
+                    <h2 class="text-xl md:text-2xl font-bold text-white mb-4">Lengkapi Data Diri Anda</h2>
+                    <p class="text-blue-100 text-base">
+                        Pastikan semua data yang Anda masukkan sudah benar dan lengkap
                     </p>
-            </div>
-
+                </div>
+            
 
             <!-- Form Content -->
-            <div class="px-8 lg:px-12 py-12">
+            <div class="px-8 lg:px-6 py-6">
                 <!-- Success Alert -->
                 @if(session('success'))
-                <div class="mb-8 bg-green-50 border border-green-200 rounded-lg p-6">
+                <div class="mb-8 bg-green-50 border border-green-200 rounded-xl p-6">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
@@ -45,7 +60,7 @@
 
                 <!-- Error Alert -->
                 @if($errors->any())
-                <div class="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
+                <div class="mb-8 bg-red-50 border border-red-200 rounded-xl p-6">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
                             <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
@@ -69,14 +84,14 @@
                 </div>
                 @endif
 
-                <!-- Form -->
-                <form action="{{ route('form.submit') }}" method="POST" class="space-y-12">
+                <!-- Main Form -->
+                <form action="{{ route('form.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-12">
                     @csrf
                     
                     <!-- Personal Information Section -->
                     <div class="mb-8">
-                        <div class="flex items-center border-l-4 border-blue-700 pl-6 mb-6 bg-blue-50 py-4 rounded-r-lg">
-                            <div class="flex-shrink-0 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mr-4">
+                        <div class="flex items-center border-l-4 border-blue-700 pl-6 mb-6 bg-gradient-to-r from-blue-50 to-blue-100 py-4 rounded-r-xl">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full flex items-center justify-center mr-4 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
@@ -88,7 +103,7 @@
                         </div>
                     </div>
 
-                    <!-- Single Column Input Fields -->
+                    <!-- Personal Information Fields -->
                     <div class="space-y-10">
                         <!-- Nama Lengkap -->
                         <div class="space-y-4 group">
@@ -112,14 +127,9 @@
                                     class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('nama_lengkap') border-red-500 bg-red-50 @enderror"
                                     placeholder="Masukkan nama lengkap sesuai KTP"
                                 >
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                    <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
                             </div>
                             @error('nama_lengkap')
-                            <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                            <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                 </svg>
@@ -148,13 +158,8 @@
                                     name="email" 
                                     value="{{ old('email') }}"
                                     class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('email') border-red-500 bg-red-50 @enderror"
-                                    placeholder="contoh@email.com"
+                                    placeholder="contoh@gmail.com"
                                 >
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                    <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
                             </div>
                             @error('email')
                             <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
@@ -188,11 +193,6 @@
                                     class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('no_telepon') border-red-500 bg-red-50 @enderror"
                                     placeholder="08xxxxxxxxxx"
                                 >
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                    <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
                             </div>
                             <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-sm">
                                 <p class="text-blue-700 text-base flex items-center">
@@ -232,7 +232,7 @@
                                             type="radio" 
                                             name="jenis_kelamin" 
                                             value="Laki-laki"
-                                            class="w-5 h-5 text-blue-700 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                                            class="w-5 h-5 text-blue-700 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 rounded-full"
                                             {{ old('jenis_kelamin') == 'Laki-laki' ? 'checked' : '' }}
                                         >
                                         <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-blue-700 transition-colors duration-200">Laki - Laki</span>
@@ -242,7 +242,7 @@
                                             type="radio" 
                                             name="jenis_kelamin" 
                                             value="Perempuan"
-                                            class="w-5 h-5 text-blue-700 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                                            class="w-5 h-5 text-blue-700 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 rounded-full"
                                             {{ old('jenis_kelamin') == 'Perempuan' ? 'checked' : '' }}
                                         >
                                         <span class="ml-3 text-gray-700 text-lg font-medium group-hover/radio:text-blue-700 transition-colors duration-200">Perempuan</span>
@@ -280,13 +280,8 @@
                                     name="tempat_lahir" 
                                     value="{{ old('tempat_lahir') }}"
                                     class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tempat_lahir') border-red-500 bg-red-50 @enderror"
-                                    placeholder="Jawaban Anda"
+                                    placeholder="Tempat anda lahir"
                                 >
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                    <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
                             </div>
                             @error('tempat_lahir')
                             <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
@@ -312,7 +307,6 @@
                                 </span>
                             </label>
                             <div class="space-y-2">
-                                <p class="text-gray-600 text-base">Tanggal</p>
                                 <div class="relative">
                                     <input 
                                         type="date" 
@@ -321,11 +315,6 @@
                                         value="{{ old('tanggal_lahir') }}"
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tanggal_lahir') border-red-500 bg-red-50 @enderror"
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                        </svg>
-                                    </div>
                                 </div>
                             </div>
                             @error('tanggal_lahir')
@@ -348,7 +337,7 @@
                                         </svg>
                                     </div>
                                     Domisili
-                                    <span class="text-gray-400 text-lg font-normal ml-3 bg-gray-100 px-3 py-1 rounded-full">(Opsional)</span>
+                                    <span class="text-red-500 ml-2 text-2xl">*</span>
                                 </span>
                             </label>
                             <div class="relative">
@@ -357,14 +346,19 @@
                                     id="domisili" 
                                     name="domisili" 
                                     value="{{ old('domisili') }}"
-                                    class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400"
+                                    required
+                                    class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('domisili') border-red-500 bg-red-50 @enderror"
                                     placeholder="Kota/Kabupaten tempat tinggal saat ini"
                                 >
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                    <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
+                            </div>
+                            @error('domisili')
+                            <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                {{ $message }}
+                            </p>
+                            @enderror
                             </div>
                         </div>
 
@@ -400,24 +394,23 @@
                             </p>
                             @enderror
                         </div>
-                    </div>
-
                     <!-- Educational Information Section -->
-                    <div class="relative">
-                        <div class="flex items-center border-l-4 border-blue-700 pl-8 mb-10 bg-gradient-to-r from-blue-50 to-transparent py-6 rounded-r-2xl">
-                            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full flex items-center justify-center mr-6 shadow-xl hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 14l9-5-9-5-9 5 9 5z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                    <div class="mb-8">
+                        <div class="flex items-center border-l-4 border-blue-700 pl-6 mb-6 bg-gradient-to-r from-blue-50 to-blue-100 py-4 rounded-r-xl">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-3xl font-black text-blue-700 mb-2">Informasi Pendidikan</h3>
-                                <p class="text-gray-600 text-lg">Data pendidikan dan status akademik saat ini</p>
+                                <h3 class="text-2xl font-bold text-blue-700 mb-1">Informasi Pendidikan</h3>
+                                <p class="text-gray-600 text-base">Data pendidikan dan status akademik saat ini</p>
                             </div>
                         </div>
                     </div>
-       
+
+                    <!-- Educational Fields -->
                     <div class="space-y-10">
                         <!-- Asal Sekolah/Universitas  -->
                         <div class="space-y-4 group">
@@ -441,14 +434,9 @@
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('asal_sekolah') border-red-500 bg-red-50 @enderror"
                                         placeholder="Nama lengkap sekolah/universitas"
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                        </svg>
-                                    </div>
                                 </div>
                                 @error('asal_sekolah')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -457,7 +445,6 @@
                                 @enderror
                             </div>
 
-                            
                             <div class="space-y-4 group">
                                 <label for="tahun_angkatan" class="block text-blue-700 font-bold text-xl">
                                     <span class="flex items-center">
@@ -481,14 +468,9 @@
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tahun_angkatan') border-red-500 bg-red-50 @enderror"
                                         placeholder="contoh: 2023"
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                        </svg>
-                                    </div>
                                 </div>
                                 @error('tahun_angkatan')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -519,14 +501,9 @@
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('nim_nis') border-red-500 bg-red-50 @enderror"
                                         placeholder="NIM untuk mahasiswa atau NIS untuk siswa"
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                        </svg>
-                                    </div>
                                 </div>
                                 @error('nim_nis')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -557,14 +534,9 @@
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 resize-vertical shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('jurusan') border-red-500 bg-red-50 @enderror"
                                         placeholder="Program studi atau jurusan"
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                        </svg>
-                                    </div>
                                 </div>
                                 @error('jurusan')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -587,30 +559,17 @@
                                     </span>
                                 </label>
                                 <div class="relative">
-                                <select 
+                                    <input 
+                                        type="text" 
                                         id="semester" 
                                         name="semester" 
-                                    class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('semester') border-red-500 bg-red-50 @enderror"
-                                >
-                                    <option value="">Pilih semester</option>
-                                    <option value="Semester 1" {{ old('semester') == 'Semester 1' ? 'selected' : '' }}>Semester 1</option>
-                                    <option value="Semester 2" {{ old('semester') == 'Semester 2' ? 'selected' : '' }}>Semester 2</option>
-                                    <option value="Semester 3" {{ old('semester') == 'Semester 3' ? 'selected' : '' }}>Semester 3</option>
-                                    <option value="Semester 4" {{ old('semester') == 'Semester 4' ? 'selected' : '' }}>Semester 4</option>
-                                    <option value="Semester 5" {{ old('semester') == 'Semester 5' ? 'selected' : '' }}>Semester 5</option>
-                                    <option value="Semester 6" {{ old('semester') == 'Semester 6' ? 'selected' : '' }}>Semester 6</option>
-                                    <option value="Semester 7" {{ old('semester') == 'Semester 7' ? 'selected' : '' }}>Semester 7</option>
-                                    <option value="Semester 8" {{ old('semester') == 'Semester 8' ? 'selected' : '' }}>Semester 8</option>
-                                    <option value="Lulus" {{ old('semester') == 'Lulus' ? 'selected' : '' }}>Lulus</option>
-                                </select>
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                                        </svg>
-                                    </div>
+                                        value="{{ old('semester') }}"
+                                        class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('semester') border-red-500 bg-red-50 @enderror"
+                                        placeholder="Contoh: Semester 1, Semester 2, atau Sudah Lulus"
+                                    >
                                 </div>
                                 @error('semester')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -619,25 +578,26 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                        
+                    
+
                     <!-- Internship Information Section -->
-                <div class="max-w-3xl mx-auto px-12">
-                    <div class="relative mt-16">
-                       <div class="flex items-center border-l-4 border-blue-700 pl-8 mb-10 bg-gradient-to-r from-blue-50 to-transparent py-6 rounded-r-2xl">
-                            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full flex items-center justify-center mr-6 shadow-xl hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
+                    <div class="mb-8">
+                        <div class="flex items-center border-l-4 border-blue-700 pl-6 mb-6 bg-gradient-to-r from-blue-50 to-blue-100 py-4 rounded-r-xl">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-3xl font-black text-blue-600 mb-2">Informasi Magang</h3>
-                                <p class="text-gray-600 text-lg">Detail periode dan bidang magang yang diminati</p>
+                                <h3 class="text-2xl font-bold text-blue-700 mb-1">Informasi Magang</h3>
+                                <p class="text-gray-600 text-base">Detail periode dan bidang magang yang diminati</p>
                             </div>
                         </div>
+                    
 
-                        <div class="space-y-10">
-                            <!-- Tanggal Mulai Magang -->
+                    <!-- Internship Fields -->
+                    <div class="space-y-10">
+                        <!-- Tanggal Mulai Magang -->
                             <div class="space-y-4 group">
                                 <label for="tanggal_mulai_magang" class="block text-blue-600 font-bold text-xl">
                                     <span class="flex items-center">
@@ -657,15 +617,11 @@
                                         name="tanggal_mulai_magang" 
                                         value="{{ old('tanggal_mulai_magang') }}"
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tanggal_mulai_magang') border-red-500 bg-red-50 @enderror"
+                                        min=""
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                        </svg>
-                                    </div>
                                 </div>
                                 @error('tanggal_mulai_magang')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -694,15 +650,11 @@
                                         name="tanggal_selesai_magang" 
                                         value="{{ old('tanggal_selesai_magang') }}"
                                         class="w-full px-6 py-5 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300 text-lg placeholder-gray-400 shadow-sm hover:shadow-md hover:border-blue-500 group-hover:border-blue-400 @error('tanggal_selesai_magang') border-red-500 bg-red-50 @enderror"
+                                        min=""
                                     >
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-5">
-                                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                        </svg>
-                                    </div>
                                 </div>
                                 @error('tanggal_selesai_magang')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -727,103 +679,31 @@
                                 <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
                                     <p class="text-blue-700 text-base mb-4 font-medium">Pilih salah satu bidang yang sesuai dengan minat dan kemampuan Anda:</p>
                                     <div class="grid gap-3">
+                                        @forelse($internshipFields as $field)
                                         <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
-                                                value="Social Media Editing"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Social Media Editing' ? 'checked' : '' }}
+                                                value="{{ $field->name }}"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1 rounded-full"
+                                                {{ old('bidang_minat_magang') == $field->name ? 'checked' : '' }}
                                             >
                                             <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Social Media Editing</span>
-                                                <p class="text-gray-600 text-sm mt-1">Mengedit dan mengelola konten media sosial</p>
+                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">{{ $field->name }}</span>
                                             </div>
                                         </label>
-                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
-                                            <input 
-                                                type="radio" 
-                                                name="bidang_minat_magang" 
-                                                value="Master Control Room (MCR)"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Master Control Room (MCR)' ? 'checked' : '' }}
-                                            >
-                                            <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Master Control Room (MCR)</span>
-                                                <p class="text-gray-600 text-sm mt-1">Mengontrol dan mengatur siaran televisi</p>
-                                            </div>
-                                        </label>
-                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
-                                            <input 
-                                                type="radio" 
-                                                name="bidang_minat_magang" 
-                                                value="Produksi Program TV"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Produksi Program TV' ? 'checked' : '' }}
-                                            >
-                                            <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Produksi Program TV</span>
-                                                <p class="text-gray-600 text-sm mt-1">Membuat dan memproduksi program televisi</p>
-                                            </div>
-                                        </label>
-                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
-                                            <input 
-                                                type="radio" 
-                                                name="bidang_minat_magang" 
-                                                value="Support Jadwal Program TV"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Support Jadwal Program TV' ? 'checked' : '' }}
-                                            >
-                                            <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Support Jadwal Program TV</span>
-                                                <p class="text-gray-600 text-sm mt-1">Mengatur dan mengelola jadwal program</p>
-                                            </div>
-                                        </label>
-                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
-                                            <input 
-                                                type="radio" 
-                                                name="bidang_minat_magang" 
-                                                value="Research and Development (R & D) Program TV"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Research and Development (R & D) Program TV' ? 'checked' : '' }}
-                                            >
-                                            <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Research and Development (R & D) Program TV</span>
-                                                <p class="text-gray-600 text-sm mt-1">Penelitian dan pengembangan program televisi</p>
-                                            </div>
-                                        </label>
-                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
-                                            <input 
-                                                type="radio" 
-                                                name="bidang_minat_magang" 
-                                                value="Support Marketing"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Support Marketing' ? 'checked' : '' }}
-                                            >
-                                            <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Support Marketing</span>
-                                                <p class="text-gray-600 text-sm mt-1">Mendukung kegiatan marketing dan promosi</p>
-                                            </div>
-                                        </label>
-                                        <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
-                                            <input 
-                                                type="radio" 
-                                                name="bidang_minat_magang" 
-                                                value="Repoter Sosialmedia Live Streaming"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
-                                                {{ old('bidang_minat_magang') == 'Repoter Sosialmedia Live Streaming' ? 'checked' : '' }}
-                                            >
-                                            <div class="ml-3">
-                                                <span class="text-gray-800 text-lg font-semibold group-hover:text-blue-700 transition-colors duration-200">Reporter Sosial Media Live Streaming</span>
-                                                <p class="text-gray-600 text-sm mt-1">Melaporkan dan streaming langsung di media sosial</p>
-                                            </div>
-                                        </label>
+                                        @empty
+                                        <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                            <p class="text-yellow-700 text-sm">Belum ada bidang magang yang tersedia. Silakan hubungi admin.</p>
+                                        </div>
+                                        @endforelse
+                                        
                                         <label class="flex items-start cursor-pointer group/radio p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200">
                                             <input 
                                                 type="radio" 
                                                 name="bidang_minat_magang" 
                                                 value="Lainnya"
-                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1"
+                                                class="w-5 h-5 text-blue-600 border-2 border-gray-300 focus:ring-blue-500 focus:ring-2 mt-1 rounded-full"
                                                 {{ old('bidang_minat_magang') == 'Lainnya' ? 'checked' : '' }}
                                             >
                                             <div class="ml-3 flex-1">
@@ -832,23 +712,15 @@
                                                     type="text" 
                                                     name="bidang_minat_lainnya" 
                                                     value="{{ old('bidang_minat_lainnya') }}"
-                                                    class="mt-2 w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base transition-all duration-300"
+                                                    class="mt-2 w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base transition-all duration-300"
                                                     placeholder="Sebutkan bidang minat lainnya..."
                                                 >
                                             </div>
                                         </label>
                                     </div>
-                                    <div class="mt-4 p-3 bg-blue-100 rounded-lg">
-                                        <p class="text-blue-700 text-sm font-medium">
-                                            <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                                            </svg>
-                                            Pilihan akan disesuaikan dengan kuota divisi yang tersedia
-                                        </p>
-                                    </div>
                                 </div>
                                 @error('bidang_minat_magang')
-                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
@@ -856,70 +728,265 @@
                                 </p>
                                 @enderror
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional Information Section -->
-
-                    <!-- Additional Information Section -->
-                    <div class="relative mt-16">
-                        <div class="flex items-center border-l-4 border-blue-300 pl-8 mb-10 bg-gradient-to-r from-blue-50 to-transparent py-6 rounded-r-2xl">
-                            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center mr-6 shadow-xl hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-                                </svg>
+                            <!-- CV  -->
+                            <div class="space-y-4 group">
+                                <label for="cv" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </div>
+                                        CV (Curriculum Vitae)
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                
+                                <input id="cv" 
+                                    name="cv" 
+                                    type="file" 
+                                    accept=".pdf" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: PDF, DOC, DOCX. Maksimal 2MB.
+                                </p>
+                                @error('cv')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
-                            <div>
-                                <h3 class="text-3xl font-black text-blue-700 mb-2">Informasi Tambahan</h3>
-                                <p class="text-gray-600 text-lg">Informasi ini akan membantu kami memberikan layanan yang lebih baik</p>
+                            <!-- Kartu Tanda Penduduk (KTP)  -->
+                            <div class="space-y-4 group">
+                                <label for="ktp" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V4a2 2 0 114 0v2m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/>
+                                            </svg>
+                                        </div>
+                                        Kartu Tanda Penduduk (KTP)                             
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                    <p class="text-sm text-gray-500 mt-1">Notes: bila belum punya KTP isi dengan Kartu Pelajar/Mahasiswa</p>
+                                </label>
+                                
+                                <input id="ktp" 
+                                    name="ktp" 
+                                    type="file" 
+                                    accept=".pdf" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: PDF. Maksimal 2MB.
+                                </p>
+                                @error('ktp')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Alasan Mendaftar -->
-                    <div class="space-y-4">
-                        <label for="alasan_mendaftar" class="block text-blue-700 font-bold text-xl">
-                            <span class="flex items-center">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                                    <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-                                    </svg>
-                                </div>
-                                Alasan Mendaftar
-                                <span class="text-blue-500 text-lg font-normal ml-3 bg-blue-100 px-3 py-1 rounded-full">(Opsional)</span>
-                            </span>
-                        </label>
-                        <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
-                            <div class="mb-4">
-                                <p class="text-blue-700 text-base font-medium mb-2">Ceritakan motivasi dan alasan Anda bergabung dengan Nusantara TV:</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Pengalaman</span>
-                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Karir</span>
-                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Minat</span>
-                                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Tujuan</span>
-                                </div>
+                            <!-- Kartu Tanda Mahasiswa / Kartu Pelajar  -->
+                            <div class="space-y-4 group">
+                                <label for="kartu_pelajar" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                                            </svg>
+                                        </div>
+                                        Kartu Tanda Mahasiswa (KTM)
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                
+                                <input id="kartu_pelajar" 
+                                    name="kartu_pelajar" 
+                                    type="file" 
+                                    accept=".pdf" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: PDF. Maksimal 2MB.
+                                </p>
+                                @error('kartu_pelajar')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
-                        <div class="relative">
-                            <textarea 
-                                id="alasan_mendaftar" 
-                                name="alasan_mendaftar" 
-                                rows="6"
-                                    class="w-full px-6 py-5 border-2 border-blue-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-700 transition-all duration-300 text-lg placeholder-gray-500 resize-vertical shadow-sm hover:shadow-md"
-                                    placeholder="Contoh: Saya tertarik dengan dunia penyiaran dan ingin mengembangkan kemampuan dalam produksi konten digital. Saya berharap dapat belajar langsung dari para profesional di Nusantara TV..."
-                            >{{ old('alasan_mendaftar') }}</textarea>
-                                <div class="absolute bottom-4 right-4">
-                                    <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                                        <span id="char-count">0</span>/500
-                        </div>
-                                </div>
+                            <!-- Surat Keterangan Magang Yang Di Berikan Dari Kampus / Sekolah  -->
+                            <div class="space-y-4 group">
+                                <label for="surat_magang" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </div>
+                                        Surat magang dari kampus
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                
+                                <input id="surat_magang" 
+                                    name="surat_magang" 
+                                    type="file" 
+                                    accept=".pdf" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: PDF. Maksimal 2MB.
+                                </p>
+                                @error('surat_magang')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
-                            <div class="mt-4 p-3 bg-blue-100 rounded-lg">
-                                <p class="text-blue-700 text-sm font-medium flex items-center">
-                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                                </svg>
-                                Minimal 10 karakter - Maksimal 500 karakter
-                            </p>
+                            <!-- Transkip Nilai Terakhir  -->
+                            <div class="space-y-4 group">
+                                <label for="transkip_nilai" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </div>
+                                        Transkrip nilai
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                
+                                <input id="transkip_nilai" 
+                                    name="transkip_nilai" 
+                                    type="file" 
+                                    accept=".pdf" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: PDF. Maksimal 2MB.
+                                </p>
+                                @error('transkip_nilai')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            <!-- From Magang NTV  -->
+                            <div class="space-y-4 group">
+                                <label for="form_magang_ntv" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </div>
+                                        Form Magang NTV
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                    <p class="text-sm text-gray-500 mt-1">Silakan download form magang NTV di <a href="https://drive.google.com/file/d/1OJOaU0mXrpgFkx8gD4253zXLDCa63IaT/view?usp=sharing" class="text-blue-700 underline hover:text-blue-800 font-black">sini</a></p>
+                                </label>
+                                
+                                <input id="form_magang_ntv" 
+                                    name="form_magang_ntv" 
+                                    type="file" 
+                                    accept=".pdf" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: PDF. Maksimal 2MB.
+                                </p>
+                                @error('form_magang_ntv')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            <!-- Foto Diri -->
+                            <div class="space-y-4 group">
+                                <label for="foto_diri" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                            </svg>
+                                        </div>
+                                        Foto Diri 
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                </label>
+                                
+                                <input id="foto_diri" 
+                                    name="foto_diri" 
+                                    type="file" 
+                                    accept="image/*" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: JPG, PNG. Maksimal 2MB.
+                                </p>
+                                @error('foto_diri')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            <!-- Follow Akun Instagram Nusantara TV -->
+                            <div class="space-y-4 group">
+                                <label for="screenshot_instagram" class="block text-blue-600 font-bold text-xl">
+                                    <span class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                        </div>
+                                        Screenshot Instagram
+                                        <span class="text-red-500 ml-2 text-2xl">*</span>
+                                    </span>
+                                    <p class="text-sm text-gray-500 mt-1">https://www.instagram.com/officialnusantaratv?igsh=azdmbnVvd3U5dzN</p>
+                                </label>
+                                
+                                <input id="screenshot_instagram" 
+                                    name="screenshot_instagram" 
+                                    type="file" 
+                                    accept="image/*" 
+                                    required
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer cursor-pointer border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all duration-300">
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Format yang didukung: JPG, PNG. Maksimal 2MB.
+                                </p>
+                                @error('screenshot_instagram')
+                                    <p class="text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -931,7 +998,7 @@
                                 type="checkbox" 
                                 id="terms" 
                                 name="terms" 
-                                class="mt-2 w-6 h-6 text-blue-700 border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:ring-2 shadow-sm"
+                                class="mt-2 w-6 h-6 text-blue-700 border-2 border-gray-300 rounded-xl focus:ring-blue-500 focus:ring-2 shadow-sm"
                                 required
                             >
                             <div class="flex-1">
@@ -955,35 +1022,12 @@
                             <!-- Button glow effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity"></div>
                             <span class="flex items-center justify-center relative z-10">
-                                <img src="{{ asset('img/logo.png') }}" alt="Logo Nusantara TV" class="w-6 h-6 mr-3" />
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
                                 Kirim Pendaftaran
                             </span>
                         </button>
-                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mt-8 shadow-sm">
-                            <p class="text-blue-700 text-base font-medium flex items-center justify-center">
-                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                                </svg>
-                                Proses pendaftaran membutuhkan waktu 1-2 hari kerja untuk verifikasin
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Required Fields Note -->
-                    <div class="pt-8 border-t-2 border-gray-200">
-                        <div class="flex items-center justify-center space-x-8 text-base">
-                            <div class="flex items-center text-blue-700 bg-blue-50 px-4 py-2 rounded-full shadow-sm">
-                                <span class="text-red-500 mr-2 text-xl">*</span>
-                                <span class="font-bold">Field wajib diisi</span>
-                            </div>
-                            <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                            <div class="flex items-center text-gray-600 bg-gray-50 px-4 py-2 rounded-full shadow-sm">
-                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
-                                </svg>
-                                <span class="font-medium">Data Anda Aman</span>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>
@@ -991,7 +1035,7 @@
 
         <!-- Enhanced Footer Information -->
         <div class="mt-12 text-center space-y-6">
-            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-blue-100 hover:shadow-2xl transition-all duration-300">
+            <div class="bg-white rounded-2xl shadow-xl p-8 border border-blue-100 hover:shadow-2xl transition-all duration-300">
                 <h4 class="text-blue-700 font-black text-2xl mb-6 flex items-center justify-center">
                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -1006,7 +1050,7 @@
                             </svg>
                         </div>
                         <span class="font-bold text-lg">Email</span>
-                        <span class="text-base">info@nusantaratv.com</span>
+                        <span class="text-base">magang.nusantaratv@gmail.com</span>
                     </div>
                     <div class="flex flex-col items-center text-blue-700 bg-blue-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group">
                         <div class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -1014,8 +1058,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                         </div>
-                        <span class="font-bold text-lg">Telepon</span>
-                        <span class="text-base">(021) 1234-5678</span>
+                        <span class="font-bold text-lg">Kontak Kami</span>
+                        <span class="text-base">+62 857-7734-9636</span>
                     </div>
                     <div class="flex flex-col items-center text-blue-700 bg-blue-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group">
                         <div class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -1023,27 +1067,256 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                        <span class="font-bold text-lg">Support</span>
-                        <span class="text-base">24/7 Customer Support</span>
+                        <span class="font-bold text-lg">Lokasi Kami</span>
+                        <span class="text-base">Jl. Pulomas Selatan Kav. Blok, Kota Jakarta Timur 13210</span>
                     </div>
                 </div>
             </div>
             
             <div class="bg-gradient-to-r from-blue-700 to-blue-800 text-white py-6 px-8 rounded-2xl shadow-xl">
                 <p class="text-lg font-bold flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/>
-                    </svg>
-                    © 2025 Nusantara TV - Televisi Digital Nasional Indonesia
-                </p>
-                <p class="text-blue-200 text-base mt-2 opacity-90">
-                    Membangun masa depan penyiaran digital Indonesia bersama generasi terbaik bangsa
+                    © 2025 Nusantara TV. All rights reserved.
                 </p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- External JavaScript -->
-<script src="{{ asset('js/form.js') }}"></script>
 @endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get date input elements
+    const tanggalMulaiInput = document.getElementById('tanggal_mulai_magang');
+    const tanggalSelesaiInput = document.getElementById('tanggal_selesai_magang');
+    
+    // Remove any date restrictions by setting min to empty
+    tanggalMulaiInput.min = '';
+    tanggalSelesaiInput.min = '';
+    
+    // Add event listener for tanggal mulai to update tanggal selesai minimum
+    tanggalMulaiInput.addEventListener('change', function() {
+        const selectedStartDate = this.value;
+        if (selectedStartDate) {
+            // Set minimum date for tanggal selesai to be the same as tanggal mulai
+            tanggalSelesaiInput.min = selectedStartDate;
+            
+            // If tanggal selesai is before tanggal mulai, clear it
+            if (tanggalSelesaiInput.value && tanggalSelesaiInput.value < selectedStartDate) {
+                tanggalSelesaiInput.value = '';
+            }
+        }
+    });
+    
+    // Add event listener for tanggal selesai to validate it's not before tanggal mulai
+    tanggalSelesaiInput.addEventListener('change', function() {
+        const selectedEndDate = this.value;
+        const startDate = tanggalMulaiInput.value;
+        
+        if (selectedEndDate && startDate && selectedEndDate < startDate) {
+            alert('Tanggal selesai magang tidak boleh sebelum tanggal mulai magang!');
+            this.value = '';
+        }
+    });
+    
+    // Add form validation before submit
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        const startDate = tanggalMulaiInput.value;
+        const endDate = tanggalSelesaiInput.value;
+        
+        if (startDate && endDate && endDate < startDate) {
+            e.preventDefault();
+            alert('Tanggal selesai magang tidak boleh sebelum tanggal mulai magang!');
+            return false;
+        }
+        
+        // Validate all file inputs
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        let hasError = false;
+        
+        fileInputs.forEach(input => {
+            const hasFile = input.files.length > 0;
+            const hasStoredData = sessionStorage.getItem(`file_${input.id}`);
+            const isHidden = input.style.display === 'none';
+            
+            // If input is visible and required, check if file is selected
+            if (!isHidden && input.required && !hasFile) {
+                hasError = true;
+                input.classList.add('border-red-500', 'bg-red-50');
+                
+                // Show error message
+                let errorMsg = input.parentNode.querySelector('.file-error-msg');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('p');
+                    errorMsg.className = 'text-red-500 text-base flex items-center bg-red-50 p-3 rounded-xl border border-red-200 file-error-msg';
+                    errorMsg.innerHTML = `
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        File ini wajib diupload
+                    `;
+                    input.parentNode.appendChild(errorMsg);
+                }
+            } else {
+                input.classList.remove('border-red-500', 'bg-red-50');
+                const errorMsg = input.parentNode.querySelector('.file-error-msg');
+                if (errorMsg) {
+                    errorMsg.remove();
+                }
+            }
+        });
+        
+        if (hasError) {
+            e.preventDefault();
+            alert('Mohon lengkapi semua file yang wajib diupload!');
+            return false;
+        }
+    });
+
+    // File persistence and error field focus functionality
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    
+    // Store uploaded files in sessionStorage
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                const file = this.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    sessionStorage.setItem(`file_${input.id}`, e.target.result);
+                    sessionStorage.setItem(`file_name_${input.id}`, file.name);
+                };
+                reader.readAsDataURL(file);
+                
+                // Remove error styling and message when file is selected
+                input.classList.remove('border-red-500', 'bg-red-50');
+                const errorMsg = input.parentNode.querySelector('.file-error-msg');
+                if (errorMsg) {
+                    errorMsg.remove();
+                }
+            }
+        });
+    });
+
+    // Restore files on page load if there are errors
+    @if($errors->any())
+        fileInputs.forEach(input => {
+            const storedFile = sessionStorage.getItem(`file_${input.id}`);
+            const storedFileName = sessionStorage.getItem(`file_name_${input.id}`);
+            
+            if (storedFile && storedFileName) {
+                // Create a fake file input display
+                const fileDisplay = document.createElement('div');
+                fileDisplay.className = 'mt-2 p-3 bg-green-50 border border-green-200 rounded-lg';
+                fileDisplay.innerHTML = `
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-green-800 font-medium">File tersimpan: ${storedFileName}</span>
+                        <button type="button" class="ml-auto text-red-600 hover:text-red-800" onclick="removeStoredFile('${input.id}')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                
+                // Insert after the file input
+                input.parentNode.insertBefore(fileDisplay, input.nextSibling);
+                
+                // Hide the original file input
+                input.style.display = 'none';
+                input.required = false;
+                
+                // Hide the required asterisk
+                const parentGroup = input.closest('.group');
+                if (parentGroup) {
+                    const label = parentGroup.querySelector('label');
+                    if (label) {
+                        const requiredSpan = label.querySelector('.text-red-500');
+                        if (requiredSpan) {
+                            requiredSpan.style.display = 'none';
+                        }
+                    }
+                }
+                
+                // Add a hidden input to preserve the file data
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = `stored_${input.name}`;
+                hiddenInput.value = storedFile;
+                input.parentNode.appendChild(hiddenInput);
+            }
+        });
+
+        // Auto-scroll to first error field
+        const firstErrorField = document.querySelector('.border-red-500');
+        if (firstErrorField) {
+            setTimeout(() => {
+                firstErrorField.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                firstErrorField.focus();
+                
+                // Add highlight effect
+                firstErrorField.classList.add('animate-pulse');
+                setTimeout(() => {
+                    firstErrorField.classList.remove('animate-pulse');
+                }, 2000);
+            }, 500);
+        }
+    @endif
+});
+
+// Function to remove stored file
+function removeStoredFile(inputId) {
+    sessionStorage.removeItem(`file_${inputId}`);
+    sessionStorage.removeItem(`file_name_${inputId}`);
+    
+    // Remove the display element
+    const fileDisplay = event.target.closest('div');
+    if (fileDisplay) {
+        fileDisplay.remove();
+    }
+    
+    // Remove hidden input
+    const hiddenInput = document.querySelector(`input[name="stored_${inputId.replace('_', '.')}"]`);
+    if (hiddenInput) {
+        hiddenInput.remove();
+    }
+    
+    // Show the original file input again
+    const fileInput = document.getElementById(inputId);
+    if (fileInput) {
+        fileInput.style.display = 'block';
+        fileInput.required = true;
+    }
+    
+    // Add validation class to show it's required
+    const parentGroup = fileInput.closest('.group');
+    if (parentGroup) {
+        const label = parentGroup.querySelector('label');
+        if (label) {
+            const requiredSpan = label.querySelector('.text-red-500');
+            if (requiredSpan) {
+                requiredSpan.style.display = 'inline';
+            }
+        }
+    }
+}
+
+// Clear stored files when form is successfully submitted
+document.addEventListener('DOMContentLoaded', function() {
+    @if(session('success'))
+        // Clear all stored files on successful submission
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            sessionStorage.removeItem(`file_${input.id}`);
+            sessionStorage.removeItem(`file_name_${input.id}`);
+        });
+    @endif
+});
+</script>
