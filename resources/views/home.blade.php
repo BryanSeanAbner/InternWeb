@@ -46,7 +46,7 @@
             </div>
             <div class="mt-4">
                 <a href="#home" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Home</a>
-                                 <a href="{{ route('posts.index') }}" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
+                <a href="{{ route('posts.index') }}" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Berita</a>
                 <a href="#tentang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Tentang</a>
                 <a href="#bidang" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Bidang</a>
                 <a href="#persyaratan" class="block py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Persyaratan</a>

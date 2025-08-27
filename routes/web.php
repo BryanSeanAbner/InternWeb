@@ -57,14 +57,13 @@ Route::get('/form', function () {
     return view('form');
 })->name('form');
 
-// Untuk tampilkan halaman form
+
 Route::get('/form', function () {
-    return view('form'); // ini harus sesuai nama file form.blade.php
+    return view('form'); 
 })->name('form');
 
 // Untuk proses saat form di-submit
 Route::post('/form-submit', function () {
-    // sementara, tes saja apakah berhasil sampai sini
     return 'Form berhasil dikirim!';
 })->name('form.submit');
 

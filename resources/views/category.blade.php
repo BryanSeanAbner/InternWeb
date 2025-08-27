@@ -66,7 +66,7 @@
                     {{ $category->description ?? 'Deskripsi kategori belum tersedia.' }}
                 </p>
             </div>
-                                    <div class="relative scroll-animation">
+                <div class="relative scroll-animation">
                 @if($category->photo)
                     <img src="@photo($category->photo)" alt="{{ $category->name }}" class="w-full h-80 md:h-96 pt-8 object-cover rounded-lg shadow-lg">
                 @else
@@ -89,7 +89,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($subcategories as $sub)
-                                    <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 scroll-animation">
+                <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 scroll-animation">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 font-poppins">{{ $sub->name }}</h3>
                 <div class="prose prose-gray max-w-none text-gray-600 leading-relaxed font-poppins">{!! $sub->description !!}</div>
             </div>
