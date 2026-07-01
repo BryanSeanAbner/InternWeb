@@ -1,8 +1,8 @@
 # Website Manajemen Internship Nusantara TV
 
-Website manajemen program internship untuk Nusantara TV menggunakan Laravel dan PHP.
+Website ini merupakan project dari internship yang dilakukan di Nusantara TV. Pada web ini menggunakan Laravel dan PHP.
 
-## ✨ Fitur Utama
+## Fitur Utama
 
 ### 1. **Home Page (Dashboard Public)**
 - Slogan: "Mulai karirmu di Dunia Broadcasting bersama Nusantara TV"
@@ -29,7 +29,7 @@ Website manajemen program internship untuk Nusantara TV menggunakan Laravel dan 
 - Instagram, YouTube
 - Floating WhatsApp button
 
-## 🧱 Teknologi
+## Teknologi
 
 - **Backend:** Laravel 11, PHP 8.1+
 - **Database:** MySQL/SQLite
@@ -38,7 +38,7 @@ Website manajemen program internship untuk Nusantara TV menggunakan Laravel dan 
 - **Media:** Spatie Laravel MediaLibrary
 - **Server:** Apache/Nginx
 
-## 🚀 Instalasi
+## Instalasi
 
 ### Prerequisites
 - PHP 8.1+
@@ -46,43 +46,7 @@ Website manajemen program internship untuk Nusantara TV menggunakan Laravel dan 
 - MySQL/SQLite
 - Node.js & NPM
 
-### Langkah Instalasi
-
-1. **Clone repository**
-```bash
-git clone <repository-url>
-cd InternWeb
-```
-
-2. **Install dependencies**
-```bash
-composer install
-npm install
-```
-
-3. **Setup environment**
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-4. **Setup database**
-```bash
-php artisan migrate
-php artisan db:seed
-```
-
-5. **Build assets**
-```bash
-npm run build
-```
-
-6. **Create storage link**
-```bash
-php artisan storage:link
-```
-
-## 👥 Role Akses
+## Role Akses
 
 ### **Admin (Login Required)**
 - Akses: `/admin`
@@ -93,29 +57,7 @@ php artisan storage:link
 - Akses: `/dashboard`, `/posts`, `/categories`, `/testimonials`
 - Fitur: Lihat data saja
 
-## 📁 Struktur File
-
-```
-InternWeb/
-├── app/
-│   ├── Http/Controllers/
-│   │   ├── PostController.php
-│   │   ├── CategoryController.php
-│   │   └── TestimonialController.php
-│   └── Models/
-│       ├── Post.php
-│       ├── Category.php
-│       └── Testimonial.php
-├── resources/views/
-│   ├── dashboard.blade.php (public)
-│   ├── posts/ (public)
-│   ├── categories/ (public)
-│   ├── testimonials/ (public)
-│   └── admin/ (admin CRUD)
-└── routes/web.php
-```
-
-## 🔧 Konfigurasi
+## Konfigurasi
 
 ### **Upload Media**
 - **Berita:** Max 10MB per file, format: JPG, PNG, GIF, MP4, MOV, AVI
@@ -130,7 +72,7 @@ InternWeb/
 - URL: `https://bit.ly/daftarmagang-nusatv`
 - Ganti di `resources/views/dashboard.blade.php`
 
-## 🎯 Penggunaan
+## Penggunaan
 
 ### **Untuk Admin:**
 1. Login dengan akun admin
@@ -145,14 +87,14 @@ InternWeb/
 4. Lihat testimoni di `/testimonials`
 5. Hubungi via WhatsApp button
 
-## 📞 Kontak
+## Kontak
 
 - **Email:** magang@nusatv.com
 - **Telepon:** 0812-3456-7890
 - **Instagram:** @nusatv
 - **YouTube:** Nusantara TV
 
-## 🔄 Update & Maintenance
+## Update & Maintenance
 
 ### **Menambah Admin Baru:**
 1. Register via `/register`
