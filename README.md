@@ -51,7 +51,7 @@ Website ini merupakan project dari internship yang dilakukan di Nusantara TV. Pa
 ### **Admin (Login Required)**
 - Akses: `/admin`
 - Fitur: CRUD berita, bidang magang, testimoni
-- Login: `admin@nusatv.com` / `password`
+- Login: `admin@nusanantaratv.com` / `password`
 
 ### **Public (No Login Required)**
 - Akses: `/dashboard`, `/posts`, `/categories`, `/testimonials`
@@ -87,13 +87,6 @@ Website ini merupakan project dari internship yang dilakukan di Nusantara TV. Pa
 4. Lihat testimoni di `/testimonials`
 5. Hubungi via WhatsApp button
 
-## Kontak
-
-- **Email:** magang@nusatv.com
-- **Telepon:** 0812-3456-7890
-- **Instagram:** @nusatv
-- **YouTube:** Nusantara TV
-
 ## Update & Maintenance
 
 ### **Menambah Admin Baru:**
@@ -104,11 +97,6 @@ Website ini merupakan project dari internship yang dilakukan di Nusantara TV. Pa
 1. Edit di `resources/views/dashboard.blade.php`
 2. Edit WhatsApp di `resources/views/layouts/app.blade.php`
 
-### **Backup Database:**
-```bash
-php artisan db:backup
-```
-
-## 📝 License
+## License
 
 © 2024 Nusantara TV. All rights reserved.
