@@ -69,7 +69,7 @@ Website ini merupakan project dari internship yang dilakukan di Nusantara TV. Pa
 - Ganti nomor di `resources/views/layouts/app.blade.php`
 
 ### **Google Form Daftar**
-- URL: `https://bit.ly/daftarmagang-nusatv`
+- URL: `https://bit.ly/daftarmagang-nusantaratv`
 - Ganti di `resources/views/dashboard.blade.php`
 
 ## Penggunaan
